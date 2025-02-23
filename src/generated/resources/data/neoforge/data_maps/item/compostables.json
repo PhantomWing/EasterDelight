@@ -1,0 +1,8 @@
+{
+  "values": {
+    "eastersdelight:boiled_egg": {
+      "can_villager_compost": true,
+      "chance": 0.85
+    }
+  }
+}

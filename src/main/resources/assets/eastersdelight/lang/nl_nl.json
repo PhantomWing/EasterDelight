@@ -1,0 +1,7 @@
+{
+  "item.eastersdelight.boiled_egg": "Gekookt ei",
+  "item.eastersdelight.easter_egg": "Paasei",
+  "itemGroup.eastersdelight": "Easter's Delight",
+  "eastersdelight.configuration.enable_villager_trades": "Handelen met dorpelingen inschakelen",
+  "eastersdelight.configuration.enable_wandering_trader_trades": "Handelen met handelaar inschakelen"
+}
