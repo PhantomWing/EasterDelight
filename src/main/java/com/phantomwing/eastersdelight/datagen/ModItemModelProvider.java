@@ -1,10 +1,12 @@
 package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
+import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.item.ModItemProperties;
 import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.item.custom.EasterEggItem;
+import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -27,8 +29,38 @@ public class ModItemModelProvider extends ItemModelProvider {
         // Items
         simpleItem(ModItems.BOILED_EGG);
         easterEggItem(ModItems.EASTER_EGG);
+        eggPatternItem(ModItems.EGG_PATTERN);
 
         // Blocks
+        simpleBlock(ModBlocks.EGG_PAINTING_TABLE);
+    }
+
+    private void eggPatternItem(DeferredItem<Item> item) {
+        // Check if item is of the correct type.
+        if (!(item.get() instanceof EggPatternItem)) {
+            return;
+        }
+
+        // Loop through all patterns.
+        for (EggPattern pattern : EggPattern.values()) {
+            String colorPrefix = pattern.getName() + "_";
+            String colorSuffix = "_" + pattern.getName();
+            ResourceLocation baseModel = getItemResourceLocationWithPrefix(item, colorPrefix);
+            ResourceLocation baseTexture = getItemResourceLocation(item, "", colorSuffix);
+
+            // Generate an item model with just the base color (no pattern).
+            markAsGenerated(baseTexture);
+            getBuilder(colorPrefix + getItemName(item))
+                    .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                    .texture("layer0", baseTexture);
+
+            // Add a model predicate for this base color texture variant.
+            this.withExistingParent(getItemName(item), baseModel())
+                    .override()
+                    .model(new ModelFile.UncheckedModelFile(baseModel))
+                    .predicate(ModItemProperties.EGG_PATTERN, pattern.getId())
+                    .end();
+        }
     }
 
     private void easterEggItem(DeferredItem<Item> item) {
@@ -44,7 +76,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         for (DyeColor baseColor : DyeColor.values()) {
             String colorPrefix = baseColor.getName() + "_";
             String colorSuffix = "_" + baseColor.getName();
-            ResourceLocation baseModel = getItemResourceLocation(item, colorPrefix);
+            ResourceLocation baseModel = getItemResourceLocationWithPrefix(item, colorPrefix);
             ResourceLocation baseTexture = getItemResourceLocation(item, "", colorSuffix);
 
             // Generate an item model with just the base color (no pattern).
@@ -132,10 +164,10 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private ResourceLocation getItemResourceLocation(DeferredItem<Item> item) {
-        return getItemResourceLocation(item, "");
+        return getItemResourceLocationWithPrefix(item, "");
     }
 
-    private ResourceLocation getItemResourceLocation(DeferredItem<Item> item, String prefix) {
+    private ResourceLocation getItemResourceLocationWithPrefix(DeferredItem<Item> item, String prefix) {
         return getItemResourceLocation(item, prefix, "");
     }
 

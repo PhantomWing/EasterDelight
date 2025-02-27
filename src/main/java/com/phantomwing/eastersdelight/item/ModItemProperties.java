@@ -14,6 +14,11 @@ public class ModItemProperties {
     public static final ResourceLocation EGG_PATTERN = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "egg_pattern");
 
     public static void register() {
+        registerEasterEggProperties();
+        registerEggPatternProperties();
+    }
+
+    private static void registerEasterEggProperties() {
         ItemProperties.register(ModItems.EASTER_EGG.get(), BASE_COLOR, (stack, world, entity, seed) -> {
             DyeColor color = stack.get(DataComponents.BASE_COLOR);
             return color != null ? color.getId() : -1f;
@@ -29,4 +34,12 @@ public class ModItemProperties {
             return pattern != null ? pattern.getId() : -1f;
         });
     }
+
+    private static void registerEggPatternProperties() {
+        ItemProperties.register(ModItems.EGG_PATTERN.get(), EGG_PATTERN, (stack, world, entity, seed) -> {
+            EggPattern pattern = stack.get(ModDataComponents.EGG_PATTERN);
+            return pattern != null ? pattern.getId() : -1f;
+        });
+    }
+
 }

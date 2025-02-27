@@ -1,7 +1,19 @@
 {
+  "block.eastersdelight.egg_painting_table": "Egg Painting Table",
   "item.eastersdelight.boiled_egg": "Boiled Egg",
   "item.eastersdelight.easter_egg": "Easter Egg",
+  "item.eastersdelight.egg_pattern": "Egg Pattern",
   "itemGroup.eastersdelight": "Easter's Delight",
   "eastersdelight.configuration.enable_villager_trades": "Enable villager trades",
-  "eastersdelight.configuration.enable_wandering_trader_trades": "Enable wandering trader trades"
+  "eastersdelight.configuration.enable_wandering_trader_trades": "Enable wandering trader trades",
+  "eastersdelight.tooltip.egg_pattern.stripes": "§9Stripes§r",
+  "eastersdelight.tooltip.egg_pattern.half_dipped": "§7Half-Dipped§r",
+  "eastersdelight.tooltip.egg_pattern.split": "§7Split§r",
+  "eastersdelight.tooltip.egg_pattern.half_stripes": "§7Half-Striped§r",
+  "eastersdelight.tooltip.egg_pattern.waves": "§7Waves§r",
+  "eastersdelight.tooltip.egg_pattern.dots": "§7Dots§r",
+  "eastersdelight.tooltip.egg_pattern.petals": "§7Petals§r",
+  "eastersdelight.tooltip.egg_pattern.creeper": "§7Creeper§r",
+  "eastersdelight.tooltip.egg_pattern.heart": "§7Heart§r",
+  "eastersdelight.tooltip.egg_pattern.blocks": "§7Blocks§r"
 }

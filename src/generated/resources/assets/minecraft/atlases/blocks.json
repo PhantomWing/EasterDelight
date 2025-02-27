@@ -2,7 +2,7 @@
   "sources": [
     {
       "type": "minecraft:paletted_permutations",
-      "palette_key": "eastersdelight:easter_egg/color_palettes/color_key",
+      "palette_key": "eastersdelight:easter_egg/color_palettes/white",
       "permutations": {
         "black": "eastersdelight:easter_egg/color_palettes/black",
         "blue": "eastersdelight:easter_egg/color_palettes/blue",
@@ -22,157 +22,17 @@
         "yellow": "eastersdelight:easter_egg/color_palettes/yellow"
       },
       "textures": [
-        "eastersdelight:item/easter_egg"
-      ]
-    },
-    {
-      "type": "minecraft:paletted_permutations",
-      "palette_key": "eastersdelight:easter_egg/color_palettes/color_key",
-      "permutations": {
-        "black": "eastersdelight:easter_egg/color_palettes/black",
-        "blue": "eastersdelight:easter_egg/color_palettes/blue",
-        "brown": "eastersdelight:easter_egg/color_palettes/brown",
-        "cyan": "eastersdelight:easter_egg/color_palettes/cyan",
-        "gray": "eastersdelight:easter_egg/color_palettes/gray",
-        "green": "eastersdelight:easter_egg/color_palettes/green",
-        "light_blue": "eastersdelight:easter_egg/color_palettes/light_blue",
-        "light_gray": "eastersdelight:easter_egg/color_palettes/light_gray",
-        "lime": "eastersdelight:easter_egg/color_palettes/lime",
-        "magenta": "eastersdelight:easter_egg/color_palettes/magenta",
-        "orange": "eastersdelight:easter_egg/color_palettes/orange",
-        "pink": "eastersdelight:easter_egg/color_palettes/pink",
-        "purple": "eastersdelight:easter_egg/color_palettes/purple",
-        "red": "eastersdelight:easter_egg/color_palettes/red",
-        "white": "eastersdelight:easter_egg/color_palettes/white",
-        "yellow": "eastersdelight:easter_egg/color_palettes/yellow"
-      },
-      "textures": [
-        "eastersdelight:easter_egg/patterns/stripes"
-      ]
-    },
-    {
-      "type": "minecraft:paletted_permutations",
-      "palette_key": "eastersdelight:easter_egg/color_palettes/color_key",
-      "permutations": {
-        "black": "eastersdelight:easter_egg/color_palettes/black",
-        "blue": "eastersdelight:easter_egg/color_palettes/blue",
-        "brown": "eastersdelight:easter_egg/color_palettes/brown",
-        "cyan": "eastersdelight:easter_egg/color_palettes/cyan",
-        "gray": "eastersdelight:easter_egg/color_palettes/gray",
-        "green": "eastersdelight:easter_egg/color_palettes/green",
-        "light_blue": "eastersdelight:easter_egg/color_palettes/light_blue",
-        "light_gray": "eastersdelight:easter_egg/color_palettes/light_gray",
-        "lime": "eastersdelight:easter_egg/color_palettes/lime",
-        "magenta": "eastersdelight:easter_egg/color_palettes/magenta",
-        "orange": "eastersdelight:easter_egg/color_palettes/orange",
-        "pink": "eastersdelight:easter_egg/color_palettes/pink",
-        "purple": "eastersdelight:easter_egg/color_palettes/purple",
-        "red": "eastersdelight:easter_egg/color_palettes/red",
-        "white": "eastersdelight:easter_egg/color_palettes/white",
-        "yellow": "eastersdelight:easter_egg/color_palettes/yellow"
-      },
-      "textures": [
-        "eastersdelight:easter_egg/patterns/half_dipped"
-      ]
-    },
-    {
-      "type": "minecraft:paletted_permutations",
-      "palette_key": "eastersdelight:easter_egg/color_palettes/color_key",
-      "permutations": {
-        "black": "eastersdelight:easter_egg/color_palettes/black",
-        "blue": "eastersdelight:easter_egg/color_palettes/blue",
-        "brown": "eastersdelight:easter_egg/color_palettes/brown",
-        "cyan": "eastersdelight:easter_egg/color_palettes/cyan",
-        "gray": "eastersdelight:easter_egg/color_palettes/gray",
-        "green": "eastersdelight:easter_egg/color_palettes/green",
-        "light_blue": "eastersdelight:easter_egg/color_palettes/light_blue",
-        "light_gray": "eastersdelight:easter_egg/color_palettes/light_gray",
-        "lime": "eastersdelight:easter_egg/color_palettes/lime",
-        "magenta": "eastersdelight:easter_egg/color_palettes/magenta",
-        "orange": "eastersdelight:easter_egg/color_palettes/orange",
-        "pink": "eastersdelight:easter_egg/color_palettes/pink",
-        "purple": "eastersdelight:easter_egg/color_palettes/purple",
-        "red": "eastersdelight:easter_egg/color_palettes/red",
-        "white": "eastersdelight:easter_egg/color_palettes/white",
-        "yellow": "eastersdelight:easter_egg/color_palettes/yellow"
-      },
-      "textures": [
-        "eastersdelight:easter_egg/patterns/split"
-      ]
-    },
-    {
-      "type": "minecraft:paletted_permutations",
-      "palette_key": "eastersdelight:easter_egg/color_palettes/color_key",
-      "permutations": {
-        "black": "eastersdelight:easter_egg/color_palettes/black",
-        "blue": "eastersdelight:easter_egg/color_palettes/blue",
-        "brown": "eastersdelight:easter_egg/color_palettes/brown",
-        "cyan": "eastersdelight:easter_egg/color_palettes/cyan",
-        "gray": "eastersdelight:easter_egg/color_palettes/gray",
-        "green": "eastersdelight:easter_egg/color_palettes/green",
-        "light_blue": "eastersdelight:easter_egg/color_palettes/light_blue",
-        "light_gray": "eastersdelight:easter_egg/color_palettes/light_gray",
-        "lime": "eastersdelight:easter_egg/color_palettes/lime",
-        "magenta": "eastersdelight:easter_egg/color_palettes/magenta",
-        "orange": "eastersdelight:easter_egg/color_palettes/orange",
-        "pink": "eastersdelight:easter_egg/color_palettes/pink",
-        "purple": "eastersdelight:easter_egg/color_palettes/purple",
-        "red": "eastersdelight:easter_egg/color_palettes/red",
-        "white": "eastersdelight:easter_egg/color_palettes/white",
-        "yellow": "eastersdelight:easter_egg/color_palettes/yellow"
-      },
-      "textures": [
-        "eastersdelight:easter_egg/patterns/half_stripes"
-      ]
-    },
-    {
-      "type": "minecraft:paletted_permutations",
-      "palette_key": "eastersdelight:easter_egg/color_palettes/color_key",
-      "permutations": {
-        "black": "eastersdelight:easter_egg/color_palettes/black",
-        "blue": "eastersdelight:easter_egg/color_palettes/blue",
-        "brown": "eastersdelight:easter_egg/color_palettes/brown",
-        "cyan": "eastersdelight:easter_egg/color_palettes/cyan",
-        "gray": "eastersdelight:easter_egg/color_palettes/gray",
-        "green": "eastersdelight:easter_egg/color_palettes/green",
-        "light_blue": "eastersdelight:easter_egg/color_palettes/light_blue",
-        "light_gray": "eastersdelight:easter_egg/color_palettes/light_gray",
-        "lime": "eastersdelight:easter_egg/color_palettes/lime",
-        "magenta": "eastersdelight:easter_egg/color_palettes/magenta",
-        "orange": "eastersdelight:easter_egg/color_palettes/orange",
-        "pink": "eastersdelight:easter_egg/color_palettes/pink",
-        "purple": "eastersdelight:easter_egg/color_palettes/purple",
-        "red": "eastersdelight:easter_egg/color_palettes/red",
-        "white": "eastersdelight:easter_egg/color_palettes/white",
-        "yellow": "eastersdelight:easter_egg/color_palettes/yellow"
-      },
-      "textures": [
-        "eastersdelight:easter_egg/patterns/waves"
-      ]
-    },
-    {
-      "type": "minecraft:paletted_permutations",
-      "palette_key": "eastersdelight:easter_egg/color_palettes/color_key",
-      "permutations": {
-        "black": "eastersdelight:easter_egg/color_palettes/black",
-        "blue": "eastersdelight:easter_egg/color_palettes/blue",
-        "brown": "eastersdelight:easter_egg/color_palettes/brown",
-        "cyan": "eastersdelight:easter_egg/color_palettes/cyan",
-        "gray": "eastersdelight:easter_egg/color_palettes/gray",
-        "green": "eastersdelight:easter_egg/color_palettes/green",
-        "light_blue": "eastersdelight:easter_egg/color_palettes/light_blue",
-        "light_gray": "eastersdelight:easter_egg/color_palettes/light_gray",
-        "lime": "eastersdelight:easter_egg/color_palettes/lime",
-        "magenta": "eastersdelight:easter_egg/color_palettes/magenta",
-        "orange": "eastersdelight:easter_egg/color_palettes/orange",
-        "pink": "eastersdelight:easter_egg/color_palettes/pink",
-        "purple": "eastersdelight:easter_egg/color_palettes/purple",
-        "red": "eastersdelight:easter_egg/color_palettes/red",
-        "white": "eastersdelight:easter_egg/color_palettes/white",
-        "yellow": "eastersdelight:easter_egg/color_palettes/yellow"
-      },
-      "textures": [
-        "eastersdelight:easter_egg/patterns/dots"
+        "eastersdelight:item/easter_egg",
+        "eastersdelight:easter_egg/patterns/stripes",
+        "eastersdelight:easter_egg/patterns/half_dipped",
+        "eastersdelight:easter_egg/patterns/split",
+        "eastersdelight:easter_egg/patterns/half_stripes",
+        "eastersdelight:easter_egg/patterns/waves",
+        "eastersdelight:easter_egg/patterns/dots",
+        "eastersdelight:easter_egg/patterns/petals",
+        "eastersdelight:easter_egg/patterns/creeper",
+        "eastersdelight:easter_egg/patterns/heart",
+        "eastersdelight:easter_egg/patterns/blocks"
       ]
     }
   ]

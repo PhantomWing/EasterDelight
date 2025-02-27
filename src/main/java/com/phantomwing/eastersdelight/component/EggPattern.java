@@ -9,7 +9,11 @@ public enum EggPattern implements StringRepresentable {
     SPLIT(2, "split"),
     HALF_STRIPES(3, "half_stripes"),
     WAVES(4, "waves"),
-    DOTS(5, "dots");
+    DOTS(5, "dots"),
+    PETALS(6, "petals"),
+    CREEPER(7, "creeper"),
+    HEART(8, "heart"),
+    BLOCKS(9, "blocks");
 
     public static final StringRepresentable.StringRepresentableCodec<EggPattern> CODEC = StringRepresentable.fromEnum(EggPattern::values);
 

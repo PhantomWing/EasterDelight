@@ -26,6 +26,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        modelBlock(ModBlocks.EGG_PAINTING_TABLE.get(), "block/egg_painting_table");
     }
 
     private void farmersDelightCrate(Block block) {
@@ -74,5 +75,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     public ResourceLocation farmersDelightResourceBlock(String path) {
         return ResourceLocation.fromNamespaceAndPath(FarmersDelight.MODID, "block/" + path);
+    }
+
+    public void modelBlock(Block block, String modelPath) {
+        simpleBlock(block,
+                new ModelFile.UncheckedModelFile(ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, modelPath)));
     }
 }

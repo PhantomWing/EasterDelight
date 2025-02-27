@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "eastersdelight:item/easter_egg_brown",
+    "layer1": "eastersdelight:easter_egg/patterns/blocks_light_blue"
+  }
+}

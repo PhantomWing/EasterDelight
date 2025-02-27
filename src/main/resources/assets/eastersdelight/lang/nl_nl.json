@@ -1,7 +1,19 @@
 {
+  "block.eastersdelight.egg_painting_table": "Eierverftafel",
   "item.eastersdelight.boiled_egg": "Gekookt ei",
   "item.eastersdelight.easter_egg": "Paasei",
+  "item.eastersdelight.egg_pattern": "Paasei patroon",
   "itemGroup.eastersdelight": "Easter's Delight",
   "eastersdelight.configuration.enable_villager_trades": "Handelen met dorpelingen inschakelen",
-  "eastersdelight.configuration.enable_wandering_trader_trades": "Handelen met handelaar inschakelen"
+  "eastersdelight.configuration.enable_wandering_trader_trades": "Handelen met handelaar inschakelen",
+  "eastersdelight.tooltip.egg_pattern.stripes": "§7Stripes§r",
+  "eastersdelight.tooltip.egg_pattern.half_dipped": "§7Half-Dipped§r",
+  "eastersdelight.tooltip.egg_pattern.split": "§7Split§r",
+  "eastersdelight.tooltip.egg_pattern.half_stripes": "§7Half-Striped§r",
+  "eastersdelight.tooltip.egg_pattern.waves": "§7Waves§r",
+  "eastersdelight.tooltip.egg_pattern.dots": "§7Dots§r",
+  "eastersdelight.tooltip.egg_pattern.petals": "§7Petals§r",
+  "eastersdelight.tooltip.egg_pattern.creeper": "§7Creeper§r",
+  "eastersdelight.tooltip.egg_pattern.heart": "§7Heart§r",
+  "eastersdelight.tooltip.egg_pattern.blocks": "§7Blocks§r"
 }

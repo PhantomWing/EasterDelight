@@ -2,7 +2,11 @@ package com.phantomwing.eastersdelight.item;
 
 import com.google.common.collect.Sets;
 import com.phantomwing.eastersdelight.EastersDelight;
+import com.phantomwing.eastersdelight.block.ModBlocks;
+import com.phantomwing.eastersdelight.component.EggPattern;
+import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.custom.EasterEggItem;
+import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
@@ -23,11 +27,17 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(EastersDelight.MOD_ID);
     public static LinkedHashSet<Supplier<Item>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
 
+    // Blocks
+    public static final DeferredItem<Item> EGG_PAINTING_TABLE = registerBlockWithTab(ModBlocks.EGG_PAINTING_TABLE);
+
     // Boiled eggs
     public static final DeferredItem<Item> BOILED_EGG = registerWithTab("boiled_egg", () -> new Item(
             baseItem().food(FoodValues.BOILED_EGG)));
 
-    // Base easter eggs
+    public static final DeferredItem<Item> EGG_PATTERN = registerWithTab("egg_pattern", () -> new EggPatternItem(
+            baseItem().component(ModDataComponents.EGG_PATTERN, EggPattern.STRIPES)));
+
+    // Easter eggs
     public static final DeferredItem<Item> EASTER_EGG = registerWithTab("easter_egg", () -> new EasterEggItem(
             baseItem().component(DataComponents.BASE_COLOR, DyeColor.WHITE).food(FoodValues.BOILED_EGG)));
 

@@ -1,11 +1,16 @@
 package com.phantomwing.eastersdelight;
 
 import com.phantomwing.eastersdelight.block.ModBlocks;
+import com.phantomwing.eastersdelight.block.entity.ModBlockEntityTypes;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItemProperties;
 import com.phantomwing.eastersdelight.item.ModItems;
+import com.phantomwing.eastersdelight.screen.EggPaintingTableScreen;
+import com.phantomwing.eastersdelight.screen.ModMenuTypes;
 import com.phantomwing.eastersdelight.ui.ModCreativeModTab;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import org.slf4j.Logger;
@@ -48,6 +53,8 @@ public class EastersDelight {
         ModBlocks.register(eventBus);
         ModCreativeModTab.register(eventBus);
         ModDataComponents.register(eventBus);
+        ModBlockEntityTypes.register(eventBus);
+        ModMenuTypes.register(eventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -62,6 +69,11 @@ public class EastersDelight {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             ModItemProperties.register();
+        }
+
+        @SubscribeEvent
+        public static void registerMenuScreens(RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.EGG_PAINTING_TABLE.get(), EggPaintingTableScreen::new);
         }
     }
 }
