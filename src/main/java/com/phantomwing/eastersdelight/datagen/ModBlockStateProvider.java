@@ -2,20 +2,17 @@ package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.block.ModBlocks;
+import com.phantomwing.eastersdelight.block.custom.EggPainterBlock;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.block.PieBlock;
-
-import java.util.function.Function;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     private static final int DEFAULT_ANGLE_OFFSET = 180;
@@ -26,7 +23,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        modelBlock(ModBlocks.EGG_PAINTING_TABLE.get(), "block/egg_painting_table");
+        eggPainterBlock(ModBlocks.EGG_PAINTER.get());
     }
 
     private void farmersDelightCrate(Block block) {
@@ -75,6 +72,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     public ResourceLocation farmersDelightResourceBlock(String path) {
         return ResourceLocation.fromNamespaceAndPath(FarmersDelight.MODID, "block/" + path);
+    }
+
+    public void eggPainterBlock(Block block) {
+        getVariantBuilder(block)
+                .forAllStates(state -> ConfiguredModel.builder()
+                        .modelFile(existingModel(blockName(block)))
+                        .rotationY(((int) state.getValue(EggPainterBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
+                        .build()
+                );
     }
 
     public void modelBlock(Block block, String modelPath) {

@@ -28,7 +28,7 @@ public class ModItems {
     public static LinkedHashSet<Supplier<Item>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
 
     // Blocks
-    public static final DeferredItem<Item> EGG_PAINTING_TABLE = registerBlockWithTab(ModBlocks.EGG_PAINTING_TABLE);
+    public static final DeferredItem<Item> EGG_PAINTER = registerBlockWithTab(ModBlocks.EGG_PAINTER);
 
     // Boiled eggs
     public static final DeferredItem<Item> BOILED_EGG = registerWithTab("boiled_egg", () -> new Item(

@@ -1,5 +1,5 @@
 {
-  "block.eastersdelight.egg_painting_table": "Egg Painting Table",
+  "block.eastersdelight.egg_painter": "Egg Painter",
   "item.eastersdelight.boiled_egg": "Boiled Egg",
   "item.eastersdelight.easter_egg": "Easter Egg",
   "item.eastersdelight.egg_pattern": "Egg Pattern",
@@ -15,5 +15,6 @@
   "eastersdelight.tooltip.egg_pattern.petals": "§7Petals§r",
   "eastersdelight.tooltip.egg_pattern.creeper": "§7Creeper§r",
   "eastersdelight.tooltip.egg_pattern.heart": "§7Heart§r",
-  "eastersdelight.tooltip.egg_pattern.blocks": "§7Blocks§r"
+  "eastersdelight.tooltip.egg_pattern.blocks": "§7Blocks§r",
+  "eastersdelight.container.egg_painter": "Egg Painter"
 }

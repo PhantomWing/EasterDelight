@@ -7,6 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
@@ -36,6 +37,15 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     private void buildCraftingRecipes(@NotNull RecipeOutput output) {
+        // Egg Painting Mill
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EGG_PAINTER, 1)
+                .pattern("/E/")
+                .pattern("###")
+                .define('E', ModItems.BOILED_EGG)
+                .define('/', Items.STICK)
+                .define('#', ItemTags.PLANKS)
+                .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModItems.BOILED_EGG))
+                .save(output, ModItems.EGG_PAINTER.getId());
     }
 
     private void buildCuttingRecipes(@NotNull RecipeOutput output) {

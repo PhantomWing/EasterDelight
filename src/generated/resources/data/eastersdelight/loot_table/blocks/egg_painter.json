@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "eastersdelight:egg_painting_table"
+          "name": "eastersdelight:egg_painter"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "eastersdelight:blocks/egg_painting_table"
+  "random_sequence": "eastersdelight:blocks/egg_painter"
 }

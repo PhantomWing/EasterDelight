@@ -32,7 +32,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         eggPatternItem(ModItems.EGG_PATTERN);
 
         // Blocks
-        simpleBlock(ModBlocks.EGG_PAINTING_TABLE);
+        simpleBlock2D(ModBlocks.EGG_PAINTER);
     }
 
     private void eggPatternItem(DeferredItem<Item> item) {
@@ -146,13 +146,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     // For blocks like stairs/slabs that have multiple models, but need a single model in inventory.
     private void simpleBlock(DeferredBlock<Block> item) {
-        this.withExistingParent(EastersDelight.MOD_ID + ":" + getItemName(item), getBlockResourceLocation(item));
+        withExistingParent(EastersDelight.MOD_ID + ":" + getItemName(item), getBlockResourceLocation(item));
     }
 
     // For blocks that appear as a block in-world but as an item in-hand
     private void simpleBlock2D(DeferredBlock<Block> item) {
         withExistingParent(getItemName(item), baseModel())
-                .texture("layer0", getBlockResourceLocation(item));
+                .texture("layer0", getBlockItemResourceLocation(item));
     }
 
     private String getItemName(DeferredItem<Item> item) {
@@ -181,5 +181,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     private ResourceLocation getBlockResourceLocation(DeferredBlock<Block> item) {
         return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "block/" + getItemName(item));
+    }
+
+    private ResourceLocation getBlockItemResourceLocation(DeferredBlock<Block> item) {
+        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "item/" + getItemName(item));
     }
 }

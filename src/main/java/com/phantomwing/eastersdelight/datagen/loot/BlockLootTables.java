@@ -24,7 +24,7 @@ public class BlockLootTables extends BlockLootSubProvider {
     // Actually add our loot tables.
     @Override
     protected void generate() {
-        dropSelf(ModBlocks.EGG_PAINTING_TABLE.get());
+        dropSelf(ModBlocks.EGG_PAINTER.get());
     }
 
     // The contents of this Iterable are used for validation.

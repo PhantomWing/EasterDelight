@@ -1,3 +1,5 @@
-// 1.21	2025-02-20T23:28:14.4908916	Recipes
+// 1.21	2025-02-28T00:21:44.9986169	Recipes
 a2d5536eb917b2747db8cc2e4bdd911f6f2bd060 data/eastersdelight/advancement/recipes/cooking/boiled_egg.json
+27c6e683195207d0407bfee42670b6874a54c22c data/eastersdelight/advancement/recipes/misc/egg_painter.json
 3eb4642d847c1cab8fc5b1bfa556d9652dc4eea6 data/eastersdelight/recipe/cooking/boiled_egg.json
+028abc999e5b3c0fe8f7c47a3fd8a7cd855a3837 data/eastersdelight/recipe/egg_painter.json

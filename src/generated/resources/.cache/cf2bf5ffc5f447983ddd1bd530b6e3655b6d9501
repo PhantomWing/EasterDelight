@@ -1,4 +1,4 @@
-// 1.21	2025-02-25T21:55:57.9918915	Item Models: eastersdelight
+// 1.21	2025-02-28T00:21:44.9676148	Item Models: eastersdelight
 e6984082e5b19726e11dee266e81a718dccb672e assets/eastersdelight/models/item/black_easter_egg.json
 bf30030959ef1c6c971d827a736c1bd0aa27acf5 assets/eastersdelight/models/item/black_easter_egg_blocks_blue.json
 b2ee2ae787e9e7e654d099ed136903248731a413 assets/eastersdelight/models/item/black_easter_egg_blocks_brown.json
@@ -608,7 +608,7 @@ e5da9e4609d1eea22639e936ad2b21af2b8e989f assets/eastersdelight/models/item/cyan_
 7e81e181cfbeeecf65639a42ad5be121e0519a77 assets/eastersdelight/models/item/cyan_easter_egg_waves_yellow.json
 a4c45974aa5ae22506554ff967a6fefdcb93b35b assets/eastersdelight/models/item/dots_egg_pattern.json
 9e6e6f2d96d394c85141238bdb8cac3b64729bb1 assets/eastersdelight/models/item/easter_egg.json
-296e02a10a7acadb61e5e552681467a4b4b7e039 assets/eastersdelight/models/item/egg_painting_table.json
+75f56170047b5fe016f44d2c69b616babd6737aa assets/eastersdelight/models/item/egg_painter.json
 68c820dc526d54cac6934d982b5cb08ad5555bdd assets/eastersdelight/models/item/egg_pattern.json
 24ef37daf9360dc12de51311866f27c684d3b593 assets/eastersdelight/models/item/gray_easter_egg.json
 2e0894c4bb165d463b51b0462740af6ecf901941 assets/eastersdelight/models/item/gray_easter_egg_blocks_black.json

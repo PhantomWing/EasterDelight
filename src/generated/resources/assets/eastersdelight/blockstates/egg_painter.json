@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "eastersdelight:block/egg_painter",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "eastersdelight:block/egg_painter"
+    },
+    "facing=south": {
+      "model": "eastersdelight:block/egg_painter",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "eastersdelight:block/egg_painter",
+      "y": 270
+    }
+  }
+}
