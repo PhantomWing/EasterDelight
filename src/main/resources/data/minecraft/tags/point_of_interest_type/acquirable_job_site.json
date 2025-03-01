@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "eastersdelight:easter_bunny_poi",
+      "required": false
+    }
+  ]
+}

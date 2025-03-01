@@ -21,5 +21,6 @@
   "eastersdelight.container.egg_painter.missing_egg_tooltip": "Add Boiled Egg",
   "eastersdelight.container.egg_painter.missing_pattern_tooltip": "Add Egg Pattern",
   "eastersdelight.container.egg_painter.missing_base_color_tooltip": "Add base Dye",
-  "eastersdelight.container.egg_painter.missing_pattern_color_tooltip": "Add pattern Dye"
+  "eastersdelight.container.egg_painter.missing_pattern_color_tooltip": "Add pattern Dye",
+  "entity.minecraft.villager.eastersdelight.easter_bunny": "Easter Bunny"
 }

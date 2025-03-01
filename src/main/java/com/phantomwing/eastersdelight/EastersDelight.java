@@ -7,6 +7,7 @@ import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.screen.EggPainterScreen;
 import com.phantomwing.eastersdelight.screen.ModMenuTypes;
 import com.phantomwing.eastersdelight.ui.ModCreativeModTab;
+import com.phantomwing.eastersdelight.villager.ModVillagers;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
@@ -52,6 +53,7 @@ public class EastersDelight {
         ModCreativeModTab.register(eventBus);
         ModDataComponents.register(eventBus);
         ModMenuTypes.register(eventBus);
+        ModVillagers.register(eventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

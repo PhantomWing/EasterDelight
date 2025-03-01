@@ -21,5 +21,6 @@
   "eastersdelight.container.egg_painter.missing_egg_tooltip": "Voeg een Gekookt ei toe",
   "eastersdelight.container.egg_painter.missing_pattern_tooltip": "Voeg een Paasei patroon toe",
   "eastersdelight.container.egg_painter.missing_base_color_tooltip": "Voeg een basiskleur toe",
-  "eastersdelight.container.egg_painter.missing_pattern_color_tooltip": "Voeg een patroonkleur toe"
+  "eastersdelight.container.egg_painter.missing_pattern_color_tooltip": "Voeg een patroonkleur toe",
+  "entity.minecraft.villager.eastersdelight.easter_bunny": "Paashaas"
 }

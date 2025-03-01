@@ -3,6 +3,10 @@
     "eastersdelight:boiled_egg": {
       "can_villager_compost": true,
       "chance": 0.85
+    },
+    "eastersdelight:egg_slice": {
+      "can_villager_compost": true,
+      "chance": 0.85
     }
   }
 }
