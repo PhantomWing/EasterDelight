@@ -18,6 +18,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
+import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 import vectorwing.farmersdelight.data.recipe.CookingRecipes;
 
 import java.util.concurrent.CompletableFuture;
@@ -42,22 +43,27 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("/E/")
                 .pattern("###")
                 .define('E', ModItems.BOILED_EGG)
-                .define('/', Items.STICK)
+                .define('/', Items.IRON_INGOT)
                 .define('#', ItemTags.PLANKS)
                 .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModItems.BOILED_EGG))
                 .save(output, ModItems.EGG_PAINTER.getId());
     }
 
     private void buildCuttingRecipes(@NotNull RecipeOutput output) {
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_EGG), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
+                .build(output, ModItems.EGG_SLICE.getId());
     }
 
     private void buildCookingRecipes(@NotNull RecipeOutput output) {
-        // Boiled Egg
-        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.BOILED_EGG, 1, CookingRecipes.NORMAL_COOKING, CookingRecipes.MEDIUM_EXP)
-                .addIngredient(Items.EGG)
+        // Boiled Egg (Can place up to six eggs in a pot to cook them)
+        for (int eggCount = 1; eggCount <= 6; eggCount++)
+        {
+            CookingPotRecipeBuilder.cookingPotRecipe(ModItems.BOILED_EGG, eggCount, CookingRecipes.NORMAL_COOKING, CookingRecipes.MEDIUM_EXP)
+                .addIngredient(Items.EGG, eggCount)
                 .unlockedByAnyIngredient(Items.EGG)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
-                .save(output, ModItems.BOILED_EGG.getId());
+                .save(output, ModItems.BOILED_EGG.getId() + "_" + eggCount);
+        }
     }
 
     protected static void oneToOne(RecipeOutput recipeOutput, RecipeCategory category, ItemLike item, ItemLike result, int count) {

@@ -33,11 +33,11 @@ public class EggPainterBlock extends CraftingTableBlock {
 
     protected static final VoxelShape SHAPE = Shapes.joinUnoptimized(
         Shapes.joinUnoptimized(
-            Block.box(3, 0, 3, 13, 2, 13),
-            Block.box(5, 2, 8, 11, 6, 11),
+            Block.box(2, 0, 2, 14, 2, 14),
+            Block.box(4, 2, 8, 12, 6, 11),
             BooleanOp.OR
         ),
-        Block.box(3, 2, 12, 13, 3, 13),
+        Block.box(2, 2, 12, 14, 3, 14),
         BooleanOp.OR
     );
 
@@ -69,7 +69,7 @@ public class EggPainterBlock extends CraftingTableBlock {
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        return SHAPE;
+        return rotateShape(state, SHAPE);
     }
 
     @Override
@@ -95,5 +95,27 @@ public class EggPainterBlock extends CraftingTableBlock {
     @Override
     public boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
         return level.getBlockState(pos.below()).isSolid();
+    }
+
+    public static VoxelShape rotateShape(@NotNull BlockState state, VoxelShape shape) {
+        VoxelShape[] buffer = new VoxelShape[]{shape, Shapes.empty()};
+
+        // Determine how many times to rotate.
+        Direction direction = state.getValue(FACING);
+        int times =
+            switch (direction) {
+                case EAST -> 3; // Rotate 3 times
+                case NORTH -> 2; // Rotate 2 times
+                case WEST -> 1;
+                default -> 0;
+            };
+
+        for (int i = 0; i < times; i++) {
+            buffer[0].forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> buffer[1] = Shapes.or(buffer[1], Shapes.create(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
+            buffer[0] = buffer[1];
+            buffer[1] = Shapes.empty();
+        }
+
+        return buffer[0];
     }
 }

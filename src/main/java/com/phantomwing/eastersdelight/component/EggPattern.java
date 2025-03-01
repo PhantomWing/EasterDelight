@@ -5,9 +5,9 @@ import org.jetbrains.annotations.NotNull;
 
 public enum EggPattern implements StringRepresentable {
     STRIPES(0, "stripes"),
-    HALF_DIPPED(1, "half_dipped"),
-    SPLIT(2, "split"),
-    HALF_STRIPES(3, "half_stripes"),
+    STRIPES_2(1, "stripes_2"),
+    DIPPED(2, "dipped"),
+    SPLIT(3, "split"),
     WAVES(4, "waves"),
     DOTS(5, "dots"),
     PETALS(6, "petals"),

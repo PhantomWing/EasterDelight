@@ -19,6 +19,7 @@ public class ModDataMapProvider extends DataMapProvider {
         builder(NeoForgeDataMaps.COMPOSTABLES)
                 // 85% chance
                 .add(ModItems.BOILED_EGG.getId(), new Compostable(0.85f, true), false)
+                .add(ModItems.EGG_SLICE.getId(), new Compostable(0.85f, true), false)
         ;
     }
 }

@@ -34,7 +34,7 @@ public class ModSpriteSourceProvider extends SpriteSourceProvider {
         }
 
         // Gather a map of color palettes to use when generating the atlas.
-        ResourceLocation colorKey = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "easter_egg/color_palettes/" + DyeColor.WHITE.getName());
+        ResourceLocation colorKey = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "easter_egg/color_palettes/color_key");
         Map<String, ResourceLocation> colorPalettes = Arrays.stream(DyeColor.values())
                 .collect(Collectors.toMap(DyeColor::getName, color -> ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "easter_egg/color_palettes/" + color.getName())));
 

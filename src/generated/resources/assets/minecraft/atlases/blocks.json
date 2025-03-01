@@ -2,7 +2,7 @@
   "sources": [
     {
       "type": "minecraft:paletted_permutations",
-      "palette_key": "eastersdelight:easter_egg/color_palettes/white",
+      "palette_key": "eastersdelight:easter_egg/color_palettes/color_key",
       "permutations": {
         "black": "eastersdelight:easter_egg/color_palettes/black",
         "blue": "eastersdelight:easter_egg/color_palettes/blue",
@@ -24,9 +24,9 @@
       "textures": [
         "eastersdelight:item/easter_egg",
         "eastersdelight:easter_egg/patterns/stripes",
-        "eastersdelight:easter_egg/patterns/half_dipped",
+        "eastersdelight:easter_egg/patterns/stripes_2",
+        "eastersdelight:easter_egg/patterns/dipped",
         "eastersdelight:easter_egg/patterns/split",
-        "eastersdelight:easter_egg/patterns/half_stripes",
         "eastersdelight:easter_egg/patterns/waves",
         "eastersdelight:easter_egg/patterns/dots",
         "eastersdelight:easter_egg/patterns/petals",

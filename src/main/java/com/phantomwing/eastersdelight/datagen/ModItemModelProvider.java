@@ -28,6 +28,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         // Items
         simpleItem(ModItems.BOILED_EGG);
+        simpleItem(ModItems.EGG_SLICE);
         easterEggItem(ModItems.EASTER_EGG);
         eggPatternItem(ModItems.EGG_PATTERN);
 

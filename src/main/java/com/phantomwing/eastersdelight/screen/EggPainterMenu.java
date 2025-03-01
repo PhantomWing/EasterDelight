@@ -4,6 +4,7 @@ import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
+import com.phantomwing.eastersdelight.tags.ModTags;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -38,7 +39,7 @@ public class EggPainterMenu extends ItemCombinerMenu {
 
     protected @NotNull ItemCombinerMenuSlotDefinition createInputSlotDefinitions() {
         return ItemCombinerMenuSlotDefinition.create()
-                .withSlot(EGG_SLOT, 49, 20, (item) -> item.is(ModItems.BOILED_EGG)) // Boiled Egg
+                .withSlot(EGG_SLOT, 49, 20, (item) -> item.is(ModTags.Items.PAINTABLE_EGGS)) // Must be a paintable egg
                 .withSlot(BASE_COLOR_SLOT, 31, 49, (item) -> item.getItem() instanceof DyeItem) // Base color
                 .withSlot(PATTERN_SLOT, 49, 49, (item) -> item.is(ModItems.EGG_PATTERN)) // Egg pattern
                 .withSlot(PATTERN_COLOR_SLOT, 67, 49, (item) -> item.getItem() instanceof DyeItem) // Pattern color
@@ -128,7 +129,9 @@ public class EggPainterMenu extends ItemCombinerMenu {
     }
 
     private boolean hasPatternInputs() {
-        return !this.inputSlots.getItem(PATTERN_SLOT).isEmpty() & !this.inputSlots.getItem(PATTERN_COLOR_SLOT).isEmpty();
+        return !this.inputSlots.getItem(PATTERN_SLOT).isEmpty()  // We should have a pattern
+                && !this.inputSlots.getItem(PATTERN_COLOR_SLOT).isEmpty()  // And a pattern color
+                && !this.inputSlots.getItem(PATTERN_COLOR_SLOT).is(this.inputSlots.getItem(BASE_COLOR_SLOT).getItem()); // Which should be different from the base color
     }
 
     public int getSlotToQuickMoveTo(@NotNull ItemStack stack) {
@@ -144,7 +147,7 @@ public class EggPainterMenu extends ItemCombinerMenu {
     }
 
     private OptionalInt findSlotToQuickMoveTo(ItemStack stack) {
-        if (stack.is(ModItems.BOILED_EGG))
+        if (stack.is(ModTags.Items.PAINTABLE_EGGS))
         {
             return OptionalInt.of(EGG_SLOT);
         } else if (stack.is(ModItems.EGG_PATTERN)) {

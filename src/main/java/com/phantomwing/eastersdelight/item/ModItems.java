@@ -30,16 +30,18 @@ public class ModItems {
     // Blocks
     public static final DeferredItem<Item> EGG_PAINTER = registerBlockWithTab(ModBlocks.EGG_PAINTER);
 
-    // Boiled eggs
+    // Eggs
     public static final DeferredItem<Item> BOILED_EGG = registerWithTab("boiled_egg", () -> new Item(
             baseItem().food(FoodValues.BOILED_EGG)));
+    public static final DeferredItem<Item> EGG_SLICE = registerWithTab("egg_slice", () -> new Item(
+            baseItem().food(FoodValues.EGG_SLICE)));
 
     public static final DeferredItem<Item> EGG_PATTERN = registerWithTab("egg_pattern", () -> new EggPatternItem(
-            baseItem().component(ModDataComponents.EGG_PATTERN, EggPattern.STRIPES)));
+            baseItem()));
 
     // Easter eggs
     public static final DeferredItem<Item> EASTER_EGG = registerWithTab("easter_egg", () -> new EasterEggItem(
-            baseItem().component(DataComponents.BASE_COLOR, DyeColor.WHITE).food(FoodValues.BOILED_EGG)));
+            baseItem().food(FoodValues.BOILED_EGG)));
 
     // Helper functions
     public static Item.Properties baseItem() {

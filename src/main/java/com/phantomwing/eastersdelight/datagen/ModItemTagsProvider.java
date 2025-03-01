@@ -1,9 +1,12 @@
 package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
+import com.phantomwing.eastersdelight.item.ModItems;
+import com.phantomwing.eastersdelight.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -25,6 +28,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     }
 
     private void addModTags() {
+        this.tag(ModTags.Items.PAINTABLE_EGGS).add(
+            ModItems.BOILED_EGG.get(),
+            ModItems.EASTER_EGG.get()
+        );
     }
 
     private void addMinecraftTags() {

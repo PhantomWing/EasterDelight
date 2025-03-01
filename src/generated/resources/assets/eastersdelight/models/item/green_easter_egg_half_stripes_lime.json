@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "eastersdelight:item/easter_egg_green",
-    "layer1": "eastersdelight:easter_egg/patterns/half_stripes_lime"
-  }
-}

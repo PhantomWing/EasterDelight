@@ -8,19 +8,19 @@
       }
     },
     {
-      "model": "eastersdelight:item/half_dipped_egg_pattern",
+      "model": "eastersdelight:item/stripes_2_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 1.0
       }
     },
     {
-      "model": "eastersdelight:item/split_egg_pattern",
+      "model": "eastersdelight:item/dipped_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 2.0
       }
     },
     {
-      "model": "eastersdelight:item/half_stripes_egg_pattern",
+      "model": "eastersdelight:item/split_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 3.0
       }

@@ -6,7 +6,7 @@
       "tag": "minecraft:planks"
     },
     "/": {
-      "item": "minecraft:stick"
+      "item": "minecraft:iron_ingot"
     },
     "E": {
       "item": "eastersdelight:boiled_egg"
