@@ -19,6 +19,7 @@ public class ModTags {
     // Item tags
     public static class Items {
         public static final TagKey<Item> PAINTABLE_EGGS = tag("paintable_eggs");
+        public static final TagKey<Item> BAKED_COD_STEW_INGREDIENTS = tag("baked_cod_stew_ingredients");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name));

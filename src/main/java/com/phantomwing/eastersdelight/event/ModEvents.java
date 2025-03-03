@@ -1,0 +1,125 @@
+package com.phantomwing.eastersdelight.event;
+
+import com.phantomwing.eastersdelight.Configuration;
+import com.phantomwing.eastersdelight.EastersDelight;
+import com.phantomwing.eastersdelight.component.EggPattern;
+import com.phantomwing.eastersdelight.component.ModDataComponents;
+import com.phantomwing.eastersdelight.item.ModItems;
+import com.phantomwing.eastersdelight.villager.ModVillagers;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.village.VillagerTradesEvent;
+
+import java.util.Arrays;
+import java.util.List;
+
+@EventBusSubscriber(modid = EastersDelight.MOD_ID)
+public class ModEvents {
+    public static float EMERALD_MULTIPLIER = 0.2f;
+
+    @SubscribeEvent
+    public static void addVillagerTrades(VillagerTradesEvent event) {
+        // Check if trades are enabled.
+        if (!Configuration.ENABLE_VILLAGER_TRADES.get()) {
+            return;
+        }
+
+        // Add Easter Bunny trades
+        if (event.getType() == ModVillagers.EASTER_BUNNY_PROFESSION.value()) {
+            // Get trades list.
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+
+            // 1: Novice
+            addPatternTrades(trades, 1, 2, EggPattern.STRIPES, EggPattern.DIPPED, EggPattern.SPLIT);
+
+            // 2: Apprentice
+            addPatternTrades(trades, 2, 5, EggPattern.STRIPES_2, EggPattern.BLOCKS);
+
+            // 3: Journeyman
+            addPatternTrades(trades, 3, 10, EggPattern.DOTS, EggPattern.PETALS, EggPattern.WAVES);
+
+            // 4: Expert
+            addPatternTrades(trades, 4, 15, EggPattern.HEART);
+
+            // 5: Master
+            addPatternTrades(trades, 4, 30, EggPattern.CREEPER);
+        }
+    }
+
+    private static void addPatternTrades(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades, int level, int xp, EggPattern... patterns) {
+        List<VillagerTrades.ItemListing> levelTrades = trades.get(level);
+
+        // Generate an offer for each of the provided patterns.
+        for (EggPattern pattern : patterns) {
+            levelTrades.add((trader, random) -> getPatternOffer(pattern, xp));
+        }
+
+        // Add a random Easter Egg as a potential trade, with one of the provided patterns.
+        levelTrades.add((trader, random) -> getEasterEggOffer(random, xp, patterns));
+    }
+
+    private static MerchantOffer getPatternOffer(EggPattern pattern, int xp) {
+        ItemCost itemCost = new ItemCost(Items.EMERALD, 1);
+        ItemStack eggPattern = getPatternItem(pattern, 8);
+
+        // Return a MerchantOffer.
+        return new MerchantOffer(
+                itemCost,
+                eggPattern,
+                16,
+                xp,
+                EMERALD_MULTIPLIER
+        );
+    }
+
+    private static MerchantOffer getEasterEggOffer(RandomSource random, int xp, EggPattern... patterns) {
+        ItemCost itemCost = new ItemCost(Items.EMERALD, 2);
+        ItemStack itemStack = getRandomEasterEggItem(random, 4, patterns);
+
+        // Return a MerchantOffer.
+        return new MerchantOffer(
+                itemCost,
+                itemStack,
+                16,
+                xp,
+                EMERALD_MULTIPLIER
+        );
+    }
+
+    private static ItemStack getPatternItem(EggPattern pattern, int count) {
+        ItemStack patternStack = new ItemStack(ModItems.EGG_PATTERN.get(), count);
+        patternStack.set(ModDataComponents.EGG_PATTERN, pattern);
+
+        return patternStack;
+    }
+
+    private static ItemStack getRandomEasterEggItem(RandomSource random, int count, EggPattern... patterns) {
+        // Get a random Egg Pattern, from the given pattern list.
+        EggPattern pattern = patterns[random.nextInt(patterns.length)];
+
+        // Get a random base color
+        DyeColor[] colors = DyeColor.values();
+        DyeColor baseColor = colors[random.nextInt(colors.length)];
+
+        // Get a random pattern DyeColor (which must be different from the base color)
+        List<DyeColor> filteredColors = Arrays.stream(colors).filter((color) -> color != baseColor).toList();
+        DyeColor patternColor = filteredColors.get(random.nextInt(colors.length - 1));
+
+        // Generate an ItemStack with the random data components.
+        ItemStack eggStack = new ItemStack(ModItems.EASTER_EGG.get(), count);
+        eggStack.set(DataComponents.BASE_COLOR, baseColor);
+        eggStack.set(ModDataComponents.EGG_PATTERN, pattern);
+        eggStack.set(ModDataComponents.PATTERN_COLOR, patternColor);
+
+        return eggStack;
+    }
+}

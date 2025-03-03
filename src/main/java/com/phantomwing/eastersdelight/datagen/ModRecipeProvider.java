@@ -3,6 +3,7 @@ package com.phantomwing.eastersdelight.datagen;
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.tags.CommonTags;
+import com.phantomwing.eastersdelight.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -19,9 +20,11 @@ import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
-import vectorwing.farmersdelight.data.recipe.CookingRecipes;
 
 import java.util.concurrent.CompletableFuture;
+
+import static vectorwing.farmersdelight.data.recipe.CookingRecipes.MEDIUM_EXP;
+import static vectorwing.farmersdelight.data.recipe.CookingRecipes.NORMAL_COOKING;
 
 public class ModRecipeProvider extends RecipeProvider {
     public static final float FOOD_COOKING_EXP = 0.35f;
@@ -51,6 +54,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
     private void buildCuttingRecipes(@NotNull RecipeOutput output) {
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_EGG), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
+                .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal
                 .build(output, ModItems.EGG_SLICE.getId());
     }
 
@@ -58,12 +62,23 @@ public class ModRecipeProvider extends RecipeProvider {
         // Boiled Egg (Can place up to six eggs in a pot to cook them)
         for (int eggCount = 1; eggCount <= 6; eggCount++)
         {
-            CookingPotRecipeBuilder.cookingPotRecipe(ModItems.BOILED_EGG, eggCount, CookingRecipes.NORMAL_COOKING, CookingRecipes.MEDIUM_EXP)
+            CookingPotRecipeBuilder.cookingPotRecipe(ModItems.BOILED_EGG, eggCount, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(Items.EGG, eggCount)
                 .unlockedByAnyIngredient(Items.EGG)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .save(output, ModItems.BOILED_EGG.getId() + "_" + eggCount);
         }
+
+        // Farmer's Delight overrides, to include Boiled Eggs
+        // Baked Cod Stew
+        CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.FOODS_RAW_COD)
+                .addIngredient(CommonTags.FOODS_POTATO)
+                .addIngredient(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
+                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.CROPS_TOMATO)
+                .unlockedByAnyIngredient(Items.COD, Items.POTATO, vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(), Items.EGG)
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
     }
 
     protected static void oneToOne(RecipeOutput recipeOutput, RecipeCategory category, ItemLike item, ItemLike result, int count) {
@@ -159,9 +174,5 @@ public class ModRecipeProvider extends RecipeProvider {
 
     private static Ingredient vegetablesPatch() {
         return DifferenceIngredient.of(Ingredient.of(Tags.Items.FOODS_VEGETABLE), Ingredient.of(Items.MELON_SLICE));
-    }
-
-    private static Ingredient stuffedBellPepperFilling() {
-        return DifferenceIngredient.of(Ingredient.of(vectorwing.farmersdelight.common.tag.ModTags.CABBAGE_ROLL_INGREDIENTS), Ingredient.of(CommonTags.FOODS_BELL_PEPPER));
     }
 }

@@ -11,6 +11,12 @@
         "count": 2,
         "id": "eastersdelight:egg_slice"
       }
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:bone_meal"
+      }
     }
   ],
   "tool": {

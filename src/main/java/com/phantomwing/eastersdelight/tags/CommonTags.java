@@ -21,6 +21,9 @@ public class CommonTags {
     public static final TagKey<Item> FOODS_BELL_PEPPER = commonItemTag("foods/bell_pepper");
     public static final TagKey<Item> FOODS_COOKIE = commonItemTag("foods/cookie");
 
+    public static final TagKey<Item> FOODS_COOKED_EGG = commonItemTag("foods/cooked_egg");
+    public static final TagKey<Item> FOODS_BOILED_EGG = commonItemTag("foods/boiled_egg");
+
     public static final TagKey<Item> TOOLS_KNIFE = commonItemTag("tools/knife");
 
     private static TagKey<Block> commonBlockTag(String path) {
