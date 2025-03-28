@@ -28,15 +28,15 @@ public class ModSpriteSourceProvider extends SpriteSourceProvider {
     private void addEasterEggsToBlocksAtlas() {
         // Generate a list of texture locations to add to the atlas.
         List<ResourceLocation> textures = new ArrayList<>();
-        textures.add(getItemTexture("easter_egg"));
+        textures.add(getItemTexture("dyed_egg"));
         for (EggPattern pattern : EggPattern.values()) {
             textures.add(getPatternTexture(pattern));
         }
 
         // Gather a map of color palettes to use when generating the atlas.
-        ResourceLocation colorKey = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "easter_egg/color_palettes/color_key");
+        ResourceLocation colorKey = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "dyed_egg/color_palettes/color_key");
         Map<String, ResourceLocation> colorPalettes = Arrays.stream(DyeColor.values())
-                .collect(Collectors.toMap(DyeColor::getName, color -> ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "easter_egg/color_palettes/" + color.getName())));
+                .collect(Collectors.toMap(DyeColor::getName, color -> ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "dyed_egg/color_palettes/" + color.getName())));
 
         // Add a new source to the Blocks atlas.
         atlas(BLOCKS_ATLAS).addSource(new PalettedPermutations(textures, colorKey, colorPalettes));
@@ -47,6 +47,6 @@ public class ModSpriteSourceProvider extends SpriteSourceProvider {
     }
 
     private ResourceLocation getPatternTexture(EggPattern pattern) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "easter_egg/patterns/" + pattern.getName());
+        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "dyed_egg/patterns/" + pattern.getName());
     }
 }

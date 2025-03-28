@@ -5,7 +5,7 @@ import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.item.ModItemProperties;
 import com.phantomwing.eastersdelight.item.ModItems;
-import com.phantomwing.eastersdelight.item.custom.EasterEggItem;
+import com.phantomwing.eastersdelight.item.custom.DyedEggItem;
 import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -29,7 +29,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         // Items
         simpleItem(ModItems.BOILED_EGG);
         simpleItem(ModItems.EGG_SLICE);
-        easterEggItem(ModItems.EASTER_EGG);
+        easterEggItem(ModItems.DYED_EGG);
         eggPatternItem(ModItems.EGG_PATTERN);
 
         // Blocks
@@ -66,7 +66,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     private void easterEggItem(DeferredItem<Item> item) {
         // Check if item is of the correct type.
-        if (!(item.get() instanceof EasterEggItem)) {
+        if (!(item.get() instanceof DyedEggItem)) {
             return;
         }
 
@@ -177,7 +177,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private ResourceLocation getPatternResourceLocation(String patternName, String suffix) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "easter_egg/patterns/" + patternName + suffix);
+        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "dyed_egg/patterns/" + patternName + suffix);
     }
 
     private ResourceLocation getBlockResourceLocation(DeferredBlock<Block> item) {

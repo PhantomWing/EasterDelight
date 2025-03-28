@@ -14,51 +14,57 @@
       }
     },
     {
-      "model": "eastersdelight:item/dipped_egg_pattern",
+      "model": "eastersdelight:item/stripes_3_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 2.0
       }
     },
     {
-      "model": "eastersdelight:item/split_egg_pattern",
+      "model": "eastersdelight:item/dipped_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 3.0
       }
     },
     {
-      "model": "eastersdelight:item/waves_egg_pattern",
+      "model": "eastersdelight:item/split_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 4.0
       }
     },
     {
-      "model": "eastersdelight:item/dots_egg_pattern",
+      "model": "eastersdelight:item/waves_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 5.0
       }
     },
     {
-      "model": "eastersdelight:item/petals_egg_pattern",
+      "model": "eastersdelight:item/dots_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 6.0
       }
     },
     {
-      "model": "eastersdelight:item/creeper_egg_pattern",
+      "model": "eastersdelight:item/petals_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 7.0
       }
     },
     {
-      "model": "eastersdelight:item/heart_egg_pattern",
+      "model": "eastersdelight:item/creeper_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 8.0
       }
     },
     {
-      "model": "eastersdelight:item/blocks_egg_pattern",
+      "model": "eastersdelight:item/heart_egg_pattern",
       "predicate": {
         "eastersdelight:egg_pattern": 9.0
+      }
+    },
+    {
+      "model": "eastersdelight:item/blocks_egg_pattern",
+      "predicate": {
+        "eastersdelight:egg_pattern": 10.0
       }
     }
   ]

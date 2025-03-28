@@ -1,11 +1,10 @@
 package com.phantomwing.eastersdelight.ui;
 
 import com.phantomwing.eastersdelight.EastersDelight;
-import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
-import com.phantomwing.eastersdelight.item.custom.EasterEggItem;
+import com.phantomwing.eastersdelight.item.custom.DyedEggItem;
 import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -28,7 +27,7 @@ public class ModCreativeModTab {
                     .displayItems((parameters, output) -> {
                         // Add items to this tab.
                         ModItems.CREATIVE_TAB_ITEMS.forEach((item) -> {
-                            if (item.get() instanceof EasterEggItem) {
+                            if (item.get() instanceof DyedEggItem) {
                                 // Add one of each easter egg combination.
                                 registerEasterEggs(output, item);
                             } else if (item.get() instanceof EggPatternItem) {

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "eastersdelight:item/dyed_egg_gray",
+    "layer1": "eastersdelight:dyed_egg/patterns/stripes_light_gray"
+  }
+}

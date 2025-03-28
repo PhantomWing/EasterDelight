@@ -34,21 +34,21 @@ public class ModEvents {
         }
 
         // Add Easter Bunny trades
-        if (event.getType() == ModVillagers.EASTER_BUNNY_PROFESSION.value()) {
+        if (event.getType() == ModVillagers.EGG_BUNNY_PROFESSION.value()) {
             // Get trades list.
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
             // 1: Novice
-            addPatternTrades(trades, 1, 2, EggPattern.STRIPES, EggPattern.DIPPED, EggPattern.SPLIT);
+            addPatternTrades(trades, 1, 2, EggPattern.STRIPES, EggPattern.STRIPES_2, EggPattern.STRIPES_3);
 
             // 2: Apprentice
-            addPatternTrades(trades, 2, 5, EggPattern.STRIPES_2, EggPattern.BLOCKS);
+            addPatternTrades(trades, 2, 5, EggPattern.DIPPED, EggPattern.SPLIT, EggPattern.BLOCKS);
 
             // 3: Journeyman
-            addPatternTrades(trades, 3, 10, EggPattern.DOTS, EggPattern.PETALS, EggPattern.WAVES);
+            addPatternTrades(trades, 3, 10, EggPattern.PETALS, EggPattern.WAVES);
 
             // 4: Expert
-            addPatternTrades(trades, 4, 15, EggPattern.HEART);
+            addPatternTrades(trades, 4, 15, EggPattern.HEART, EggPattern.DOTS);
 
             // 5: Master
             addPatternTrades(trades, 4, 30, EggPattern.CREEPER);
@@ -115,7 +115,7 @@ public class ModEvents {
         DyeColor patternColor = filteredColors.get(random.nextInt(colors.length - 1));
 
         // Generate an ItemStack with the random data components.
-        ItemStack eggStack = new ItemStack(ModItems.EASTER_EGG.get(), count);
+        ItemStack eggStack = new ItemStack(ModItems.DYED_EGG.get(), count);
         eggStack.set(DataComponents.BASE_COLOR, baseColor);
         eggStack.set(ModDataComponents.EGG_PATTERN, pattern);
         eggStack.set(ModDataComponents.PATTERN_COLOR, patternColor);

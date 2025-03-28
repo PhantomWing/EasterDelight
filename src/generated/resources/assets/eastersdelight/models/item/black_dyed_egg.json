@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "eastersdelight:item/dyed_egg_black"
+  }
+}

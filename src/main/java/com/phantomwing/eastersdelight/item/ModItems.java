@@ -3,11 +3,8 @@ package com.phantomwing.eastersdelight.item;
 import com.google.common.collect.Sets;
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.block.ModBlocks;
-import com.phantomwing.eastersdelight.component.EggPattern;
-import com.phantomwing.eastersdelight.component.ModDataComponents;
-import com.phantomwing.eastersdelight.item.custom.EasterEggItem;
+import com.phantomwing.eastersdelight.item.custom.DyedEggItem;
 import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
@@ -39,8 +36,8 @@ public class ModItems {
     public static final DeferredItem<Item> EGG_PATTERN = registerWithTab("egg_pattern", () -> new EggPatternItem(
             baseItem()));
 
-    // Easter eggs
-    public static final DeferredItem<Item> EASTER_EGG = registerWithTab("easter_egg", () -> new EasterEggItem(
+    // Dyed eggs
+    public static final DeferredItem<Item> DYED_EGG = registerWithTab("dyed_egg", () -> new DyedEggItem(
             baseItem().food(FoodValues.BOILED_EGG)));
 
     // Helper functions

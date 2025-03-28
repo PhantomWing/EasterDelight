@@ -6,14 +6,15 @@ import org.jetbrains.annotations.NotNull;
 public enum EggPattern implements StringRepresentable {
     STRIPES(0, "stripes"),
     STRIPES_2(1, "stripes_2"),
-    DIPPED(2, "dipped"),
-    SPLIT(3, "split"),
-    WAVES(4, "waves"),
-    DOTS(5, "dots"),
-    PETALS(6, "petals"),
-    CREEPER(7, "creeper"),
-    HEART(8, "heart"),
-    BLOCKS(9, "blocks");
+    STRIPES_3(2, "stripes_3"),
+    DIPPED(3, "dipped"),
+    SPLIT(4, "split"),
+    WAVES(5, "waves"),
+    DOTS(6, "dots"),
+    PETALS(7, "petals"),
+    CREEPER(8, "creeper"),
+    HEART(9, "heart"),
+    BLOCKS(10, "blocks");
 
     public static final StringRepresentable.StringRepresentableCodec<EggPattern> CODEC = StringRepresentable.fromEnum(EggPattern::values);
 

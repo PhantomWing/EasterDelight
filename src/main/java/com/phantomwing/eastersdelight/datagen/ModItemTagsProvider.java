@@ -32,7 +32,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     private void addModTags() {
         this.tag(ModTags.Items.PAINTABLE_EGGS).add(
             ModItems.BOILED_EGG.get(),
-            ModItems.EASTER_EGG.get()
+            ModItems.DYED_EGG.get()
         );
 
         // Override for Baked Cod Stew (by default only contains Tags.Items.EGGS)
@@ -70,7 +70,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         // Define boiled eggs
         this.tag(CommonTags.FOODS_BOILED_EGG).add(
                 ModItems.BOILED_EGG.get(),
-                ModItems.EASTER_EGG.get(),
+                ModItems.DYED_EGG.get(),
                 ModItems.EGG_SLICE.get()
         );
 

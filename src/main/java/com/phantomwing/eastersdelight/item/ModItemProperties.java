@@ -19,17 +19,17 @@ public class ModItemProperties {
     }
 
     private static void registerEasterEggProperties() {
-        ItemProperties.register(ModItems.EASTER_EGG.get(), BASE_COLOR, (stack, world, entity, seed) -> {
+        ItemProperties.register(ModItems.DYED_EGG.get(), BASE_COLOR, (stack, world, entity, seed) -> {
             DyeColor color = stack.get(DataComponents.BASE_COLOR);
             return color != null ? color.getId() : -1f;
         });
 
-        ItemProperties.register(ModItems.EASTER_EGG.get(), PATTERN_COLOR, (stack, world, entity, seed) -> {
+        ItemProperties.register(ModItems.DYED_EGG.get(), PATTERN_COLOR, (stack, world, entity, seed) -> {
             DyeColor color = stack.get(ModDataComponents.PATTERN_COLOR);
             return color != null ? color.getId() : -1f;
         });
 
-        ItemProperties.register(ModItems.EASTER_EGG.get(), EGG_PATTERN, (stack, world, entity, seed) -> {
+        ItemProperties.register(ModItems.DYED_EGG.get(), EGG_PATTERN, (stack, world, entity, seed) -> {
             EggPattern pattern = stack.get(ModDataComponents.EGG_PATTERN);
             return pattern != null ? pattern.getId() : -1f;
         });

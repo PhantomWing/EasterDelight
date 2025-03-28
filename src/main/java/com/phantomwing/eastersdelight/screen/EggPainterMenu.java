@@ -94,7 +94,7 @@ public class EggPainterMenu extends ItemCombinerMenu {
         // Check if the base input is valid.
         if (hasRequiredInputs()) {
             // Create the easter egg item.
-            ItemStack itemstack = new ItemStack(ModItems.EASTER_EGG.get());
+            ItemStack itemstack = new ItemStack(ModItems.DYED_EGG.get());
 
             // Apply a base color.
             DyeItem baseDye = (DyeItem)this.inputSlots.getItem(BASE_COLOR_SLOT).getItem();
