@@ -22,7 +22,7 @@ public class ModCreativeModTab {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MOD_TAB =
             CREATIVE_MODE_TABS.register(EastersDelight.MOD_ID + "_tab", () -> CreativeModeTab.builder()
-                    .icon(() -> new ItemStack(Items.EGG))
+                    .icon(ModCreativeModTab::getIconItem)
                     .title(Component.translatable(("itemGroup." + EastersDelight.MOD_ID)))
                     .displayItems((parameters, output) -> {
                         // Add items to this tab.
@@ -40,6 +40,15 @@ public class ModCreativeModTab {
                         });
                     })
                     .build());
+
+    private static ItemStack getIconItem() {
+        ItemStack iconItemStack = new ItemStack(ModItems.DYED_EGG.get());
+        iconItemStack.set(DataComponents.BASE_COLOR, DyeColor.LIME);
+        iconItemStack.set(ModDataComponents.PATTERN_COLOR, DyeColor.WHITE);
+        iconItemStack.set(ModDataComponents.EGG_PATTERN, EggPattern.STRIPES_2);
+
+        return iconItemStack;
+    }
 
     private static void registerEasterEggs(CreativeModeTab.Output output, Supplier<Item> item) {
         for (DyeColor baseColor : DyeColor.values()) {
