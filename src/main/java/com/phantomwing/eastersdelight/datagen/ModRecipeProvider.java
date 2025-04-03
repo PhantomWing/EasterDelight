@@ -41,7 +41,7 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     private void buildCraftingRecipes(@NotNull RecipeOutput output) {
-        // Egg Painting Mill
+        // Egg Painter
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EGG_PAINTER, 1)
                 .pattern("/E/")
                 .pattern("###")
@@ -50,6 +50,23 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('#', ItemTags.PLANKS)
                 .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModItems.BOILED_EGG))
                 .save(output, ModItems.EGG_PAINTER.getId());
+
+        // Chocolate Egg
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CHOCOLATE_EGG, 8)
+                .requires(Items.COCOA_BEANS)
+                .requires(Items.COCOA_BEANS)
+                .requires(ModItems.BOILED_EGG)
+                .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModItems.BOILED_EGG))
+                .save(output);
+
+        // Bunny Cookie
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BUNNY_COOKIE, 8)
+                .requires(Items.COCOA_BEANS)
+                .requires(Items.RABBIT_HIDE)
+                .requires(Items.WHEAT)
+                .requires(Items.WHEAT)
+                .unlockedBy(getHasName(Items.RABBIT_HIDE), has(Items.RABBIT_HIDE))
+                .save(output);
     }
 
     private void buildCuttingRecipes(@NotNull RecipeOutput output) {

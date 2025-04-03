@@ -8,4 +8,6 @@ public class FoodValues {
             .nutrition(4).saturationModifier(0.3F).build();
     public static final FoodProperties EGG_SLICE = (new FoodProperties.Builder())
             .nutrition(2).saturationModifier(0.3F).build();
+    public static final FoodProperties CHOCOLATE_EGG = (new FoodProperties.Builder())
+            .nutrition(5).saturationModifier(0.4F).build();
 }

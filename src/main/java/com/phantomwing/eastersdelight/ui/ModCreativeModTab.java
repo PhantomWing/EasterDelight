@@ -1,5 +1,6 @@
 package com.phantomwing.eastersdelight.ui;
 
+import com.phantomwing.eastersdelight.Configuration;
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
@@ -29,7 +30,9 @@ public class ModCreativeModTab {
                         ModItems.CREATIVE_TAB_ITEMS.forEach((item) -> {
                             if (item.get() instanceof DyedEggItem) {
                                 // Add one of each easter egg combination.
-                                registerEasterEggs(output, item);
+                                if (Configuration.ENABLE_DYED_EGGS_IN_CREATIVE_MODE.get()) {
+                                    registerEasterEggs(output, item);
+                                }
                             } else if (item.get() instanceof EggPatternItem) {
                                 // Add one of each egg pattern
                                 registerEggPatterns(output, item);

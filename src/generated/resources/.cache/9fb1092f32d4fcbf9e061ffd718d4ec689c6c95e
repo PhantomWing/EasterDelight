@@ -1,11 +1,15 @@
-// 1.21	2025-03-03T22:04:54.1493762	Recipes
+// 1.21	2025-04-01T21:55:57.2887896	Recipes
 a38b4e2daeaef7a0e363d138f6bb6faeda85c570 data/eastersdelight/advancement/recipes/cooking/boiled_egg_1.json
 93765f6fb3fc799b2d5dd13987fbf4ec4cfb5acc data/eastersdelight/advancement/recipes/cooking/boiled_egg_2.json
 65951d3212e7bf95c5be432b3ef183f55a450e56 data/eastersdelight/advancement/recipes/cooking/boiled_egg_3.json
 2ab816e7cb8830396c57d5dad328b745fc75bd80 data/eastersdelight/advancement/recipes/cooking/boiled_egg_4.json
 4bb548a16e062952e5fc5527bc3774d34d383773 data/eastersdelight/advancement/recipes/cooking/boiled_egg_5.json
 71671a513af81c9aa5cefce78b7add93c3ab8283 data/eastersdelight/advancement/recipes/cooking/boiled_egg_6.json
+bbc07098b23bc84f82e813d71f3aff05b9a1b352 data/eastersdelight/advancement/recipes/food/bunny_cookie.json
+fcdb6915a632331bfcccec64caea680c614155fb data/eastersdelight/advancement/recipes/food/chocolate_egg.json
 27c6e683195207d0407bfee42670b6874a54c22c data/eastersdelight/advancement/recipes/misc/egg_painter.json
+5fa8c7e89db6146d635a48a9edd069347e8ce50d data/eastersdelight/recipe/bunny_cookie.json
+fa5c385094cfdda24aff452870b09a7accdf7adc data/eastersdelight/recipe/chocolate_egg.json
 3eb4642d847c1cab8fc5b1bfa556d9652dc4eea6 data/eastersdelight/recipe/cooking/boiled_egg_1.json
 5e9fae1f27e2140d69ff935595c2e91f716f26b1 data/eastersdelight/recipe/cooking/boiled_egg_2.json
 b777086c24c7f704f3341e33be66d0541e969056 data/eastersdelight/recipe/cooking/boiled_egg_3.json

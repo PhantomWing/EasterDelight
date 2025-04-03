@@ -29,6 +29,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         // Items
         simpleItem(ModItems.BOILED_EGG);
         simpleItem(ModItems.EGG_SLICE);
+        simpleItem(ModItems.CHOCOLATE_EGG);
+        simpleItem(ModItems.BUNNY_COOKIE);
         easterEggItem(ModItems.DYED_EGG);
         eggPatternItem(ModItems.EGG_PATTERN);
 

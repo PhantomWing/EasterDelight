@@ -33,12 +33,20 @@ public class ModItems {
     public static final DeferredItem<Item> EGG_SLICE = registerWithTab("egg_slice", () -> new Item(
             baseItem().food(FoodValues.EGG_SLICE)));
 
+    // Food
+    public static final DeferredItem<Item> CHOCOLATE_EGG = registerWithTab("chocolate_egg", () -> new Item(
+            baseItem().food(FoodValues.CHOCOLATE_EGG)));
+    public static final DeferredItem<Item> BUNNY_COOKIE = registerWithTab("bunny_cookie", () -> new Item(
+            baseItem().food(vectorwing.farmersdelight.common.FoodValues.COOKIES)));
+
+    // Patterns
     public static final DeferredItem<Item> EGG_PATTERN = registerWithTab("egg_pattern", () -> new EggPatternItem(
             baseItem()));
 
     // Dyed eggs
     public static final DeferredItem<Item> DYED_EGG = registerWithTab("dyed_egg", () -> new DyedEggItem(
             baseItem().food(FoodValues.BOILED_EGG)));
+
 
     // Helper functions
     public static Item.Properties baseItem() {

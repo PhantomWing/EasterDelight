@@ -82,5 +82,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         this.tag(CommonTags.FOODS_POTATO).add(
                 Items.POTATO
         );
+
+        // Cookies
+        this.tag(CommonTags.FOODS_COOKIE).add(
+                ModItems.BUNNY_COOKIE.get()
+        );
     }
 }
