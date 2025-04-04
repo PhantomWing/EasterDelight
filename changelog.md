@@ -1,3 +1,7 @@
+# 0.2.1
+### Additions
+- Added Chinese translations (thank you Junnaturefox!)
+
 # 0.2.0
 ### Additions
 - New food items:
