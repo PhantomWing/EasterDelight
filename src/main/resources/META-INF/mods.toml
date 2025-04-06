@@ -17,24 +17,24 @@ description='''${mod_description}'''
 itemIcon = "minecraft:egg"
 configBackground = "minecraft:textures/block/bricks.png"
 
-[[dependencies.${mod_id}]]
-modId="neoforge"
-type="required"
-versionRange="${neo_version_range}"
-ordering="NONE"
-side="BOTH"
 
-# Here's another dependency
-[[dependencies.${mod_id}]]
-modId="minecraft"
-type="required"
-versionRange="${minecraft_version_range}"
-ordering="NONE"
-side="BOTH"
+[[dependencies.${mod_id}]] #optional
+    modId="forge" #mandatory
+    mandatory=true
+    versionRange="${forge_version_range}" #mandatory
+    ordering="NONE"
+    side="BOTH"
 
 [[dependencies.${mod_id}]]
-modId="farmersdelight"
-type="required"
-versionRange="${farmersdelight_version_range}"
-ordering="AFTER"
-side="BOTH"
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="farmersdelight"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="AFTER"
+    side="BOTH"

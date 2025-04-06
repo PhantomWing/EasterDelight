@@ -1,11 +1,10 @@
 package com.phantomwing.eastersdelight.screen;
 
 import com.phantomwing.eastersdelight.block.ModBlocks;
-import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.tags.ModTags;
-import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -13,7 +12,7 @@ import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.Tags;
+import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -41,14 +40,14 @@ public class EggPainterMenu extends ItemCombinerMenu {
         return ItemCombinerMenuSlotDefinition.create()
                 .withSlot(EGG_SLOT, 49, 20, (item) -> item.is(ModTags.Items.PAINTABLE_EGGS)) // Must be a paintable egg
                 .withSlot(BASE_COLOR_SLOT, 31, 49, (item) -> item.getItem() instanceof DyeItem) // Base color
-                .withSlot(PATTERN_SLOT, 49, 49, (item) -> item.is(ModItems.EGG_PATTERN)) // Egg pattern
+                .withSlot(PATTERN_SLOT, 49, 49, (item) -> item.is(ModItems.EGG_PATTERN.get())) // Egg pattern
                 .withSlot(PATTERN_COLOR_SLOT, 67, 49, (item) -> item.getItem() instanceof DyeItem) // Pattern color
                 .withResultSlot(RESULT_SLOT, 125, 49)
                 .build();
     }
 
     protected boolean isValidBlock(BlockState state) {
-        return state.is(ModBlocks.EGG_PAINTER);
+        return state.is(ModBlocks.EGG_PAINTER.get());
     }
 
     protected boolean mayPickup(@NotNull Player player, boolean hasStack) {
@@ -95,22 +94,25 @@ public class EggPainterMenu extends ItemCombinerMenu {
         if (hasRequiredInputs()) {
             // Create the easter egg item.
             ItemStack itemstack = new ItemStack(ModItems.DYED_EGG.get());
+            CompoundTag compoundTag = itemstack.getOrCreateTag();
 
             // Apply a base color.
             DyeItem baseDye = (DyeItem)this.inputSlots.getItem(BASE_COLOR_SLOT).getItem();
-            itemstack.set(DataComponents.BASE_COLOR, baseDye.getDyeColor());
+            compoundTag.putString(ModDataComponents.BASE_COLOR, baseDye.getDyeColor().getName());
 
             // Check if the pattern input is valid.
             if (hasPatternInputs())
             {
                 // Apply the egg pattern.
-                EggPattern eggPattern = this.inputSlots.getItem(PATTERN_SLOT).get(ModDataComponents.EGG_PATTERN);
-                itemstack.set(ModDataComponents.EGG_PATTERN, eggPattern);
+                String eggPatternName = this.inputSlots.getItem(PATTERN_SLOT).getOrCreateTag().getString(ModDataComponents.EGG_PATTERN);
+                compoundTag.putString(ModDataComponents.EGG_PATTERN, eggPatternName);
 
                 // Apply the pattern color
                 DyeItem patternDye = (DyeItem)this.inputSlots.getItem(PATTERN_COLOR_SLOT).getItem();
-                itemstack.set(ModDataComponents.PATTERN_COLOR, patternDye.getDyeColor());
+                compoundTag.putString(ModDataComponents.PATTERN_COLOR, patternDye.getDyeColor().getName());
             }
+
+            itemstack.setTag(compoundTag);
 
             // Show the painted item in the result slot.
             if (itemstack.isItemEnabled(this.level.enabledFeatures())) {
@@ -150,7 +152,7 @@ public class EggPainterMenu extends ItemCombinerMenu {
         if (stack.is(ModTags.Items.PAINTABLE_EGGS))
         {
             return OptionalInt.of(EGG_SLOT);
-        } else if (stack.is(ModItems.EGG_PATTERN)) {
+        } else if (stack.is(ModItems.EGG_PATTERN.get())) {
             return OptionalInt.of(PATTERN_SLOT);
         } else if (stack.is(Tags.Items.DYES)) {
             if (!this.getSlot(BASE_COLOR_SLOT).hasItem() || this.getSlot(BASE_COLOR_SLOT).getItem().is(stack.getItem())) {

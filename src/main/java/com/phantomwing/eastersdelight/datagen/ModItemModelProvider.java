@@ -13,11 +13,10 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -38,7 +37,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlock2D(ModBlocks.EGG_PAINTER);
     }
 
-    private void eggPatternItem(DeferredItem<Item> item) {
+    private void eggPatternItem(RegistryObject<Item> item) {
         // Check if item is of the correct type.
         if (!(item.get() instanceof EggPatternItem)) {
             return;
@@ -66,7 +65,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         }
     }
 
-    private void easterEggItem(DeferredItem<Item> item) {
+    private void easterEggItem(RegistryObject<Item> item) {
         // Check if item is of the correct type.
         if (!(item.get() instanceof DyedEggItem)) {
             return;
@@ -133,7 +132,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private ResourceLocation baseModel() {
-        return ResourceLocation.withDefaultNamespace("item/generated");
+        return new ResourceLocation("item/generated");
     }
 
     // As we generate textures dynamically at runtime, we tell the ExistingFileHelper that this texture exists to avoid an IllegalArgumentException.
@@ -142,51 +141,51 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     // A simple item with a model generated from its sprite.
-    private void simpleItem(DeferredItem<Item> item) {
+    private void simpleItem(RegistryObject<Item> item) {
         withExistingParent(getItemName(item), baseModel())
                 .texture("layer0", getItemResourceLocation(item));
     }
 
     // For blocks like stairs/slabs that have multiple models, but need a single model in inventory.
-    private void simpleBlock(DeferredBlock<Block> item) {
-        withExistingParent(EastersDelight.MOD_ID + ":" + getItemName(item), getBlockResourceLocation(item));
+    private void simpleBlock(RegistryObject<Block> item) {
+        withExistingParent(EastersDelight.MOD_ID + ":" + getBlockItemName(item), getBlockResourceLocation(item));
     }
 
     // For blocks that appear as a block in-world but as an item in-hand
-    private void simpleBlock2D(DeferredBlock<Block> item) {
-        withExistingParent(getItemName(item), baseModel())
+    private void simpleBlock2D(RegistryObject<Block> item) {
+        withExistingParent(getBlockItemName(item), baseModel())
                 .texture("layer0", getBlockItemResourceLocation(item));
     }
 
-    private String getItemName(DeferredItem<Item> item) {
+    private String getItemName(RegistryObject<Item> item) {
         return item.getId().getPath();
     }
 
-    private String getItemName(DeferredBlock<Block> item) {
+    private String getBlockItemName(RegistryObject<Block> item) {
         return item.getId().getPath();
     }
 
-    private ResourceLocation getItemResourceLocation(DeferredItem<Item> item) {
+    private ResourceLocation getItemResourceLocation(RegistryObject<Item> item) {
         return getItemResourceLocationWithPrefix(item, "");
     }
 
-    private ResourceLocation getItemResourceLocationWithPrefix(DeferredItem<Item> item, String prefix) {
+    private ResourceLocation getItemResourceLocationWithPrefix(RegistryObject<Item> item, String prefix) {
         return getItemResourceLocation(item, prefix, "");
     }
 
-    private ResourceLocation getItemResourceLocation(DeferredItem<Item> item, String prefix, String suffix) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "item/" + prefix + getItemName(item) + suffix);
+    private ResourceLocation getItemResourceLocation(RegistryObject<Item> item, String prefix, String suffix) {
+        return new ResourceLocation(EastersDelight.MOD_ID, "item/" + prefix + getItemName(item) + suffix);
     }
 
     private ResourceLocation getPatternResourceLocation(String patternName, String suffix) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "dyed_egg/patterns/" + patternName + suffix);
+        return new ResourceLocation(EastersDelight.MOD_ID, "dyed_egg/patterns/" + patternName + suffix);
     }
 
-    private ResourceLocation getBlockResourceLocation(DeferredBlock<Block> item) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "block/" + getItemName(item));
+    private ResourceLocation getBlockResourceLocation(RegistryObject<Block> item) {
+        return new ResourceLocation(EastersDelight.MOD_ID, "block/" + getBlockItemName(item));
     }
 
-    private ResourceLocation getBlockItemResourceLocation(DeferredBlock<Block> item) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "item/" + getItemName(item));
+    private ResourceLocation getBlockItemResourceLocation(RegistryObject<Block> item) {
+        return new ResourceLocation(EastersDelight.MOD_ID, "item/" + getBlockItemName(item));
     }
 }

@@ -1,6 +1,5 @@
 package com.phantomwing.eastersdelight.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.screen.EggPainterMenu;
 import net.minecraft.core.BlockPos;
@@ -29,7 +28,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class EggPainterBlock extends CraftingTableBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final MapCodec<EggPainterBlock> CODEC = simpleCodec(EggPainterBlock::new);
     private static final Component CONTAINER_TITLE = Component.translatable(EastersDelight.MOD_ID + ".container.egg_painter");
 
     protected static final VoxelShape SHAPE = Shapes.joinUnoptimized(
@@ -42,10 +40,6 @@ public class EggPainterBlock extends CraftingTableBlock {
         BooleanOp.OR
     );
 
-    public @NotNull MapCodec<EggPainterBlock> codec() {
-        return CODEC;
-    }
-
     public EggPainterBlock(Properties properties) {
         super(properties);
 
@@ -53,7 +47,7 @@ public class EggPainterBlock extends CraftingTableBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
-    protected MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+    public MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
         return new SimpleMenuProvider((containerId, playerInventory, player) ->
                 new EggPainterMenu(containerId, playerInventory, ContainerLevelAccess.create(level, pos)), CONTAINER_TITLE);
     }
@@ -74,7 +68,7 @@ public class EggPainterBlock extends CraftingTableBlock {
     }
 
     @Override
-    protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
     }
 
@@ -99,7 +93,7 @@ public class EggPainterBlock extends CraftingTableBlock {
     }
 
     @Override
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
         // Prevent Villagers from walking over this Point of Interest.
         return false;
     }

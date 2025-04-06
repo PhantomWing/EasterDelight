@@ -16,7 +16,7 @@ public enum EggPattern implements StringRepresentable {
     HEART(9, "heart"),
     BLOCKS(10, "blocks");
 
-    public static final StringRepresentable.StringRepresentableCodec<EggPattern> CODEC = StringRepresentable.fromEnum(EggPattern::values);
+    public static final StringRepresentable.EnumCodec<EggPattern> CODEC = StringRepresentable.fromEnum(EggPattern::values);
 
     private final int id;
     private final String name;

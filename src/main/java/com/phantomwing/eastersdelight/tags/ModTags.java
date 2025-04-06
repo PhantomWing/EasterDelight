@@ -12,7 +12,7 @@ public class ModTags {
     // Block tags
     public static class Blocks {
         private static TagKey<Block> tag(String name) {
-            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name));
+            return BlockTags.create(new ResourceLocation(EastersDelight.MOD_ID, name));
         }
     }
 
@@ -22,7 +22,7 @@ public class ModTags {
         public static final TagKey<Item> BAKED_COD_STEW_INGREDIENTS = tag("baked_cod_stew_ingredients");
 
         private static TagKey<Item> tag(String name) {
-            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name));
+            return ItemTags.create(new ResourceLocation(EastersDelight.MOD_ID, name));
         }
     }
 }

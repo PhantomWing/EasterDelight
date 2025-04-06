@@ -1,17 +1,11 @@
 package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
-import com.phantomwing.eastersdelight.block.ModBlocks;
-import com.phantomwing.eastersdelight.tags.CommonTags;
-import com.phantomwing.eastersdelight.tags.CompatibilityTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.tags.BlockTags;
-import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.minecraftforge.common.data.BlockTagsProvider;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
-import vectorwing.farmersdelight.common.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 

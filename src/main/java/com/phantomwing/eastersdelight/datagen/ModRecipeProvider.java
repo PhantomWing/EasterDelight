@@ -4,7 +4,6 @@ import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.tags.CommonTags;
 import com.phantomwing.eastersdelight.tags.ModTags;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -13,54 +12,52 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
-import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
-import net.neoforged.neoforge.registries.DeferredItem;
+import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
+import vectorwing.farmersdelight.common.tag.ForgeTags;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 import static vectorwing.farmersdelight.data.recipe.CookingRecipes.MEDIUM_EXP;
 import static vectorwing.farmersdelight.data.recipe.CookingRecipes.NORMAL_COOKING;
 
-public class ModRecipeProvider extends RecipeProvider {
-    public static final float FOOD_COOKING_EXP = 0.35f;
-
-    public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, lookupProvider);
+public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
+    public ModRecipeProvider(PackOutput output) {
+        super(output);
     }
 
     @Override
-    protected void buildRecipes(@NotNull RecipeOutput output) {
+    protected void buildRecipes(@NotNull Consumer<FinishedRecipe> output) {
         buildCraftingRecipes(output);
         buildCuttingRecipes(output);
         buildCookingRecipes(output);
     }
 
-    private void buildCraftingRecipes(@NotNull RecipeOutput output) {
+    private void buildCraftingRecipes(Consumer<FinishedRecipe> output) {
         // Egg Painter
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EGG_PAINTER, 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EGG_PAINTER.get(), 1)
                 .pattern("/E/")
                 .pattern("###")
-                .define('E', ModItems.BOILED_EGG)
+                .define('E', ModItems.BOILED_EGG.get())
                 .define('/', Items.IRON_INGOT)
                 .define('#', ItemTags.PLANKS)
-                .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModItems.BOILED_EGG))
+                .unlockedBy(getHasName(ModItems.BOILED_EGG.get()), has(ModItems.BOILED_EGG.get()))
                 .save(output, ModItems.EGG_PAINTER.getId());
 
         // Chocolate Egg
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CHOCOLATE_EGG, 8)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CHOCOLATE_EGG.get(), 8)
                 .requires(Items.COCOA_BEANS)
                 .requires(Items.COCOA_BEANS)
-                .requires(ModItems.BOILED_EGG)
-                .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModItems.BOILED_EGG))
+                .requires(ModItems.BOILED_EGG.get())
+                .unlockedBy(getHasName(ModItems.BOILED_EGG.get()), has(ModItems.BOILED_EGG.get()))
                 .save(output);
 
         // Bunny Cookie
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BUNNY_COOKIE, 8)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BUNNY_COOKIE.get(), 8)
                 .requires(Items.COCOA_BEANS)
                 .requires(Items.RABBIT_HIDE)
                 .requires(Items.WHEAT)
@@ -69,43 +66,43 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output);
     }
 
-    private void buildCuttingRecipes(@NotNull RecipeOutput output) {
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_EGG), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
+    private void buildCuttingRecipes(Consumer<FinishedRecipe> output) {
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_EGG.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE.get(), 2)
                 .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal
                 .build(output, ModItems.EGG_SLICE.getId());
     }
 
-    private void buildCookingRecipes(@NotNull RecipeOutput output) {
+    private void buildCookingRecipes(Consumer<FinishedRecipe> output) {
         // Boiled Egg (Can place up to six eggs in a pot to cook them)
         for (int eggCount = 1; eggCount <= 6; eggCount++)
         {
-            CookingPotRecipeBuilder.cookingPotRecipe(ModItems.BOILED_EGG, eggCount, NORMAL_COOKING, MEDIUM_EXP)
+            CookingPotRecipeBuilder.cookingPotRecipe(ModItems.BOILED_EGG.get(), eggCount, NORMAL_COOKING, MEDIUM_EXP)
                 .addIngredient(Items.EGG, eggCount)
                 .unlockedByAnyIngredient(Items.EGG)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
-                .save(output, ModItems.BOILED_EGG.getId() + "_" + eggCount);
+                .build(output, ModItems.BOILED_EGG.getId() + "_" + eggCount);
         }
 
         // Farmer's Delight overrides, to include Boiled Eggs
         // Baked Cod Stew
         CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.FOODS_RAW_COD)
+                .addIngredient(ForgeTags.RAW_FISHES_COD)
                 .addIngredient(CommonTags.FOODS_POTATO)
                 .addIngredient(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
-                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.CROPS_TOMATO)
+                .addIngredient(ForgeTags.CROPS_TOMATO)
                 .unlockedByAnyIngredient(Items.COD, Items.POTATO, vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(), Items.EGG)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
     }
 
-    protected static void oneToOne(RecipeOutput recipeOutput, RecipeCategory category, ItemLike item, ItemLike result, int count) {
+    protected static void oneToOne(Consumer<FinishedRecipe> recipeOutput, RecipeCategory category, ItemLike item, ItemLike result, int count) {
         ShapelessRecipeBuilder.shapeless(category, result, count)
                 .requires(item)
                 .unlockedBy(getHasName(item), has(item))
                 .save(recipeOutput, getRecipeName(item, result));
     }
 
-    protected static void horizontalRecipe(RecipeOutput recipeOutput, RecipeCategory category, ItemLike item, ItemLike result, int count) {
+    protected static void horizontalRecipe(Consumer<FinishedRecipe> recipeOutput, RecipeCategory category, ItemLike item, ItemLike result, int count) {
         ShapedRecipeBuilder.shaped(category, result, count)
                 .pattern("###")
                 .define('#', item)
@@ -113,7 +110,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(recipeOutput, getRecipeName(item, result));
     }
 
-    protected static void twoBytwo(RecipeOutput recipeOutput, RecipeCategory category, ItemLike item, ItemLike result, int count) {
+    protected static void twoBytwo(Consumer<FinishedRecipe> recipeOutput, RecipeCategory category, ItemLike item, ItemLike result, int count) {
         ShapedRecipeBuilder.shaped(category, result, count)
                 .pattern("##")
                 .pattern("##")
@@ -122,7 +119,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(recipeOutput, getRecipeName(item, result));
     }
 
-    protected static void storageItemRecipes(RecipeOutput recipeOutput, RecipeCategory category, ItemLike item, ItemLike storageItem) {
+    protected static void storageItemRecipes(Consumer<FinishedRecipe> recipeOutput, RecipeCategory category, ItemLike item, ItemLike storageItem) {
         // From item to storageItem
         ShapedRecipeBuilder.shaped(category, storageItem)
                 .pattern("###")
@@ -139,35 +136,35 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(recipeOutput, getRecipeName(storageItem, item));
     }
 
-    protected static void foodCookingRecipes(@NotNull RecipeOutput recipeOutput, @NotNull ItemLike material, @NotNull ItemLike result, float experience) {
-        foodSmelting(recipeOutput, material, result, experience, 200);
-        foodSmoking(recipeOutput, material, result, experience, 100); // Smoking is twice as fast
-        foodCampfireCooking(recipeOutput, material, result, experience, 600); // Campfire cooking takes three times longer
+    protected static void foodCookingRecipes(@NotNull Consumer<FinishedRecipe> recipeOutput, @NotNull ItemLike material, @NotNull ItemLike result, float experience) {
+        foodSmelting(recipeOutput, material, result, experience);
+        foodSmoking(recipeOutput, material, result, experience); // Smoking is twice as fast
+        foodCampfireCooking(recipeOutput, material, result, experience); // Campfire cooking takes three times longer
     }
 
-    protected static void foodSmelting(@NotNull RecipeOutput recipeOutput, @NotNull ItemLike material, @NotNull ItemLike result, float experience, int cookingTime) {
+    protected static void foodSmelting(@NotNull Consumer<FinishedRecipe> recipeOutput, @NotNull ItemLike material, @NotNull ItemLike result, float experience) {
         SimpleCookingRecipeBuilder
-                .generic(Ingredient.of(material), RecipeCategory.FOOD, result, experience, cookingTime, RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new)
+                .generic(Ingredient.of(material), RecipeCategory.FOOD, result, experience, 200, RecipeSerializer.SMELTING_RECIPE)
                 .unlockedBy(getHasName(material), has(material))
                 .save(recipeOutput);
     }
 
-    protected static void foodSmoking(@NotNull RecipeOutput recipeOutput, @NotNull ItemLike material, @NotNull ItemLike result, float experience, int cookingTime) {
+    protected static void foodSmoking(@NotNull Consumer<FinishedRecipe> recipeOutput, @NotNull ItemLike material, @NotNull ItemLike result, float experience) {
         SimpleCookingRecipeBuilder
-                .generic(Ingredient.of(material), RecipeCategory.FOOD, result, experience, cookingTime, RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new)
+                .generic(Ingredient.of(material), RecipeCategory.FOOD, result, experience, 100, RecipeSerializer.SMOKING_RECIPE)
                 .unlockedBy(getHasName(material), has(material))
                 .save(recipeOutput, EastersDelight.MOD_ID + ":" + getItemName(result) + "_from_smoking");
     }
 
-    protected static void foodCampfireCooking(@NotNull RecipeOutput recipeOutput, @NotNull ItemLike material, @NotNull ItemLike result, float experience, int cookingTime) {
+    protected static void foodCampfireCooking(@NotNull Consumer<FinishedRecipe> recipeOutput, @NotNull ItemLike material, @NotNull ItemLike result, float experience) {
         SimpleCookingRecipeBuilder
-                .generic(Ingredient.of(material), RecipeCategory.FOOD, result, experience, cookingTime, RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new)
+                .generic(Ingredient.of(material), RecipeCategory.FOOD, result, experience, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE)
                 .unlockedBy(getHasName(material), has(material))
                 .save(recipeOutput, EastersDelight.MOD_ID + ":" + getItemName(result) + "_from_campfire_cooking");
     }
 
-    protected static void pieRecipes(@NotNull RecipeOutput recipeOutput, @NotNull DeferredItem<Item> pieBlock, @NotNull DeferredItem<Item> sliceItem, Ingredient topping) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, pieBlock, 1)
+    protected static void pieRecipes(Consumer<FinishedRecipe> recipeOutput, @NotNull RegistryObject<Item> pieBlock, @NotNull RegistryObject<Item> sliceItem, Ingredient topping) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, pieBlock.get(), 1)
                 .pattern("TTT")
                 .pattern("MMM")
                 .pattern("SCS")
@@ -177,19 +174,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('C', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
                 .unlockedBy(getHasName(vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get()), has(vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get()))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, pieBlock, 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, pieBlock.get(), 1)
                 .pattern("##")
                 .pattern("##")
-                .define('#', sliceItem)
-                .unlockedBy(getHasName(sliceItem), has(sliceItem))
-                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, getItemName(pieBlock) + "_from_slices"));
+                .define('#', sliceItem.get())
+                .unlockedBy(getHasName(sliceItem.get()), has(sliceItem.get()))
+                .save(recipeOutput, new ResourceLocation(EastersDelight.MOD_ID, getItemName(pieBlock.get()) + "_from_slices"));
     }
 
     protected static String getRecipeName(ItemLike item, ItemLike result) {
         return EastersDelight.MOD_ID + ":" + getConversionRecipeName(result, item);
-    }
-
-    private static Ingredient vegetablesPatch() {
-        return DifferenceIngredient.of(Ingredient.of(Tags.Items.FOODS_VEGETABLE), Ingredient.of(Items.MELON_SLICE));
     }
 }

@@ -27,10 +27,10 @@ public class CommonTags {
     public static final TagKey<Item> TOOLS_KNIFE = commonItemTag("tools/knife");
 
     private static TagKey<Block> commonBlockTag(String path) {
-        return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", path));
+        return BlockTags.create(new ResourceLocation("c", path));
     }
 
     private static TagKey<Item> commonItemTag(String path) {
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", path));
+        return ItemTags.create(new ResourceLocation("c", path));
     }
 }

@@ -1,17 +1,17 @@
 package com.phantomwing.eastersdelight;
 
-import net.neoforged.neoforge.common.ModConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public class Configuration {
-    public static ModConfigSpec COMMON_CONFIG;
+    public static ForgeConfigSpec COMMON_CONFIG;
 
     // Villager trades
     public static final String ENABLE_VILLAGER_TRADES_ID = "enable_villager_trades";
-    public static ModConfigSpec.BooleanValue ENABLE_VILLAGER_TRADES;
+    public static ForgeConfigSpec.BooleanValue ENABLE_VILLAGER_TRADES;
 
     // Creative mode
     public static final String ENABLE_DYED_EGGS_IN_CREATIVE_MODE_ID = "enable_dyed_eggs_in_creative_mode";
-    public static ModConfigSpec.BooleanValue ENABLE_DYED_EGGS_IN_CREATIVE_MODE;
+    public static ForgeConfigSpec.BooleanValue ENABLE_DYED_EGGS_IN_CREATIVE_MODE;
 
 
     public static boolean getBooleanConfigurationValue(String id) {
@@ -23,7 +23,7 @@ public class Configuration {
     }
 
     static {
-        ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
+        ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
 
         // General settings
         ENABLE_VILLAGER_TRADES = COMMON_BUILDER.comment("Should villagers trade Easter's Delight items? (May reduce chances of other trades appearing)").define(ENABLE_VILLAGER_TRADES_ID, true);

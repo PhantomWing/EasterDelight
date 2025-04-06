@@ -22,10 +22,10 @@ public class CompatibilityTags
     public static final TagKey<Item> CREATE_UPRIGHT_ON_BELT = externalItemTag(CREATE, "upright_on_belt");
 
     private static TagKey<Item> externalItemTag(String modId, String path) {
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(modId, path));
+        return ItemTags.create(new ResourceLocation(modId, path));
     }
 
     private static TagKey<Block> externalBlockTag(String modId, String path) {
-        return BlockTags.create(ResourceLocation.fromNamespaceAndPath(modId, path));
+        return BlockTags.create(new ResourceLocation(modId, path));
     }
 }

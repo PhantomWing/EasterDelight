@@ -7,22 +7,21 @@ import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.villager.ModVillagers;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.village.VillagerTradesEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Arrays;
 import java.util.List;
 
-@EventBusSubscriber(modid = EastersDelight.MOD_ID)
+@Mod.EventBusSubscriber(modid = EastersDelight.MOD_ID)
 public class ModEvents {
     public static float EMERALD_MULTIPLIER = 0.2f;
 
@@ -34,7 +33,7 @@ public class ModEvents {
         }
 
         // Add Easter Bunny trades
-        if (event.getType() == ModVillagers.EGG_BUNNY_PROFESSION.value()) {
+        if (event.getType() == ModVillagers.EGG_BUNNY_PROFESSION.get()) {
             // Get trades list.
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
@@ -68,7 +67,7 @@ public class ModEvents {
     }
 
     private static MerchantOffer getPatternOffer(EggPattern pattern, int xp) {
-        ItemCost itemCost = new ItemCost(Items.EMERALD, 1);
+        ItemStack itemCost = new ItemStack(Items.EMERALD, 1);
         ItemStack eggPattern = getPatternItem(pattern, 8);
 
         // Return a MerchantOffer.
@@ -82,7 +81,7 @@ public class ModEvents {
     }
 
     private static MerchantOffer getEasterEggOffer(RandomSource random, int xp, EggPattern... patterns) {
-        ItemCost itemCost = new ItemCost(Items.EMERALD, 2);
+        ItemStack itemCost = new ItemStack(Items.EMERALD, 2);
         ItemStack itemStack = getRandomEasterEggItem(random, 4, patterns);
 
         // Return a MerchantOffer.
@@ -97,7 +96,9 @@ public class ModEvents {
 
     private static ItemStack getPatternItem(EggPattern pattern, int count) {
         ItemStack patternStack = new ItemStack(ModItems.EGG_PATTERN.get(), count);
-        patternStack.set(ModDataComponents.EGG_PATTERN, pattern);
+
+        CompoundTag tag = patternStack.getOrCreateTag();
+        tag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
 
         return patternStack;
     }
@@ -116,9 +117,11 @@ public class ModEvents {
 
         // Generate an ItemStack with the random data components.
         ItemStack eggStack = new ItemStack(ModItems.DYED_EGG.get(), count);
-        eggStack.set(DataComponents.BASE_COLOR, baseColor);
-        eggStack.set(ModDataComponents.EGG_PATTERN, pattern);
-        eggStack.set(ModDataComponents.PATTERN_COLOR, patternColor);
+
+        CompoundTag tag = eggStack.getOrCreateTag();
+        tag.putString(ModDataComponents.BASE_COLOR, baseColor.getName());
+        tag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
+        tag.putString(ModDataComponents.PATTERN_COLOR, patternColor.getName());
 
         return eggStack;
     }

@@ -1,18 +1,15 @@
 package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
-import net.neoforged.neoforge.common.loot.LootTableIdCondition;
-
-import java.util.concurrent.CompletableFuture;
+import net.minecraftforge.common.data.GlobalLootModifierProvider;
+import net.minecraftforge.common.loot.LootTableIdCondition;
 
 public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
-    public ModGlobalLootModifiersProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, EastersDelight.MOD_ID);
+    public ModGlobalLootModifiersProvider(PackOutput output) {
+        super(output, EastersDelight.MOD_ID);
     }
 
     @Override
@@ -20,6 +17,6 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
     }
 
     private LootItemCondition defaultLootTable(String name) {
-        return new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace(name)).build();
+        return new LootTableIdCondition.Builder(new ResourceLocation(name)).build();
     }
 }

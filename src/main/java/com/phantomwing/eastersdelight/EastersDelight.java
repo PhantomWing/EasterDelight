@@ -1,47 +1,41 @@
 package com.phantomwing.eastersdelight;
 
+import com.mojang.logging.LogUtils;
 import com.phantomwing.eastersdelight.block.ModBlocks;
-import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItemProperties;
 import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.screen.EggPainterScreen;
 import com.phantomwing.eastersdelight.screen.ModMenuTypes;
 import com.phantomwing.eastersdelight.ui.ModCreativeModTab;
 import com.phantomwing.eastersdelight.villager.ModVillagers;
-import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import com.mojang.logging.LogUtils;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 @Mod(EastersDelight.MOD_ID)
 public class EastersDelight {
     public static final String MOD_ID = "eastersdelight";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public EastersDelight(IEventBus eventBus, ModContainer modContainer) {
+    public EastersDelight() {
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         eventBus.addListener(this::commonSetup);
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, Configuration.COMMON_CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Configuration.COMMON_CONFIG);
 
-        // This will use NeoForge's ConfigurationScreen to display this mod's configs (Client only)
-        if (FMLEnvironment.dist.isClient()) {
-            modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
-        }
-
-        NeoForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(this);
 
         registerManagers(eventBus);
     }
@@ -51,28 +45,33 @@ public class EastersDelight {
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModCreativeModTab.register(eventBus);
-        ModDataComponents.register(eventBus);
         ModMenuTypes.register(eventBus);
         ModVillagers.register(eventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            registerCompostables();
+        });
     }
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
     }
 
-    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             ModItemProperties.register();
+            MenuScreens.register(ModMenuTypes.EGG_PAINTER.get(), EggPainterScreen::new);
         }
+    }
 
-        @SubscribeEvent
-        public static void registerMenuScreens(RegisterMenuScreensEvent event) {
-            event.register(ModMenuTypes.EGG_PAINTER.get(), EggPainterScreen::new);
-        }
+    private void registerCompostables() {
+        // 85% chance
+        ComposterBlock.COMPOSTABLES.put(ModItems.BOILED_EGG.get(), 0.85f);
+        ComposterBlock.COMPOSTABLES.put(ModItems.EGG_SLICE.get(), 0.85f);
+        ComposterBlock.COMPOSTABLES.put(ModItems.BUNNY_COOKIE.get(), 0.85f);
     }
 }
