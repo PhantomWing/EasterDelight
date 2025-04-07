@@ -20,27 +20,24 @@ public class ModItemProperties {
 
     private static void registerEasterEggProperties() {
         ItemProperties.register(ModItems.DYED_EGG.get(), BASE_COLOR, (stack, world, entity, seed) -> {
-            CompoundTag tag = stack.getOrCreateTag();
-            String colorName = tag.getString(ModDataComponents.BASE_COLOR);
-            DyeColor color = colorName.isEmpty() ? null : DyeColor.valueOf(tag.getString(ModDataComponents.BASE_COLOR));
+            CompoundTag compoundTag = stack.getOrCreateTag();
+            String colorName = compoundTag.getString(ModDataComponents.BASE_COLOR);
 
-            return color != null ? color.getId() : -1f;
+            return colorName.isEmpty() ? -1f : DyeColor.byName(colorName, DyeColor.WHITE).getId();
         });
 
         ItemProperties.register(ModItems.DYED_EGG.get(), PATTERN_COLOR, (stack, world, entity, seed) -> {
-            CompoundTag tag = stack.getOrCreateTag();
-            String colorName = tag.getString(ModDataComponents.PATTERN_COLOR);
-            DyeColor color = colorName.isEmpty() ? null : DyeColor.valueOf(tag.getString(ModDataComponents.PATTERN_COLOR));
+            CompoundTag compoundTag = stack.getOrCreateTag();
+            String colorName = compoundTag.getString(ModDataComponents.PATTERN_COLOR);
 
-            return color != null ? color.getId() : -1f;
+            return colorName.isEmpty() ? -1f : DyeColor.byName(colorName, DyeColor.WHITE).getId();
         });
 
         ItemProperties.register(ModItems.DYED_EGG.get(), EGG_PATTERN, (stack, world, entity, seed) -> {
-            CompoundTag tag = stack.getOrCreateTag();
-            String colorName = tag.getString(ModDataComponents.EGG_PATTERN);
-            EggPattern pattern = colorName.isEmpty() ? null : EggPattern.valueOf(tag.getString(ModDataComponents.EGG_PATTERN));
+            CompoundTag compoundTag = stack.getOrCreateTag();
+            String patternName = compoundTag.getString(ModDataComponents.EGG_PATTERN);
 
-            return pattern != null ? pattern.getId() : -1f;
+            return patternName.isEmpty() ? -1f : EggPattern.byName(patternName, EggPattern.STRIPES).getId();
         });
     }
 
@@ -48,7 +45,7 @@ public class ModItemProperties {
         ItemProperties.register(ModItems.EGG_PATTERN.get(), EGG_PATTERN, (stack, world, entity, seed) -> {
             CompoundTag tag = stack.getOrCreateTag();
             String colorName = tag.getString(ModDataComponents.EGG_PATTERN);
-            EggPattern pattern = colorName.isEmpty() ? null : EggPattern.valueOf(tag.getString(ModDataComponents.EGG_PATTERN));
+            EggPattern pattern = colorName.isEmpty() ? null : EggPattern.byName(tag.getString(ModDataComponents.EGG_PATTERN), EggPattern.STRIPES);
 
             return pattern != null ? pattern.getId() : -1f;
         });

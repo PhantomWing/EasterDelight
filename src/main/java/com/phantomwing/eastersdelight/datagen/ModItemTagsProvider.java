@@ -2,7 +2,8 @@ package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.item.ModItems;
-import com.phantomwing.eastersdelight.tags.CommonTags;
+import com.phantomwing.eastersdelight.tags.CompatibilityTags;
+import com.phantomwing.eastersdelight.tags.ForgeTags;
 import com.phantomwing.eastersdelight.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -38,7 +39,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         // Override for Baked Cod Stew (by default only contains Tags.Items.EGGS)
         this.tag(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
             .addTag(Tags.Items.EGGS)
-            .addTag(CommonTags.FOODS_COOKED_EGG);
+            .addTag(ForgeTags.COOKED_EGGS);
     }
 
     private void addMinecraftTags() {
@@ -54,7 +55,12 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     private void addCompatibilityTags() {
         // Farmer's Delight
         this.tag(vectorwing.farmersdelight.common.tag.ModTags.CABBAGE_ROLL_INGREDIENTS)
-                .addTag(CommonTags.FOODS_COOKED_EGG);
+                .addTag(ForgeTags.COOKED_EGGS);
+
+        // Supplementaries
+        this.tag(CompatibilityTags.SUPPLEMENTARIES_COOKIES).addTag(
+                ForgeTags.COOKIES
+        );
     }
 
     private void addStorageBlockTags() {
@@ -68,23 +74,23 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
     private void addFoodTags() {
         // Define boiled eggs
-        this.tag(CommonTags.FOODS_BOILED_EGG).add(
+        this.tag(ForgeTags.BOILED_EGGS).add(
                 ModItems.BOILED_EGG.get(),
                 ModItems.DYED_EGG.get(),
                 ModItems.EGG_SLICE.get()
         );
 
         // Boiled eggs are always Cooked, but not all cooked eggs are boiled (Like Fried Egg)
-        this.tag(CommonTags.FOODS_COOKED_EGG)
-                .addTag(CommonTags.FOODS_BOILED_EGG);
+        this.tag(ForgeTags.COOKED_EGGS)
+                .addTag(ForgeTags.BOILED_EGGS);
 
         // For compatibility, replace Items.POTATO with a tag (in some override recipes)
-        this.tag(CommonTags.FOODS_POTATO).add(
+        this.tag(ForgeTags.VEGETABLES_POTATO).add(
                 Items.POTATO
         );
 
         // Cookies
-        this.tag(CommonTags.FOODS_COOKIE).add(
+        this.tag(ForgeTags.COOKIES).add(
                 ModItems.BUNNY_COOKIE.get()
         );
     }

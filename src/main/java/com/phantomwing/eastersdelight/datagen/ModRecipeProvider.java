@@ -2,7 +2,7 @@ package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.item.ModItems;
-import com.phantomwing.eastersdelight.tags.CommonTags;
+import com.phantomwing.eastersdelight.tags.ForgeTags;
 import com.phantomwing.eastersdelight.tags.ModTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -16,7 +16,6 @@ import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
-import vectorwing.farmersdelight.common.tag.ForgeTags;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
@@ -67,7 +66,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
     private void buildCuttingRecipes(Consumer<FinishedRecipe> output) {
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_EGG.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE.get(), 2)
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_EGG.get()), Ingredient.of(ForgeTags.TOOLS_KNIVES), ModItems.EGG_SLICE.get(), 2)
                 .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal
                 .build(output, ModItems.EGG_SLICE.getId());
     }
@@ -86,10 +85,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // Farmer's Delight overrides, to include Boiled Eggs
         // Baked Cod Stew
         CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
-                .addIngredient(ForgeTags.RAW_FISHES_COD)
-                .addIngredient(CommonTags.FOODS_POTATO)
+                .addIngredient(vectorwing.farmersdelight.common.tag.ForgeTags.RAW_FISHES_COD)
+                .addIngredient(ForgeTags.VEGETABLES_POTATO)
                 .addIngredient(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
-                .addIngredient(ForgeTags.CROPS_TOMATO)
+                .addIngredient(vectorwing.farmersdelight.common.tag.ForgeTags.CROPS_TOMATO)
                 .unlockedByAnyIngredient(Items.COD, Items.POTATO, vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(), Items.EGG)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
@@ -169,7 +168,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("MMM")
                 .pattern("SCS")
                 .define('T', topping)
-                .define('M', CommonTags.FOODS_MILK)
+                .define('M', ForgeTags.MILK)
                 .define('S', Items.SUGAR)
                 .define('C', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
                 .unlockedBy(getHasName(vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get()), has(vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get()))

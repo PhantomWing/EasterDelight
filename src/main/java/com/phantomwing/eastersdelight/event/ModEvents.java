@@ -118,10 +118,12 @@ public class ModEvents {
         // Generate an ItemStack with the random data components.
         ItemStack eggStack = new ItemStack(ModItems.DYED_EGG.get(), count);
 
-        CompoundTag tag = eggStack.getOrCreateTag();
-        tag.putString(ModDataComponents.BASE_COLOR, baseColor.getName());
-        tag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
-        tag.putString(ModDataComponents.PATTERN_COLOR, patternColor.getName());
+        CompoundTag compoundTag = eggStack.getOrCreateTag();
+        compoundTag.putString(ModDataComponents.BASE_COLOR, baseColor.getName());
+        compoundTag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
+        compoundTag.putString(ModDataComponents.PATTERN_COLOR, patternColor.getName());
+
+        eggStack.setTag(compoundTag);
 
         return eggStack;
     }

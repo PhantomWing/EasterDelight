@@ -10,7 +10,6 @@ displayName="${mod_name}"
 displayURL="https://github.com/PhantomWing/EastersDelight"
 logoFile="logo.png"
 logoBlur=false
-credits=""
 authors="${mod_authors}"
 description='''${mod_description}'''
 ## Catalogue mod compatibility

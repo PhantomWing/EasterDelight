@@ -77,13 +77,13 @@ public class ModCreativeModTab {
                 for (EggPattern pattern : EggPattern.values()) {
                     // Add a patterned egg.
                     ItemStack patternStack = new ItemStack(item.get());
-                    CompoundTag patternTag = baseStack.getOrCreateTag();
+                    CompoundTag patternTag = patternStack.getOrCreateTag();
 
                     patternTag.putString(ModDataComponents.BASE_COLOR, baseColor.getName());
                     patternTag.putString(ModDataComponents.PATTERN_COLOR, patternColor.getName());
                     patternTag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
 
-                    baseStack.setTag(patternTag);
+                    patternStack.setTag(patternTag);
                     output.accept(patternStack);
                 }
             }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "/": {
+      "item": "minecraft:iron_ingot"
+    },
+    "E": {
+      "item": "eastersdelight:boiled_egg"
+    }
+  },
+  "pattern": [
+    "/E/",
+    "###"
+  ],
+  "result": {
+    "item": "eastersdelight:egg_painter"
+  },
+  "show_notification": true
+}

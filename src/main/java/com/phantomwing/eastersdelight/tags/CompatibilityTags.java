@@ -21,6 +21,10 @@ public class CompatibilityTags
     public static final String CREATE = "create";
     public static final TagKey<Item> CREATE_UPRIGHT_ON_BELT = externalItemTag(CREATE, "upright_on_belt");
 
+    // Supplementaries
+    public static final String SUPPLEMENTARIES = "supplementaries";
+    public static final TagKey<Item> SUPPLEMENTARIES_COOKIES = externalItemTag(SUPPLEMENTARIES, "cookies");
+
     private static TagKey<Item> externalItemTag(String modId, String path) {
         return ItemTags.create(new ResourceLocation(modId, path));
     }

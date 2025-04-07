@@ -1,7 +1,11 @@
 package com.phantomwing.eastersdelight.component;
 
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.DyeColor;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
 
 public enum EggPattern implements StringRepresentable {
     STRIPES(0, "stripes"),
@@ -36,5 +40,12 @@ public enum EggPattern implements StringRepresentable {
 
     public @NotNull String getSerializedName() {
         return this.name;
+    }
+
+    @Nullable
+    @Contract("_,!null->!null;_,null->_")
+    public static EggPattern byName(String key, @Nullable EggPattern fallback) {
+        EggPattern eggPattern = CODEC.byName(key);
+        return eggPattern != null ? eggPattern : fallback;
     }
 }
