@@ -29,7 +29,7 @@ public class EggPainterMenu extends ItemCombinerMenu {
 
     private final Level level;
 
-    public EggPainterMenu(int containerId, Inventory playerInventory, BlockPos pos) {
+    public EggPainterMenu(int containerId, Inventory playerInventory) {
         this(containerId, playerInventory, ContainerLevelAccess.NULL);
     }
 
