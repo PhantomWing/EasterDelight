@@ -12,7 +12,5 @@ public class EastersDelightClient implements ClientModInitializer {
         MenuScreens.register(ModMenuTypes.EGG_PAINTER, EggPainterScreen::new);
 
         ModItemProperties.register();
-
-
     }
 }

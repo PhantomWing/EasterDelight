@@ -3,7 +3,6 @@
 - New food items:
   - Bunny Cookie
   - Chocolate Egg
-- Added new configuration options to hide Dyed Egg variations in Creative Mode tab
 
 # 0.1.0
 ### Additions
