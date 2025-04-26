@@ -1,8 +1,9 @@
 package com.phantomwing.eastersdelight.component;
 
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.StringRepresentable;
+import org.jetbrains.annotations.NotNull;
 
-public enum EggPattern implements StringIdentifiable {
+public enum EggPattern implements StringRepresentable {
     STRIPES(0, "stripes"),
     STRIPES_2(1, "stripes_2"),
     STRIPES_3(2, "stripes_3"),
@@ -15,7 +16,7 @@ public enum EggPattern implements StringIdentifiable {
     HEART(9, "heart"),
     BLOCKS(10, "blocks");
 
-    public static final StringIdentifiable.BasicCodec<EggPattern> CODEC = StringIdentifiable.createCodec(EggPattern::values);
+    public static final StringRepresentable.StringRepresentableCodec<EggPattern> CODEC = StringRepresentable.fromEnum(EggPattern::values);
 
     private final int id;
     private final String name;
@@ -33,8 +34,7 @@ public enum EggPattern implements StringIdentifiable {
         return this.name;
     }
 
-    @Override
-    public String asString() {
+    public @NotNull String getSerializedName() {
         return this.name;
     }
 }

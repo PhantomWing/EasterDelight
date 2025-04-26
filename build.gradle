@@ -10,18 +10,8 @@ base {
     archivesName = "${project.archives_base_name}-fabric-${project.minecraft_version}"
 }
 
-loom {
-    accessWidenerPath = file("src/main/resources/eastersdelight.accesswidener")
-}
-
 repositories {
     maven { url = "https://maven.parchmentmc.org" } // Parchment
-
-    // Porting Lib
-    maven { url = 'https://repo.greenhouse.house/snapshots/' }
-    maven { url = "https://mvn.devos.one/snapshots/" } // Registrate, Porting Lib, Forge Tags, Milk Lib
-    maven { url = "https://mvn.devos.one/releases/" }
-    maven { url = "https://jitpack.io/" } // for Porting Lib: Fabric ASM
 
     maven { url "https://maven.shedaniel.me/" }
     maven {
@@ -35,6 +25,22 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+
+    maven {
+        name = "Greenhouse Maven"
+        url = 'https://repo.greenhouse.house/releases/'
+    }
+    maven {
+        name = "Greenhouse Maven"
+        url = 'https://repo.greenhouse.house/snapshots/' // Porting Lib Hotfixes
+    }
+    maven { url "https://mvn.devos.one/snapshots/" } // Porting Lib Betas
+    maven {
+        url "https://jitpack.io/" // Fabric ASM
+        content {
+            excludeGroup "io.github.fabricators_of_create"
+        }
+    }
 }
 
 fabricApi {
@@ -45,17 +51,27 @@ dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    // Parchment
+    mappings loom.layered() {
+        it.officialMojangMappings {
+            setNameSyntheticMembers(false)
+        }
+        it.parchment("org.parchmentmc.data:parchment-${project.parchment_version}")
+    }
 
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    // Fabric
+    modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-    // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    // Dependencies
+    modImplementation("vectorwing:FarmersDelight:${project.farmers_delight_version}") {
+        exclude(group: "net.fabricmc")
+        // exclude(group: "io.github.fabricators-of-create")
+        // If you want to exclude Porting Lib to instead provide your own version of Porting Lib, uncomment the above line..
+    }
 
-    modImplementation "curse.maven:farmers-delight-refabricated-993166:6324963"
-
+    // Test mods
     modImplementation "curse.maven:cloth-config-348521:5729125"
-
     modLocalRuntime("curse.maven:jei-238222:5802635")
     modLocalRuntime("squeek.appleskin:appleskin-fabric:${appleskin_version}")
 }

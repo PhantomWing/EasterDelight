@@ -3,14 +3,14 @@ package com.phantomwing.eastersdelight.villager;
 import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.village.TradeOffer;
-import net.minecraft.village.TradedItem;
 import com.phantomwing.eastersdelight.item.ModItems;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.MerchantOffer;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,12 +49,12 @@ public class ModVillagerTrades {
         );
     }
 
-    private static TradeOffer getPatternOffer(EggPattern pattern, int xp) {
-        TradedItem itemCost = new TradedItem(Items.EMERALD, 1);
+    private static MerchantOffer getPatternOffer(EggPattern pattern, int xp) {
+        ItemCost itemCost = new ItemCost(Items.EMERALD, 1);
         ItemStack eggPattern = getPatternItem(pattern, 8);
 
         // Return a MerchantOffer.
-        return new TradeOffer(
+        return new MerchantOffer(
                 itemCost,
                 eggPattern,
                 16,
@@ -63,12 +63,12 @@ public class ModVillagerTrades {
         );
     }
 
-    private static TradeOffer getEasterEggOffer(Random random, int xp, EggPattern... patterns) {
-        TradedItem itemCost = new TradedItem(Items.EMERALD, 2);
+    private static MerchantOffer getEasterEggOffer(RandomSource random, int xp, EggPattern... patterns) {
+        ItemCost itemCost = new ItemCost(Items.EMERALD, 2);
         ItemStack itemStack = getRandomEasterEggItem(random, 4, patterns);
 
         // Return a MerchantOffer.
-        return new TradeOffer(
+        return new MerchantOffer(
                 itemCost,
                 itemStack,
                 16,
@@ -84,7 +84,7 @@ public class ModVillagerTrades {
         return patternStack;
     }
 
-    private static ItemStack getRandomEasterEggItem(Random random, int count, EggPattern... patterns) {
+    private static ItemStack getRandomEasterEggItem(RandomSource random, int count, EggPattern... patterns) {
         // Get a random Egg Pattern, from the given pattern list.
         EggPattern pattern = patterns[random.nextInt(patterns.length)];
 
@@ -98,7 +98,7 @@ public class ModVillagerTrades {
 
         // Generate an ItemStack with the random data components.
         ItemStack eggStack = new ItemStack(ModItems.DYED_EGG, count);
-        eggStack.set(DataComponentTypes.BASE_COLOR, baseColor);
+        eggStack.set(DataComponents.BASE_COLOR, baseColor);
         eggStack.set(ModDataComponents.EGG_PATTERN, pattern);
         eggStack.set(ModDataComponents.PATTERN_COLOR, patternColor);
 

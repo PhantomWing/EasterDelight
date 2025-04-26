@@ -1,24 +1,24 @@
 package com.phantomwing.eastersdelight.component;
 
 import com.phantomwing.eastersdelight.EastersDelight;
-import net.minecraft.component.ComponentType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 
 import java.util.function.UnaryOperator;
 
 public class ModDataComponents {
-    public static final ComponentType<DyeColor> PATTERN_COLOR =
-            register("pattern_color", builder -> builder.codec(DyeColor.CODEC));
+    public static final DataComponentType<DyeColor> PATTERN_COLOR =
+            register("pattern_color", builder -> builder.persistent(DyeColor.CODEC));
 
-    public static final ComponentType<EggPattern> EGG_PATTERN =
-            register("egg_pattern", builder -> builder.codec(EggPattern.CODEC));
+    public static final DataComponentType<EggPattern> EGG_PATTERN =
+            register("egg_pattern", builder -> builder.persistent(EggPattern.CODEC));
 
-    private static <T> ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
-        return Registry.register(Registries.DATA_COMPONENT_TYPE, Identifier.of(EastersDelight.MOD_ID, name),
-                builderOperator.apply(ComponentType.builder()).build());
+    private static <T> DataComponentType<T> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
+        return Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
+                builderOperator.apply(DataComponentType.builder()).build());
     }
 
     public static void register() {

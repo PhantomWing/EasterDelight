@@ -2,18 +2,17 @@ package com.phantomwing.eastersdelight;
 
 import com.phantomwing.eastersdelight.screen.EggPainterScreen;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import com.phantomwing.eastersdelight.item.ModModelPredicates;
-import com.phantomwing.eastersdelight.screen.ModScreenHandlers;
+import com.phantomwing.eastersdelight.item.ModItemProperties;
+import com.phantomwing.eastersdelight.screen.ModMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
 
-@Environment(EnvType.CLIENT)
 public class EastersDelightClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        ModModelPredicates.register();
+        MenuScreens.register(ModMenuTypes.EGG_PAINTER, EggPainterScreen::new);
 
-        HandledScreens.register(ModScreenHandlers.EGG_PAINTER, EggPainterScreen::new);
+        ModItemProperties.register();
+
+
     }
 }

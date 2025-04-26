@@ -3,7 +3,7 @@ package com.phantomwing.eastersdelight;
 import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
-import com.phantomwing.eastersdelight.screen.ModScreenHandlers;
+import com.phantomwing.eastersdelight.screen.ModMenuTypes;
 import com.phantomwing.eastersdelight.itemGroup.ModItemGroups;
 import com.phantomwing.eastersdelight.villager.ModVillagerTrades;
 import com.phantomwing.eastersdelight.villager.ModVillagers;
@@ -24,7 +24,7 @@ public class EastersDelight implements ModInitializer {
         ModDataComponents.register();
 
         // UI
-        ModScreenHandlers.register();
+        ModMenuTypes.register();
 
         // Villagers
         ModVillagers.register();

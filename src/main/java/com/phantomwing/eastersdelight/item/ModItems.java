@@ -6,13 +6,13 @@ import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.item.custom.DyedEggItem;
 import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
 import com.phantomwing.eastersdelight.food.FoodValues;
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 
 import java.util.LinkedHashSet;
 
@@ -48,25 +48,25 @@ public class ModItems {
 
 
     // Helper functions
-    public static Item.Settings baseItem() {
-        return new Item.Settings();
+    public static Item.Properties baseItem() {
+        return new Item.Properties();
     }
 
     public static Item.Settings bottleItem() {
-        return baseItem().recipeRemainder(Items.GLASS_BOTTLE).maxCount(BOTTLE_STACK_SIZE);
+        return baseItem().craftRemainder(Items.GLASS_BOTTLE).stacksTo(BOTTLE_STACK_SIZE);
     }
 
     public static Item.Settings bowlItem() {
-        return baseItem().recipeRemainder(Items.BOWL).maxCount(BOWL_STACK_SIZE);
+        return baseItem().craftRemainder(Items.BOWL).stacksTo(BOWL_STACK_SIZE);
     }
 
     public static Item.Settings feastItem() {
-        return baseItem().recipeRemainder(Items.BOWL).maxCount(1);
+        return baseItem().craftRemainder(Items.BOWL).stacksTo(1);
     }
 
     // Registry functions
     private static Item registerWithTab(String name, Item item) {
-        Item registeredItem = Registry.register(Registries.ITEM, Identifier.of(EastersDelight.MOD_ID, name), item);
+        Item registeredItem = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name), item);
 
         CREATIVE_TAB_ITEMS.add(registeredItem);
 
@@ -74,8 +74,8 @@ public class ModItems {
     }
 
     private static Item registerBlockWithTab(Block block) {
-        String name = Registries.BLOCK.getId(block).getPath();
-        Item item = Registry.register(Registries.ITEM, Identifier.of(EastersDelight.MOD_ID, name),
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        Item item = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
                 new BlockItem(block, baseItem()));
 
         CREATIVE_TAB_ITEMS.add(item);
@@ -83,9 +83,9 @@ public class ModItems {
         return item;
     }
 
-    private static Item registerBlockWithTab(Block block, Item.Settings settings) {
-        String name = Registries.BLOCK.getId(block).getPath();
-        Item item = Registry.register(Registries.ITEM, Identifier.of(EastersDelight.MOD_ID, name),
+    private static Item registerBlockWithTab(Block block, Item.Properties settings) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        Item item = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
                 new BlockItem(block, settings));
 
         CREATIVE_TAB_ITEMS.add(item);

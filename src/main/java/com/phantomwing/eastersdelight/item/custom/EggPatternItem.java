@@ -3,29 +3,29 @@ package com.phantomwing.eastersdelight.item.custom;
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
 public class EggPatternItem extends Item {
-    public EggPatternItem(Item.Settings properties) {
+    public EggPatternItem(Properties properties) {
         super(properties);
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         EggPattern pattern = stack.get(ModDataComponents.EGG_PATTERN);
 
         if (pattern != null) {
-            MutableText patternTooltip = Text.translatable(EastersDelight.MOD_ID + ".tooltip.egg_pattern." + pattern.getName());
+            MutableComponent patternTooltip = Component.translatable(EastersDelight.MOD_ID + ".tooltip.egg_pattern." + pattern.getName());
 
-            tooltip.add(patternTooltip);
+            tooltipComponents.add(patternTooltip);
         }
 
-        super.appendTooltip(stack, context, tooltip, type);
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 }
