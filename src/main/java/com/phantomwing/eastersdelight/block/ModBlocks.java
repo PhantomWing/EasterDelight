@@ -2,20 +2,22 @@ package com.phantomwing.eastersdelight.block;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.block.custom.EggPainterBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(EastersDelight.MOD_ID);
+    public static final Block EGG_PAINTER = registerBlock("egg_painter",
+            new EggPainterBlock(AbstractBlock.Settings.copy(Blocks.CRAFTING_TABLE).nonOpaque()));
 
-    // Blocks
-    public static final DeferredBlock<Block> EGG_PAINTER = BLOCKS.register("egg_painter",
-            () -> new EggPainterBlock(Block.Properties.ofFullCopy(Blocks.CRAFTING_TABLE).noOcclusion()));
+    private static Block registerBlock(String name, Block block) {
+        return Registry.register(Registries.BLOCK, Identifier.of(EastersDelight.MOD_ID, name), block);
+    }
 
-    public static void register(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
+    public static void registerModBlocks() {
+        EastersDelight.LOGGER.info("Registering blocks for " + EastersDelight.MOD_ID);
     }
 }

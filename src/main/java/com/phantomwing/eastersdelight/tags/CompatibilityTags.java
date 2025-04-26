@@ -1,11 +1,10 @@
 package com.phantomwing.eastersdelight.tags;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 import vectorwing.farmersdelight.FarmersDelight;
 
 /**
@@ -22,10 +21,10 @@ public class CompatibilityTags
     public static final TagKey<Item> CREATE_UPRIGHT_ON_BELT = externalItemTag(CREATE, "upright_on_belt");
 
     private static TagKey<Item> externalItemTag(String modId, String path) {
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(modId, path));
+        return TagKey.of(RegistryKeys.ITEM, Identifier.of(modId, path));
     }
 
     private static TagKey<Block> externalBlockTag(String modId, String path) {
-        return BlockTags.create(ResourceLocation.fromNamespaceAndPath(modId, path));
+        return TagKey.of(RegistryKeys.BLOCK, Identifier.of(modId, path));
     }
 }

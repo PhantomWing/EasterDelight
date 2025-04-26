@@ -2,113 +2,108 @@ package com.phantomwing.eastersdelight.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import com.phantomwing.eastersdelight.EastersDelight;
-import com.phantomwing.eastersdelight.screen.EggPainterMenu;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.*;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import com.phantomwing.eastersdelight.screen.EggPainterScreenHandler;
+import net.minecraft.block.*;
+import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.BlockView;
 
 public class EggPainterBlock extends CraftingTableBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final MapCodec<EggPainterBlock> CODEC = simpleCodec(EggPainterBlock::new);
-    private static final Component CONTAINER_TITLE = Component.translatable(EastersDelight.MOD_ID + ".container.egg_painter");
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+    public static final MapCodec<EggPainterBlock> CODEC = createCodec(EggPainterBlock::new);
+    private static final MutableText CONTAINER_TITLE = Text.translatable(EastersDelight.MOD_ID + ".container.egg_painter");
 
-    protected static final VoxelShape SHAPE = Shapes.joinUnoptimized(
-        Shapes.joinUnoptimized(
-            Block.box(2, 0, 2, 14, 2, 14),
-            Block.box(4, 2, 8, 12, 6, 11),
-            BooleanOp.OR
+    protected static final VoxelShape SHAPE = VoxelShapes.combine(
+            VoxelShapes.combine(
+            Block.createCuboidShape(2, 0, 2, 14, 2, 14),
+            Block.createCuboidShape(4, 2, 8, 12, 6, 11),
+                BooleanBiFunction.OR
         ),
-        Block.box(2, 2, 12, 14, 3, 14),
-        BooleanOp.OR
+        Block.createCuboidShape(2, 2, 12, 14, 3, 14),
+        BooleanBiFunction.OR
     );
 
     public @NotNull MapCodec<EggPainterBlock> codec() {
         return CODEC;
     }
 
-    public EggPainterBlock(Properties properties) {
+    public EggPainterBlock(Settings properties) {
         super(properties);
 
         // Set default state properties.
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        this.setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH));
     }
 
-    protected MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
-        return new SimpleMenuProvider((containerId, playerInventory, player) ->
-                new EggPainterMenu(containerId, playerInventory, ContainerLevelAccess.create(level, pos)), CONTAINER_TITLE);
+    protected NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
+        return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new EggPainterScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), CONTAINER_TITLE);
     }
 
-
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
-        if (level.isClientSide) {
-            return InteractionResult.SUCCESS;
+    @Override
+    protected @NotNull ActionResult onUse(BlockState state, World level, BlockPos pos, PlayerEntity player, BlockHitResult hitResult) {
+        if (level.isClient) {
+            return ActionResult.SUCCESS;
         } else {
-            player.openMenu(state.getMenuProvider(level, pos));
-            return InteractionResult.CONSUME;
+            player.openHandledScreen(state.createScreenHandlerFactory(level, pos));
+            return ActionResult.CONSUME;
         }
     }
 
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView level, BlockPos pos, ShapeContext context) {
         return rotateShape(state, SHAPE);
     }
 
     @Override
-    protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
-        return RenderShape.MODEL;
+    public BlockState getPlacementState(ItemPlacementContext context) {
+        return this.getDefaultState().with(FACING, context.getHorizontalPlayerFacing());
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());
+    protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
-    public @NotNull BlockState updateShape(@NotNull BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor level, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
-        return facing == Direction.DOWN && !stateIn.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, level, currentPos, facingPos);
+    protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        return world.getBlockState(pos.down()).isSolidBlock(world, pos);
     }
 
     @Override
-    public boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
-        return level.getBlockState(pos.below()).isSolid();
-    }
-
-    @Override
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
         // Prevent Villagers from walking over this Point of Interest.
         return false;
     }
 
     public static VoxelShape rotateShape(@NotNull BlockState state, VoxelShape shape) {
-        VoxelShape[] buffer = new VoxelShape[]{shape, Shapes.empty()};
+        VoxelShape[] buffer = new VoxelShape[]{shape, VoxelShapes.empty()};
 
         // Determine how many times to rotate.
-        Direction direction = state.getValue(FACING);
+        Direction direction = state.get(FACING);
         int times =
             switch (direction) {
                 case EAST -> 3; // Rotate 3 times
@@ -118,9 +113,9 @@ public class EggPainterBlock extends CraftingTableBlock {
             };
 
         for (int i = 0; i < times; i++) {
-            buffer[0].forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> buffer[1] = Shapes.or(buffer[1], Shapes.create(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
+            buffer[0].forEachBox((minX, minY, minZ, maxX, maxY, maxZ) -> buffer[1] = VoxelShapes.union(buffer[1], VoxelShapes.cuboid(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
             buffer[0] = buffer[1];
-            buffer[1] = Shapes.empty();
+            buffer[1] = VoxelShapes.empty();
         }
 
         return buffer[0];

@@ -1,8 +1,0 @@
-// 1.21	2025-04-01T21:17:59.2848879	Tags for minecraft:item mod id eastersdelight
-5e14cc4e7c01350a3b6048493c49737851743e97 data/c/tags/item/foods/boiled_egg.json
-9dca9a2f638f078c8af41509e15206d40fd6af57 data/c/tags/item/foods/cooked_egg.json
-24c04163970f966c0a5bd14ac22716b4a39cddbb data/c/tags/item/foods/cookie.json
-849f851b30eb74acf2ca9316cd9708544427ecbc data/c/tags/item/foods/potato.json
-46e3258e2744808f1f648cb91f62aad3f84cefa7 data/eastersdelight/tags/item/baked_cod_stew_ingredients.json
-7e71c7e4386939067c4d665924a4603de148958c data/eastersdelight/tags/item/paintable_eggs.json
-a3033b15a15ab21489d363fda35cdb172bb8c7d1 data/farmersdelight/tags/item/cabbage_roll_ingredients.json

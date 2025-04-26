@@ -1,11 +1,10 @@
 package com.phantomwing.eastersdelight.tags;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 
 public class CommonTags {
     public static final TagKey<Item> FOODS_MILK = commonItemTag("foods/milk");
@@ -27,10 +26,10 @@ public class CommonTags {
     public static final TagKey<Item> TOOLS_KNIFE = commonItemTag("tools/knife");
 
     private static TagKey<Block> commonBlockTag(String path) {
-        return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", path));
+        return TagKey.of(RegistryKeys.BLOCK, Identifier.of("c", path));
     }
 
     private static TagKey<Item> commonItemTag(String path) {
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", path));
+        return TagKey.of(RegistryKeys.ITEM, Identifier.of("c", path));
     }
 }

@@ -1,9 +1,9 @@
 package com.phantomwing.eastersdelight.item.custom;
 
-import net.minecraft.world.item.Item;
+import net.minecraft.item.Item;
 
 public class DyedEggItem extends Item {
-    public DyedEggItem(Properties properties) {
+    public DyedEggItem(Item.Settings properties) {
         super(properties);
     }
 }

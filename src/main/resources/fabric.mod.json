@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "eastersdelight",
+  "version": "${version}",
+  "name": "Easter's Delight",
+  "description": "A cute add-on for Farmer's Delight adding egg painting and easter-themed foods!",
+  "authors": [
+    "PhantomWing"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/easters-delight",
+    "sources": "https://github.com/PhantomWing/EastersDelight"
+  },
+  "license": "CC0-1.0",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.phantomwing.eastersdelight.EastersDelight"
+    ],
+    "client": [
+      "com.phantomwing.eastersdelight.EastersDelightClient"
+    ]
+  },
+  "accessWidener" : "eastersdelight.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.16.7",
+    "minecraft": ">=1.21 <=1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "farmersdelight": "*"
+  }
+}
