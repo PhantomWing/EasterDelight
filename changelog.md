@@ -1,3 +1,16 @@
+# 1.0.0
+v1.0.0, Set release type to 'Release'
+
+### Changes
+- `Egg Painter` is now mined faster with an Axe
+- Updated Chinese translations (thank you Huantanhua & Junnaturefox!)
+- Updated Zombie Egg Bunny texture
+
+### Fixes
+- Add missing translation keys for item tags and villagers
+- Fixed Egg Painter not working when Visual Workbench is installed
+
+
 # 0.2.1
 ### Additions
 - Added Chinese translations (thank you Junnaturefox!)

@@ -21,7 +21,10 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraft.world.entity.animal.Parrot;
 import org.slf4j.Logger;
+
+import java.util.Collections;
 
 @Mod(EastersDelight.MOD_ID)
 public class EastersDelight {
