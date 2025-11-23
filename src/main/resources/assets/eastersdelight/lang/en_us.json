@@ -20,11 +20,14 @@
   "eastersdelight.tooltip.egg_pattern.stripes_3": "§7Stripes III§r",
   "eastersdelight.tooltip.egg_pattern.waves": "§7Waves§r",
   "entity.minecraft.villager.eastersdelight.egg_bunny": "Egg Bunny",
+  "entity.minecraft.villager.egg_bunny": "Egg Bunny",
   "item.eastersdelight.boiled_egg": "Boiled Egg",
   "item.eastersdelight.bunny_cookie": "Bunny Cookie",
   "item.eastersdelight.chocolate_egg": "Chocolate Egg",
   "item.eastersdelight.dyed_egg": "Dyed Egg",
   "item.eastersdelight.egg_pattern": "Egg Pattern",
   "item.eastersdelight.egg_slice": "Egg Slice",
-  "itemGroup.eastersdelight": "Easter's Delight"
+  "itemGroup.eastersdelight": "Easter's Delight",
+  "tag.item.eastersdelight.paintable_eggs": "Paintable Eggs",
+  "tag.item.eastersdelight.baked_cod_stew_ingredients": "Baked Cod Stew Ingredients"
 }

@@ -1,3 +1,13 @@
+# 1.0.0
+v1.0.0, Set release type to 'Release'
+
+### Changes
+- `Bunny Cookie` can now be used to feed Parrots
+
+### Fixes
+- Add missing translation keys for item tags and villagers
+
+
 # 0.2.1
 ### Additions
 - Added Chinese translations (thank you Junnaturefox!)
