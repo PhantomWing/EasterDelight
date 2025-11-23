@@ -43,7 +43,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     }
 
     private void addMinecraftTags() {
-        this.tag(ItemTags.PARROT_FOOD).add(
+        this.tag(ItemTags.PARROT_POISONOUS_FOOD).add(
             ModItems.BUNNY_COOKIE.get()
         );
     }

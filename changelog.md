@@ -1,3 +1,8 @@
+# 1.0.1
+### Fixes
+- `Bunny Cookie` is now a poisonous food item for Parrots (as intended)
+- `Egg Painter` can now be mined faster with an Axe
+
 # 1.0.0
 v1.0.0, Set release type to 'Release'
 
