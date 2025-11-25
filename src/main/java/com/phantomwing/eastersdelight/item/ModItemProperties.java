@@ -16,8 +16,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.ToIntFunction;
 
-
-
 public class ModItemProperties {
     static class UnclampedItemPropertyFunction<T> implements ClampedItemPropertyFunction {
         DataComponentType<T> componentType;

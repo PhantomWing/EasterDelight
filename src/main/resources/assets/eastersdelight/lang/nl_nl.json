@@ -19,6 +19,7 @@
   "eastersdelight.tooltip.egg_pattern.stripes_2": "§7Strepen II§r",
   "eastersdelight.tooltip.egg_pattern.stripes_3": "§7Strepen III§r",
   "eastersdelight.tooltip.egg_pattern.waves": "§7Golven§r",
+  "entity.minecraft.villager.eastersdelight.egg_bunny": "Ei konijn",
   "entity.minecraft.villager.egg_bunny": "Ei konijn",
   "item.eastersdelight.boiled_egg": "Gekookt ei",
   "item.eastersdelight.bunny_cookie": "Konijnkoekje",
@@ -26,5 +27,7 @@
   "item.eastersdelight.dyed_egg": "Geverfd ei",
   "item.eastersdelight.egg_pattern": "Ei patroon",
   "item.eastersdelight.egg_slice": "Stukje ei",
-  "itemGroup.eastersdelight": "Easter's Delight"
+  "itemGroup.eastersdelight": "Easter's Delight",
+  "tag.item.eastersdelight.paintable_eggs": "Schilderbare eieren",
+  "tag.item.eastersdelight.baked_cod_stew_ingredients": "Ingrediënten voor gebakken kabeljauwstoofpot"
 }

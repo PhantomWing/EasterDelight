@@ -11,6 +11,7 @@ base {
 }
 
 repositories {
+    mavenLocal()
     maven { url = "https://maven.parchmentmc.org" } // Parchment
 
     maven { url "https://maven.shedaniel.me/" }
@@ -30,6 +31,8 @@ repositories {
         name = "Greenhouse Maven"
         url = 'https://repo.greenhouse.house/releases/'
     }
+    maven { url = "https://maven.greenhouse.lgbt/releases"}
+
     maven {
         name = "Greenhouse Maven"
         url = 'https://repo.greenhouse.house/snapshots/' // Porting Lib Hotfixes
@@ -53,10 +56,8 @@ dependencies {
 
     // Parchment
     mappings loom.layered() {
-        it.officialMojangMappings {
-            setNameSyntheticMembers(false)
-        }
-        it.parchment("org.parchmentmc.data:parchment-${project.parchment_version}")
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}")
     }
 
     // Fabric
@@ -64,16 +65,12 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
     // Dependencies
-    modImplementation("vectorwing:FarmersDelight:${project.farmers_delight_version}") {
-        exclude(group: "net.fabricmc")
-        // exclude(group: "io.github.fabricators-of-create")
-        // If you want to exclude Porting Lib to instead provide your own version of Porting Lib, uncomment the above line..
-    }
+    modImplementation "vectorwing:FarmersDelight:${project.minecraft_version}-${project.farmersdelight_version}+refabricated"
 
     // Test mods
-    modImplementation "curse.maven:cloth-config-348521:5729125"
-    modLocalRuntime("curse.maven:jei-238222:5802635")
-    modLocalRuntime("squeek.appleskin:appleskin-fabric:${appleskin_version}")
+    modLocalRuntime "curse.maven:cloth-config-348521:5729125"
+    modLocalRuntime "curse.maven:jei-238222:5802635"
+    modLocalRuntime "squeek.appleskin:appleskin-fabric:${appleskin_version}"
 }
 
 processResources {

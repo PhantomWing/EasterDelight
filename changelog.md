@@ -1,3 +1,17 @@
+# 1.0.0
+v1.0.0, Set release type to 'Release'
+
+### Changes
+- Updated Chinese translations (thank you Huantanhua & Junnaturefox!)
+- Updated Zombie Egg Bunny texture
+
+### Fixes
+- `Bunny Cookie` is now a poisonous food item for Parrots (as intended)
+- `Egg Painter` can now be mined faster with an Axe
+- Add missing translation keys for item tags and villagers
+- Fixed Egg Painter not working when Visual Workbench is installed
+
+
 # 0.2.0
 ### Additions
 - New food items:

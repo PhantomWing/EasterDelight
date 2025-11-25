@@ -52,15 +52,15 @@ public class ModItems {
         return new Item.Properties();
     }
 
-    public static Item.Settings bottleItem() {
+    public static Item.Properties bottleItem() {
         return baseItem().craftRemainder(Items.GLASS_BOTTLE).stacksTo(BOTTLE_STACK_SIZE);
     }
 
-    public static Item.Settings bowlItem() {
+    public static Item.Properties bowlItem() {
         return baseItem().craftRemainder(Items.BOWL).stacksTo(BOWL_STACK_SIZE);
     }
 
-    public static Item.Settings feastItem() {
+    public static Item.Properties feastItem() {
         return baseItem().craftRemainder(Items.BOWL).stacksTo(1);
     }
 
