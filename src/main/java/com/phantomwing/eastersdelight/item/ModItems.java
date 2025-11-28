@@ -11,16 +11,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 
 import java.util.LinkedHashSet;
 
 public class ModItems {
-    public static final int EGG_STACK_SIZE = 16;
-    public static final int BOWL_STACK_SIZE = 16;
-    public static final int BOTTLE_STACK_SIZE = 16;
-
     public static LinkedHashSet<Item> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
 
     // Blocks
@@ -52,21 +47,9 @@ public class ModItems {
         return new Item.Properties();
     }
 
-    public static Item.Properties bottleItem() {
-        return baseItem().craftRemainder(Items.GLASS_BOTTLE).stacksTo(BOTTLE_STACK_SIZE);
-    }
-
-    public static Item.Properties bowlItem() {
-        return baseItem().craftRemainder(Items.BOWL).stacksTo(BOWL_STACK_SIZE);
-    }
-
-    public static Item.Properties feastItem() {
-        return baseItem().craftRemainder(Items.BOWL).stacksTo(1);
-    }
-
     // Registry functions
     private static Item registerWithTab(String name, Item item) {
-        Item registeredItem = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name), item);
+        Item registeredItem = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(EastersDelight.MOD_ID, name), item);
 
         CREATIVE_TAB_ITEMS.add(registeredItem);
 
@@ -75,18 +58,8 @@ public class ModItems {
 
     private static Item registerBlockWithTab(Block block) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        Item item = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
+        Item item = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(EastersDelight.MOD_ID, name),
                 new BlockItem(block, baseItem()));
-
-        CREATIVE_TAB_ITEMS.add(item);
-
-        return item;
-    }
-
-    private static Item registerBlockWithTab(Block block, Item.Properties settings) {
-        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        Item item = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
-                new BlockItem(block, settings));
 
         CREATIVE_TAB_ITEMS.add(item);
 

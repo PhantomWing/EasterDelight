@@ -1,11 +1,10 @@
 package com.phantomwing.eastersdelight.screen;
 
 import com.phantomwing.eastersdelight.block.ModBlocks;
-import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.tags.ModTags;
-import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -94,22 +93,25 @@ public class EggPainterMenu extends ItemCombinerMenu {
         if (hasRequiredInputs()) {
             // Create the easter egg item.
             ItemStack itemstack = new ItemStack(ModItems.DYED_EGG);
+            CompoundTag compoundTag = itemstack.getOrCreateTag();
 
             // Apply a base color.
             DyeItem baseDye = (DyeItem)this.inputSlots.getItem(BASE_COLOR_SLOT).getItem();
-            itemstack.set(DataComponents.BASE_COLOR, baseDye.getDyeColor());
+            compoundTag.putString(ModDataComponents.BASE_COLOR, baseDye.getDyeColor().getName());
 
             // Check if the pattern input is valid.
             if (hasPatternInputs())
             {
                 // Apply the egg pattern.
-                EggPattern eggPattern = this.inputSlots.getItem(PATTERN_SLOT).get(ModDataComponents.EGG_PATTERN);
-                itemstack.set(ModDataComponents.EGG_PATTERN, eggPattern);
+                String eggPatternName = this.inputSlots.getItem(PATTERN_SLOT).getOrCreateTag().getString(ModDataComponents.EGG_PATTERN);
+                compoundTag.putString(ModDataComponents.EGG_PATTERN, eggPatternName);
 
                 // Apply the pattern color
                 DyeItem patternDye = (DyeItem)this.inputSlots.getItem(PATTERN_COLOR_SLOT).getItem();
-                itemstack.set(ModDataComponents.PATTERN_COLOR, patternDye.getDyeColor());
+                compoundTag.putString(ModDataComponents.PATTERN_COLOR, patternDye.getDyeColor().getName());
             }
+
+            itemstack.setTag(compoundTag);
 
             // Show the painted item in the result slot.
             if (itemstack.isItemEnabled(this.level.enabledFeatures())) {

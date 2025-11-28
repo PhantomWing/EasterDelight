@@ -8,8 +8,8 @@ import com.phantomwing.eastersdelight.item.custom.DyedEggItem;
 import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -19,7 +19,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class ModItemGroups {
     public static final CreativeModeTab MOD_TAB =
-            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "item_group"),
+            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,new ResourceLocation(EastersDelight.MOD_ID, "item_group"),
                     FabricItemGroup.builder().icon(ModItemGroups::getIconItem)
                     .title(Component.translatable(("itemGroup." + EastersDelight.MOD_ID)))
                     .displayItems((displayContext, entries) -> {
@@ -41,9 +41,14 @@ public class ModItemGroups {
 
     private static ItemStack getIconItem() {
         ItemStack iconItemStack = new ItemStack(ModItems.DYED_EGG);
-        iconItemStack.set(DataComponents.BASE_COLOR, DyeColor.LIME);
-        iconItemStack.set(ModDataComponents.PATTERN_COLOR, DyeColor.WHITE);
-        iconItemStack.set(ModDataComponents.EGG_PATTERN, EggPattern.STRIPES_2);
+
+        CompoundTag compoundTag = iconItemStack.getOrCreateTag();
+
+        compoundTag.putString(ModDataComponents.BASE_COLOR, DyeColor.LIME.getName());
+        compoundTag.putString(ModDataComponents.PATTERN_COLOR, DyeColor.WHITE.getName());
+        compoundTag.putString(ModDataComponents.EGG_PATTERN, EggPattern.STRIPES_2.getName());
+
+        iconItemStack.setTag(compoundTag);
 
         return iconItemStack;
     }
@@ -52,7 +57,11 @@ public class ModItemGroups {
         for (DyeColor baseColor : DyeColor.values()) {
             // Add a base color egg.
             ItemStack baseStack = new ItemStack(item);
-            baseStack.set(DataComponents.BASE_COLOR, baseColor);
+            CompoundTag compoundTag = baseStack.getOrCreateTag();
+
+            compoundTag.putString(ModDataComponents.BASE_COLOR, baseColor.getName());
+            baseStack.setTag(compoundTag);
+
             output.accept(baseStack);
 
             for (DyeColor patternColor : DyeColor.values()) {
@@ -63,9 +72,13 @@ public class ModItemGroups {
                 for (EggPattern pattern : EggPattern.values()) {
                     // Add a patterned egg.
                     ItemStack patternStack = new ItemStack(item);
-                    patternStack.set(DataComponents.BASE_COLOR, baseColor);
-                    patternStack.set(ModDataComponents.PATTERN_COLOR, patternColor);
-                    patternStack.set(ModDataComponents.EGG_PATTERN, pattern);
+                    CompoundTag patternTag = patternStack.getOrCreateTag();
+
+                    patternTag.putString(ModDataComponents.BASE_COLOR, baseColor.getName());
+                    patternTag.putString(ModDataComponents.PATTERN_COLOR, patternColor.getName());
+                    patternTag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
+
+                    patternStack.setTag(patternTag);
                     output.accept(patternStack);
                 }
             }
@@ -76,7 +89,11 @@ public class ModItemGroups {
         for (EggPattern pattern : EggPattern.values()) {
             // Add an egg pattern item.
             ItemStack patternStack = new ItemStack(item);
-            patternStack.set(ModDataComponents.EGG_PATTERN, pattern);
+            CompoundTag compoundTag = patternStack.getOrCreateTag();
+
+            compoundTag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
+
+            patternStack.setTag(compoundTag);
             output.accept(patternStack);
         }
     }

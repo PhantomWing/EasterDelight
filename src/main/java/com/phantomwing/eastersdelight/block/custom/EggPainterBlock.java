@@ -1,6 +1,5 @@
 package com.phantomwing.eastersdelight.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.screen.EggPainterMenu;
 import net.minecraft.core.BlockPos;
@@ -26,11 +25,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class EggPainterBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final MapCodec<EggPainterBlock> CODEC = simpleCodec(EggPainterBlock::new);
     private static final Component CONTAINER_TITLE = Component.translatable(EastersDelight.MOD_ID + ".container.egg_painter");
 
     protected static final VoxelShape SHAPE = Shapes.joinUnoptimized(
@@ -43,10 +40,6 @@ public class EggPainterBlock extends Block {
             BooleanOp.OR
     );
 
-    public @NotNull MapCodec<EggPainterBlock> codec() {
-        return CODEC;
-    }
-
     public EggPainterBlock(Properties properties) {
         super(properties);
 
@@ -54,13 +47,13 @@ public class EggPainterBlock extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
-    @Override
-    protected @Nullable MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
+    public MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
         return new SimpleMenuProvider((containerId, playerInventory, player) ->
                 new EggPainterMenu(containerId, playerInventory, ContainerLevelAccess.create(level, pos)), CONTAINER_TITLE);
     }
 
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
@@ -75,7 +68,7 @@ public class EggPainterBlock extends Block {
     }
 
     @Override
-    protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
     }
 
@@ -100,7 +93,7 @@ public class EggPainterBlock extends Block {
     }
 
     @Override
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+    public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {
         // Prevent Villagers from walking over this Point of Interest.
         return false;
     }

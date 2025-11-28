@@ -1,7 +1,6 @@
 package com.phantomwing.eastersdelight;
 
 import com.phantomwing.eastersdelight.block.ModBlocks;
-import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.screen.ModMenuTypes;
 import com.phantomwing.eastersdelight.itemGroup.ModItemGroups;
@@ -21,7 +20,6 @@ public class EastersDelight implements ModInitializer {
         // Items
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
-        ModDataComponents.register();
 
         // UI
         ModMenuTypes.register();

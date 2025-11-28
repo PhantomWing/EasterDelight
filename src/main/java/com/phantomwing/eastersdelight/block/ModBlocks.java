@@ -10,10 +10,10 @@ import net.minecraft.world.level.block.Blocks;
 
 public class ModBlocks {
     public static final Block EGG_PAINTER = registerBlock("egg_painter",
-            new EggPainterBlock(Block.Properties.ofFullCopy(Blocks.CRAFTING_TABLE).noOcclusion()));
+            new EggPainterBlock(Block.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion()));
 
     private static Block registerBlock(String name, Block block) {
-        return Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name), block);
+        return Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(EastersDelight.MOD_ID, name), block);
     }
 
     public static void registerModBlocks() {

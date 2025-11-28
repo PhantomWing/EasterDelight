@@ -93,13 +93,13 @@ public class EggPainterScreen extends ItemCombinerScreen<EggPainterMenu> {
     }
 
     private static ResourceLocation getGUITexture(String textureName) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID,
+        return new ResourceLocation(EastersDelight.MOD_ID,
                 "textures/gui/" + textureName + ".png"
         );
     }
 
     private static ResourceLocation getIconTexture(String textureName) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID,
+        return new ResourceLocation(EastersDelight.MOD_ID,
                 "item/" + textureName
         );
     }

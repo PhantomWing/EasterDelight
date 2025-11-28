@@ -12,11 +12,11 @@ public class ModMenuTypes {
     public static final MenuType<EggPainterMenu> EGG_PAINTER = registerMenuType("egg_painter", EggPainterMenu::new);
 
     private static <T extends AbstractContainerMenu> MenuType<T> registerMenuType(String name, MenuType.MenuSupplier<T> factory) {
-        return Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name), create(factory));
+        return Registry.register(BuiltInRegistries.MENU, new ResourceLocation(EastersDelight.MOD_ID, name), create(factory));
     }
 
     static <T extends AbstractContainerMenu> MenuType<T> create(MenuType.MenuSupplier<T> factory) {
-        return new MenuType<T>(factory, FeatureFlags.DEFAULT_FLAGS);
+        return new MenuType<>(factory, FeatureFlags.DEFAULT_FLAGS);
     }
 
     public static void register() {

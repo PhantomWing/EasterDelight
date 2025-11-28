@@ -3,22 +3,25 @@ plugins {
     id 'maven-publish'
 }
 
-version = project.mod_version
-group = project.maven_group
+version = mod_version
+group = mod_group
 
 base {
-    archivesName = "${project.archives_base_name}-fabric-${project.minecraft_version}"
+    archivesName = "${mod_id}-fabric-${minecraft_version}"
 }
 
 repositories {
     mavenLocal()
-    maven { url = "https://maven.parchmentmc.org" } // Parchment
 
+    maven { url = "https://maven.parchmentmc.org" } // Parchment
     maven { url "https://maven.shedaniel.me/" }
-    maven {
-        url "https://maven.ryanliptak.com/"
+
+    // Appleskin
+    repositories {
+        maven { url "https://maven.ryanliptak.com/" }
     }
 
+    // Cloth Config
     maven {
         name = "CurseMaven"
         url = "https://cursemaven.com"
@@ -27,19 +30,25 @@ repositories {
         }
     }
 
-    maven {
-        name = "Greenhouse Maven"
-        url = 'https://repo.greenhouse.house/releases/'
-    }
+    // Farmer's Delight Refabricated
     maven { url = "https://maven.greenhouse.lgbt/releases"}
 
+    // JEI
     maven {
-        name = "Greenhouse Maven"
-        url = 'https://repo.greenhouse.house/snapshots/' // Porting Lib Hotfixes
+        name = "BlameJared"
+        url = "https://maven.blamejared.com/"
     }
-    maven { url "https://mvn.devos.one/snapshots/" } // Porting Lib Betas
+
+    // Porting Lib
+    maven { url "https://mvn.devos.one/releases/" }
     maven {
-        url "https://jitpack.io/" // Fabric ASM
+        url "https://maven.jamieswhiteshirt.com/libs-release"
+        content {
+            includeGroup "com.jamieswhiteshirt"
+        }
+    }
+    maven {
+        url "https://jitpack.io/"
         content {
             excludeGroup "io.github.fabricators_of_create"
         }
@@ -52,25 +61,32 @@ fabricApi {
 
 dependencies {
     // To change the versions see the gradle.properties file
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
 
     // Parchment
     mappings loom.layered() {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}")
+        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}")
     }
 
     // Fabric
-    modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+${minecraft_version}"
 
-    // Dependencies
-    modImplementation "vectorwing:FarmersDelight:${project.minecraft_version}-${project.farmersdelight_version}+refabricated"
+    // Farmer's Delight
+    modImplementation "vectorwing:FarmersDelight:${minecraft_version}-${farmersdelight_version}+refabricated"
+
+    // Porting Lib
+    for (String module in port_lib_modules.split(", ")) {
+        modApi("io.github.fabricators_of_create.Porting-Lib:${module}:${port_lib_version}+${minecraft_version}") {
+            exclude(group: "net.fabricmc")
+        }
+    }
 
     // Test mods
-    modLocalRuntime "curse.maven:cloth-config-348521:5729125"
-    modLocalRuntime "curse.maven:jei-238222:5802635"
-    modLocalRuntime "squeek.appleskin:appleskin-fabric:${appleskin_version}"
+    //modImplementation "curse.maven:modmenu-308702:5162837" // Mod Menu, required by JEI
+    //modLocalRuntime "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
+    //modLocalRuntime "squeek.appleskin:appleskin-fabric:${appleskin_version}"
 }
 
 processResources {
@@ -105,7 +121,7 @@ jar {
 publishing {
     publications {
         create("mavenJava", MavenPublication) {
-            artifactId = project.archives_base_name
+            artifactId = mod_id
             from components.java
         }
     }

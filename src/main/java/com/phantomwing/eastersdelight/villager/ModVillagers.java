@@ -21,18 +21,18 @@ public class ModVillagers {
     public static final VillagerProfession EGG_BUNNY_PROFESSION = registerProfession("egg_bunny", EGG_BUNNY_POI_KEY);
 
     private static VillagerProfession registerProfession(String name, ResourceKey<PoiType> type) {
-        return Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
+        return Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, new ResourceLocation(EastersDelight.MOD_ID, name),
                 new VillagerProfession(name, entry -> entry.is(type), entry -> entry.is(type),
                         ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CARTOGRAPHER));
     }
 
     private static PoiType registerPOI(String name, Block block) {
-        return PointOfInterestHelper.register(ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
+        return PointOfInterestHelper.register(new ResourceLocation(EastersDelight.MOD_ID, name),
                 1, 1, block);
     }
 
     private static ResourceKey<PoiType> registerPoiKey(String name) {
-        return ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name));
+        return ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, new ResourceLocation(EastersDelight.MOD_ID, name));
     }
 
     public static void register() {

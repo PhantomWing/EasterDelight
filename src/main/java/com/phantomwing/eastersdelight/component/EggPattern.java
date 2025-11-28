@@ -1,13 +1,9 @@
 package com.phantomwing.eastersdelight.component;
 
-import io.netty.buffer.ByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.util.ByIdMap;
 import net.minecraft.util.StringRepresentable;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.function.IntFunction;
+import org.jetbrains.annotations.Nullable;
 
 public enum EggPattern implements StringRepresentable {
     STRIPES(0, "stripes"),
@@ -22,9 +18,7 @@ public enum EggPattern implements StringRepresentable {
     HEART(9, "heart"),
     BLOCKS(10, "blocks");
 
-    private static final IntFunction<EggPattern> BY_ID = ByIdMap.continuous(EggPattern::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
-    public static final StringRepresentable.StringRepresentableCodec<EggPattern> CODEC = StringRepresentable.fromEnum(EggPattern::values);
-    public static final StreamCodec<ByteBuf, EggPattern> STREAM_CODEC = ByteBufCodecs.idMapper(BY_ID, EggPattern::getId);
+    public static final StringRepresentable.EnumCodec<EggPattern> CODEC = StringRepresentable.fromEnum(EggPattern::values);
 
     private final int id;
     private final String name;
@@ -44,5 +38,12 @@ public enum EggPattern implements StringRepresentable {
 
     public @NotNull String getSerializedName() {
         return this.name;
+    }
+
+    @Nullable
+    @Contract("_,!null->!null;_,null->_")
+    public static EggPattern byName(String key, @Nullable EggPattern fallback) {
+        EggPattern eggPattern = CODEC.byName(key);
+        return eggPattern != null ? eggPattern : fallback;
     }
 }
