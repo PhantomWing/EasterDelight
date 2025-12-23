@@ -14,31 +14,32 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 import java.util.LinkedHashSet;
+import java.util.function.Supplier;
 
 public class ModItems {
-    public static LinkedHashSet<Item> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
+    public static LinkedHashSet<Supplier<Item>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
 
     // Blocks
-    public static final Item EGG_PAINTER = registerBlockWithTab(ModBlocks.EGG_PAINTER);
+    public static final Supplier<Item> EGG_PAINTER = registerBlockWithTab(ModBlocks.EGG_PAINTER);
 
     // Eggs
-    public static final Item BOILED_EGG = registerWithTab("boiled_egg", new Item(
+    public static final Supplier<Item> BOILED_EGG = registerWithTab("boiled_egg", () -> new Item(
             baseItem().food(FoodValues.BOILED_EGG)));
-    public static final Item EGG_SLICE = registerWithTab("egg_slice", new Item(
+    public static final Supplier<Item> EGG_SLICE = registerWithTab("egg_slice", () -> new Item(
             baseItem().food(FoodValues.EGG_SLICE)));
 
     // Food
-    public static final Item CHOCOLATE_EGG = registerWithTab("chocolate_egg", new Item(
+    public static final Supplier<Item> CHOCOLATE_EGG = registerWithTab("chocolate_egg", () -> new Item(
             baseItem().food(FoodValues.CHOCOLATE_EGG)));
-    public static final Item BUNNY_COOKIE = registerWithTab("bunny_cookie", new Item(
+    public static final Supplier<Item> BUNNY_COOKIE = registerWithTab("bunny_cookie", () -> new Item(
             baseItem().food(vectorwing.farmersdelight.common.FoodValues.COOKIES)));
 
     // Patterns
-    public static final Item EGG_PATTERN = registerWithTab("egg_pattern", new EggPatternItem(
+    public static final Supplier<Item> EGG_PATTERN = registerWithTab("egg_pattern", () -> new EggPatternItem(
             baseItem()));
 
     // Dyed eggs
-    public static final Item DYED_EGG = registerWithTab("dyed_egg", new DyedEggItem(
+    public static final Supplier<Item> DYED_EGG = registerWithTab("dyed_egg", () -> new DyedEggItem(
             baseItem().food(FoodValues.BOILED_EGG)));
 
 
@@ -48,22 +49,20 @@ public class ModItems {
     }
 
     // Registry functions
-    private static Item registerWithTab(String name, Item item) {
-        Item registeredItem = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(EastersDelight.MOD_ID, name), item);
+    private static Supplier<Item> registerWithTab(final String name, final Supplier<Item> item) {
+        Item registeredItem = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(EastersDelight.MOD_ID, name), item.get());
+        CREATIVE_TAB_ITEMS.add(() -> registeredItem);
 
-        CREATIVE_TAB_ITEMS.add(registeredItem);
-
-        return registeredItem;
+        return () -> registeredItem;
     }
 
-    private static Item registerBlockWithTab(Block block) {
+    private static Supplier<Item> registerBlockWithTab(Block block) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        Item item = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(EastersDelight.MOD_ID, name),
-                new BlockItem(block, baseItem()));
+        Item registeredItem = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(EastersDelight.MOD_ID, name), new BlockItem(block, baseItem()));
 
-        CREATIVE_TAB_ITEMS.add(item);
+        CREATIVE_TAB_ITEMS.add(() -> registeredItem);
 
-        return item;
+        return () -> registeredItem;
     }
 
     public static void registerModItems() {

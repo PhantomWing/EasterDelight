@@ -2,7 +2,7 @@ package com.phantomwing.eastersdelight.itemGroup;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.component.EggPattern;
-import com.phantomwing.eastersdelight.component.ModDataComponents;
+import com.phantomwing.eastersdelight.utils.EggUtils;
 import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.item.custom.DyedEggItem;
 import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
@@ -25,28 +25,28 @@ public class ModItemGroups {
                     .displayItems((displayContext, entries) -> {
                         // Add items to this tab.
                         ModItems.CREATIVE_TAB_ITEMS.forEach((item) -> {
-                            if (item instanceof DyedEggItem) {
+                            if (item.get() instanceof DyedEggItem) {
                                 // Add one of each easter egg combination.
-                                registerEasterEggs(entries, item);
-                            } else if (item instanceof EggPatternItem) {
+                                registerEasterEggs(entries, item.get());
+                            } else if (item.get() instanceof EggPatternItem) {
                                 // Add one of each egg pattern
-                                registerEggPatterns(entries, item);
+                                registerEggPatterns(entries, item.get());
                             } else {
                                 // Add item as normal.
-                                entries.accept(item);
+                                entries.accept(item.get());
                             }
                         });
                     })
                     .build());
 
     private static ItemStack getIconItem() {
-        ItemStack iconItemStack = new ItemStack(ModItems.DYED_EGG);
+        ItemStack iconItemStack = new ItemStack(ModItems.DYED_EGG.get());
 
         CompoundTag compoundTag = iconItemStack.getOrCreateTag();
 
-        compoundTag.putString(ModDataComponents.BASE_COLOR, DyeColor.LIME.getName());
-        compoundTag.putString(ModDataComponents.PATTERN_COLOR, DyeColor.WHITE.getName());
-        compoundTag.putString(ModDataComponents.EGG_PATTERN, EggPattern.STRIPES_2.getName());
+        compoundTag.putString(EggUtils.BASE_COLOR, DyeColor.LIME.getName());
+        compoundTag.putString(EggUtils.PATTERN_COLOR, DyeColor.WHITE.getName());
+        compoundTag.putString(EggUtils.EGG_PATTERN, EggPattern.STRIPES_2.getName());
 
         iconItemStack.setTag(compoundTag);
 
@@ -59,7 +59,7 @@ public class ModItemGroups {
             ItemStack baseStack = new ItemStack(item);
             CompoundTag compoundTag = baseStack.getOrCreateTag();
 
-            compoundTag.putString(ModDataComponents.BASE_COLOR, baseColor.getName());
+            compoundTag.putString(EggUtils.BASE_COLOR, baseColor.getName());
             baseStack.setTag(compoundTag);
 
             output.accept(baseStack);
@@ -74,9 +74,9 @@ public class ModItemGroups {
                     ItemStack patternStack = new ItemStack(item);
                     CompoundTag patternTag = patternStack.getOrCreateTag();
 
-                    patternTag.putString(ModDataComponents.BASE_COLOR, baseColor.getName());
-                    patternTag.putString(ModDataComponents.PATTERN_COLOR, patternColor.getName());
-                    patternTag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
+                    patternTag.putString(EggUtils.BASE_COLOR, baseColor.getName());
+                    patternTag.putString(EggUtils.PATTERN_COLOR, patternColor.getName());
+                    patternTag.putString(EggUtils.EGG_PATTERN, pattern.getName());
 
                     patternStack.setTag(patternTag);
                     output.accept(patternStack);
@@ -91,7 +91,7 @@ public class ModItemGroups {
             ItemStack patternStack = new ItemStack(item);
             CompoundTag compoundTag = patternStack.getOrCreateTag();
 
-            compoundTag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
+            compoundTag.putString(EggUtils.EGG_PATTERN, pattern.getName());
 
             patternStack.setTag(compoundTag);
             output.accept(patternStack);

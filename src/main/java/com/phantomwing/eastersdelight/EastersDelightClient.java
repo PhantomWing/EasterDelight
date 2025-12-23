@@ -1,5 +1,6 @@
 package com.phantomwing.eastersdelight;
 
+import com.phantomwing.eastersdelight.itemGroup.ModItemGroups;
 import com.phantomwing.eastersdelight.screen.EggPainterScreen;
 import net.fabricmc.api.ClientModInitializer;
 import com.phantomwing.eastersdelight.item.ModItemProperties;
@@ -12,5 +13,8 @@ public class EastersDelightClient implements ClientModInitializer {
         MenuScreens.register(ModMenuTypes.EGG_PAINTER, EggPainterScreen::new);
 
         ModItemProperties.register();
+
+        // UI
+        ModItemGroups.register();
     }
 }

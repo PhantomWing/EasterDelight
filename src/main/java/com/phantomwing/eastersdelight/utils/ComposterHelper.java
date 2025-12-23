@@ -1,4 +1,4 @@
-package com.phantomwing.eastersdelight.util;
+package com.phantomwing.eastersdelight.utils;
 
 import com.phantomwing.eastersdelight.item.ModItems;
 import net.minecraft.world.level.ItemLike;
@@ -14,9 +14,9 @@ public class ComposterHelper {
     public static void register() {
         // 85% chance
         registerCompostableItems(0.85f,
-                ModItems.BOILED_EGG,
-                ModItems.EGG_SLICE,
-                ModItems.BUNNY_COOKIE
+            ModItems.BOILED_EGG.get(),
+            ModItems.EGG_SLICE.get(),
+            ModItems.BUNNY_COOKIE.get()
         );
     }
 }

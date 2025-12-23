@@ -2,8 +2,7 @@ package com.phantomwing.eastersdelight.item.custom;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.component.EggPattern;
-import com.phantomwing.eastersdelight.component.ModDataComponents;
-import net.minecraft.nbt.CompoundTag;
+import com.phantomwing.eastersdelight.utils.EggUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
@@ -21,12 +20,11 @@ public class EggPatternItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag isAdvanced) {
-        CompoundTag tag = stack.getOrCreateTag();
-        String patternName = tag.getString(ModDataComponents.EGG_PATTERN);
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag isAdvanced) {
+        EggPattern pattern = EggUtils.getPatternFromStack(stack);
 
-        if (!patternName.isEmpty()) {
-            MutableComponent patternTooltip = Component.translatable(EastersDelight.MOD_ID + ".tooltip.egg_pattern." + patternName);
+        if (pattern != null) {
+            MutableComponent patternTooltip = Component.translatable(EastersDelight.MOD_ID + ".tooltip.egg_pattern." + pattern.getName());
 
             tooltipComponents.add(patternTooltip);
         }

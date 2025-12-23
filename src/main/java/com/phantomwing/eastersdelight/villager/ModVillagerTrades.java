@@ -1,7 +1,7 @@
 package com.phantomwing.eastersdelight.villager;
 
 import com.phantomwing.eastersdelight.component.EggPattern;
-import com.phantomwing.eastersdelight.component.ModDataComponents;
+import com.phantomwing.eastersdelight.utils.EggUtils;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import com.phantomwing.eastersdelight.item.ModItems;
 import net.minecraft.nbt.CompoundTag;
@@ -77,10 +77,10 @@ public class ModVillagerTrades {
     }
 
     private static ItemStack getPatternItem(EggPattern pattern, int count) {
-        ItemStack patternStack = new ItemStack(ModItems.EGG_PATTERN, count);
+        ItemStack patternStack = new ItemStack(ModItems.EGG_PATTERN.get(), count);
 
         CompoundTag tag = patternStack.getOrCreateTag();
-        tag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
+        tag.putString(EggUtils.EGG_PATTERN, pattern.getName());
 
         return patternStack;
     }
@@ -98,12 +98,12 @@ public class ModVillagerTrades {
         DyeColor patternColor = filteredColors.get(random.nextInt(colors.length - 1));
 
         // Generate an ItemStack with the random data components.
-        ItemStack eggStack = new ItemStack(ModItems.DYED_EGG, count);
+        ItemStack eggStack = new ItemStack(ModItems.DYED_EGG.get(), count);
 
         CompoundTag compoundTag = eggStack.getOrCreateTag();
-        compoundTag.putString(ModDataComponents.BASE_COLOR, baseColor.getName());
-        compoundTag.putString(ModDataComponents.EGG_PATTERN, pattern.getName());
-        compoundTag.putString(ModDataComponents.PATTERN_COLOR, patternColor.getName());
+        compoundTag.putString(EggUtils.BASE_COLOR, baseColor.getName());
+        compoundTag.putString(EggUtils.EGG_PATTERN, pattern.getName());
+        compoundTag.putString(EggUtils.PATTERN_COLOR, patternColor.getName());
 
         eggStack.setTag(compoundTag);
 

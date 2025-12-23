@@ -6,7 +6,7 @@ import com.phantomwing.eastersdelight.screen.ModMenuTypes;
 import com.phantomwing.eastersdelight.itemGroup.ModItemGroups;
 import com.phantomwing.eastersdelight.villager.ModVillagerTrades;
 import com.phantomwing.eastersdelight.villager.ModVillagers;
-import com.phantomwing.eastersdelight.util.ComposterHelper;
+import com.phantomwing.eastersdelight.utils.ComposterHelper;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +27,6 @@ public class EastersDelight implements ModInitializer {
         // Villagers
         ModVillagers.register();
         ModVillagerTrades.register();
-
-        // UI
-        ModItemGroups.register();
 
         ComposterHelper.register();
     }
