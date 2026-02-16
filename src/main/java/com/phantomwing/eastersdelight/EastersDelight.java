@@ -18,6 +18,9 @@ public class EastersDelight implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        // Register the config file.
+        EastersDelightConfig.register();
+
         // Items
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();

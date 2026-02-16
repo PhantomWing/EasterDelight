@@ -1,3 +1,9 @@
+# 1.1.0
+### Additions
+- Added configuration file support (with an option to disable Dyed Egg variants in the Creative Mode inventory)
+- Added Cloth Config dependency
+- Added Ukrainian translations (thank you Sun_Phoen1x!)
+
 # 1.0.0
 v1.0.0, Set release type to 'Release'
 
