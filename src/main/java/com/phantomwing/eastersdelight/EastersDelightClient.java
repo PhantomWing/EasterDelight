@@ -1,5 +1,6 @@
 package com.phantomwing.eastersdelight;
 
+import com.phantomwing.eastersdelight.block.BlockColorHandler;
 import com.phantomwing.eastersdelight.itemProperties.ItemPropertyHelper;
 import com.phantomwing.eastersdelight.screen.EggPainterScreen;
 import net.fabricmc.api.ClientModInitializer;
@@ -13,5 +14,6 @@ public class EastersDelightClient implements ClientModInitializer {
         MenuScreens.register(ModMenuTypes.EGG_PAINTER, EggPainterScreen::new);
 
         ItemPropertyHelper.register();
+        BlockColorHandler.registerBlockColors();
     }
 }

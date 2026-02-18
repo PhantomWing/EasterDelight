@@ -43,9 +43,7 @@ public class ModItems {
             baseItem()));
 
     // Dyed eggs
-    public static final Item DYED_EGG = registerWithTab("dyed_egg", new DyedEggItem(
-            baseItem().food(FoodValues.BOILED_EGG)));
-
+    public static final Item DYED_EGG = registerDyedEggWithTab(ModBlocks.DYED_EGG);
 
     // Helper functions
     public static Item.Properties baseItem() {
@@ -74,13 +72,7 @@ public class ModItems {
     }
 
     private static Item registerBlockWithTab(Block block) {
-        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        Item item = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
-                new BlockItem(block, baseItem()));
-
-        CREATIVE_TAB_ITEMS.add(item);
-
-        return item;
+        return registerBlockWithTab(block, baseItem());
     }
 
     private static Item registerBlockWithTab(Block block, Item.Properties settings) {
@@ -93,7 +85,18 @@ public class ModItems {
         return item;
     }
 
-    public static void registerModItems() {
+    private static Item registerDyedEggWithTab(Block block) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        Item item = Registry.register(BuiltInRegistries.ITEM,
+                ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
+                new DyedEggItem(block, baseItem().food(FoodValues.BOILED_EGG)));
+
+        CREATIVE_TAB_ITEMS.add(item);
+
+        return item;
+    }
+
+    public static void register() {
         EastersDelight.LOGGER.info("Registering items for " + EastersDelight.MOD_ID);
     }
 }

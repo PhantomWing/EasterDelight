@@ -1,0 +1,6 @@
+{
+  "parent": "eastersdelight:block/dyed_egg_patterned",
+  "textures": {
+    "pattern": "eastersdelight:block/dyed_egg_petals"
+  }
+}
