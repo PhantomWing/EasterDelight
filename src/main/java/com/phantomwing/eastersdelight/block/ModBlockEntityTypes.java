@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class ModBlockEntityTypes
 {
-    public static final BlockEntityType<DyedEggBlockEntity> DYED_EGG = registerBlockEntity("dyed_egg", DyedEggBlockEntity::new, ModBlocks.DYED_EGG);
+    public static final BlockEntityType<DyedEggBlockEntity> DYED_EGG = registerBlockEntity("dyed_egg", DyedEggBlockEntity::new);
 
     private static <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(String name, BlockEntityType.BlockEntitySupplier<T> factory, Block... blocks) {
         return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,

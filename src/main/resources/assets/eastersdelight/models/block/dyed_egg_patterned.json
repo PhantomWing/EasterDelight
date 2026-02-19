@@ -2,9 +2,9 @@
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"textures": {
+		"particle": "eastersdelight:block/dyed_egg",
 		"egg": "eastersdelight:block/dyed_egg",
-		"overlay": "eastersdelight:block/dyed_egg_stripes",
-		"particle": "eastersdelight:block/dyed_egg"
+		"overlay": "eastersdelight:block/dyed_egg_blocks"
 	},
 	"elements": [
 		{
@@ -13,24 +13,26 @@
 			"to": [10, 6, 10],
 			"rotation": {"angle": 0, "axis": "z", "origin": [8, 2.5, 8]},
 			"faces": {
-				"north": {"uv": [1, 6, 5, 12], "texture": "#egg", "tintindex": 0},
-				"east": {"uv": [6, 6, 10, 12], "texture": "#egg", "tintindex": 0},
-				"south": {"uv": [1, 6, 5, 12], "texture": "#egg", "tintindex": 0},
-				"west": {"uv": [6, 6, 10, 12], "texture": "#egg", "tintindex": 0},
-				"up": {"uv": [1, 1, 5, 5], "texture": "#egg", "tintindex": 0},
-				"down": {"uv": [6, 1, 10, 5], "texture": "#egg", "tintindex": 0}
+				"north": {"uv": [0, 5, 2, 11], "texture": "#egg", "tintindex": 0},
+				"east": {"uv": [2.5, 5, 4.5, 11], "texture": "#egg", "tintindex": 0},
+				"south": {"uv": [5, 5, 7, 11], "texture": "#egg", "tintindex": 0},
+				"west": {"uv": [7.5, 5, 9.5, 11], "texture": "#egg", "tintindex": 0},
+				"up": {"uv": [0, 0, 2, 4], "texture": "#egg", "tintindex": 0},
+				"down": {"uv": [2.5, 0, 4.5, 4], "texture": "#egg", "tintindex": 0}
 			}
 		},
 		{
-			"name": "overlay",
+			"name": "pattern",
 			"from": [6, 0, 6],
 			"to": [10, 6, 10],
 			"rotation": {"angle": 0, "axis": "z", "origin": [8, 2.5, 8]},
 			"faces": {
-				"north": {"uv": [1, 6, 5, 12], "texture": "#overlay", "tintindex": 1},
-				"east": {"uv": [6, 6, 10, 12], "texture": "#overlay", "tintindex": 1},
-				"south": {"uv": [1, 6, 5, 12], "texture": "#overlay", "tintindex": 1},
-				"west": {"uv": [6, 6, 10, 12], "texture": "#overlay", "tintindex": 1}
+				"north": {"uv": [0, 5, 2, 11], "texture": "#pattern", "tintindex": 1},
+				"east": {"uv": [2.5, 5, 4.5, 11], "texture": "#pattern", "tintindex": 1},
+				"south": {"uv": [5, 5, 7, 11], "texture": "#pattern", "tintindex": 1},
+				"west": {"uv": [7.5, 5, 9.5, 11], "texture": "#pattern", "tintindex": 1},
+				"up": {"uv": [0, 0, 2, 4], "texture": "#pattern", "tintindex": 1},
+				"down": {"uv": [2.5, 0, 4.5, 4], "texture": "#pattern", "tintindex": 1}
 			}
 		}
 	]

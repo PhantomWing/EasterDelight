@@ -23,7 +23,6 @@
       },
       "textures": [
         "eastersdelight:item/dyed_egg",
-        "eastersdelight:block/dyed_egg",
         "eastersdelight:dyed_egg/patterns/stripes",
         "eastersdelight:dyed_egg/patterns/stripes_2",
         "eastersdelight:dyed_egg/patterns/stripes_3",

@@ -16,6 +16,5 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         dropSelf(ModBlocks.EGG_PAINTER);
-        dropSelf(ModBlocks.DYED_EGG);
     }
 }
