@@ -24,6 +24,7 @@ public class CommonTags {
     public static final TagKey<Item> FOODS_BOILED_EGG = commonItemTag("foods/boiled_egg");
 
     public static final TagKey<Item> TOOLS_KNIFE = commonItemTag("tools/knife");
+    public static final TagKey<Block> MINEABLE_WITH_KNIFE = commonBlockTag("mineable/knife");
 
     private static TagKey<Block> commonBlockTag(String path) {
         return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", path));

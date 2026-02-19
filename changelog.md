@@ -1,7 +1,10 @@
 # 1.1.0
 ### Additions
+- Dyed eggs are now placeable!
+- Add crafting recipe for 'simple' dyed eggs (without patterns)
+  - Just combine a boiled egg with any dye
 - Added configuration file support (with an option to disable Dyed Egg variants in the Creative Mode inventory)
-- Added Cloth Config dependency
+- Added `Cloth Config` mod dependency
 - Added Ukrainian translations (thank you Sun_Phoen1x!)
 
 # 1.0.0

@@ -4,6 +4,7 @@ import com.phantomwing.eastersdelight.block.ModBlockEntityTypes;
 import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
+import com.phantomwing.eastersdelight.recipe.ModRecipes;
 import com.phantomwing.eastersdelight.screen.ModMenuTypes;
 import com.phantomwing.eastersdelight.itemGroup.ModItemGroups;
 import com.phantomwing.eastersdelight.villager.ModVillagerTrades;
@@ -39,5 +40,7 @@ public class EastersDelight implements ModInitializer {
         ModItemGroups.register();
 
         ComposterHelper.register();
+
+        ModRecipes.register();
     }
 }

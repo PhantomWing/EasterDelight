@@ -17,7 +17,6 @@ public class CompatibilityTags
     public static final String FARMERS_DELIGHT = FarmersDelight.MODID;
     public static final String SUPPLEMENTARIES = "supplementaries";
 
-
     // Create
     public static final String CREATE = "create";
     public static final TagKey<Item> CREATE_UPRIGHT_ON_BELT = externalItemTag(CREATE, "upright_on_belt");

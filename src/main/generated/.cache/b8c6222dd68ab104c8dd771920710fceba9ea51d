@@ -1,10 +1,10 @@
-// 1.21.1	2026-02-19T00:22:57.68222	Easter's Delight/Tags for minecraft:item
+// 1.21.1	2026-02-19T20:07:34.6049717	Easter's Delight/Tags for minecraft:item
 9dca9a2f638f078c8af41509e15206d40fd6af57 data\c\tags\item\foods\cooked_egg.json
 d5a42c3ff36e89e590540b6d4d2b61a068df8d1b data\eastersdelight\tags\item\baked_cod_stew_ingredients.json
-24c04163970f966c0a5bd14ac22716b4a39cddbb data\c\tags\item\foods\cookie.json
 849f851b30eb74acf2ca9316cd9708544427ecbc data\c\tags\item\foods\potato.json
+24c04163970f966c0a5bd14ac22716b4a39cddbb data\c\tags\item\foods\cookie.json
 5e14cc4e7c01350a3b6048493c49737851743e97 data\c\tags\item\foods\boiled_egg.json
 f08ebfa8ff4f975747dfcc287b3f47bad7130cfe data\supplementaries\tags\item\cookies.json
-7e71c7e4386939067c4d665924a4603de148958c data\eastersdelight\tags\item\paintable_eggs.json
 a3033b15a15ab21489d363fda35cdb172bb8c7d1 data\farmersdelight\tags\item\cabbage_roll_ingredients.json
+7e71c7e4386939067c4d665924a4603de148958c data\eastersdelight\tags\item\paintable_eggs.json
 24c04163970f966c0a5bd14ac22716b4a39cddbb data\minecraft\tags\item\parrot_poisonous_food.json
