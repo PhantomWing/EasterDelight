@@ -1,7 +1,6 @@
 package com.phantomwing.eastersdelight.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import com.phantomwing.eastersdelight.block.entity.DyedEggBlockEntity;
 import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
@@ -21,7 +20,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -120,17 +118,15 @@ public class DyedEggBlock extends Block {
     protected @NotNull List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
         List<ItemStack> drops = super.getDrops(state, params);
 
-        ItemStack eggItem = new ItemStack(ModItems.DYED_EGG);
-        eggItem.set(DataComponents.BASE_COLOR, state.getValue(BASE_COLOR));
-
-        if (state.getValue(PATTERNED)) {
-            eggItem.set(ModDataComponents.EGG_PATTERN, state.getValue(EGG_PATTERN));
-            eggItem.set(ModDataComponents.PATTERN_COLOR, state.getValue(PATTERN_COLOR));
-        }
-
+        ItemStack eggItem = getDyedEggStack(state);
         drops.add(eggItem);
 
         return drops;
+    }
+
+    @Override
+    public @NotNull ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+        return getDyedEggStack(state);
     }
 
     @Override
@@ -171,5 +167,17 @@ public class DyedEggBlock extends Block {
     @Override
     public boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType type) {
         return false;
+    }
+
+    private ItemStack getDyedEggStack(BlockState state) {
+        ItemStack eggItem = new ItemStack(ModItems.DYED_EGG);
+        eggItem.set(DataComponents.BASE_COLOR, state.getValue(BASE_COLOR));
+
+        if (state.getValue(PATTERNED)) {
+            eggItem.set(ModDataComponents.EGG_PATTERN, state.getValue(EGG_PATTERN));
+            eggItem.set(ModDataComponents.PATTERN_COLOR, state.getValue(PATTERN_COLOR));
+        }
+
+        return eggItem;
     }
 }

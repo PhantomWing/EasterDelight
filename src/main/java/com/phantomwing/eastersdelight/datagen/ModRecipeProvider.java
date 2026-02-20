@@ -76,7 +76,7 @@ public class ModRecipeProvider extends RecipeProvider {
         // Boiled Egg (Can place up to six eggs in a pot to cook them)
         for (int eggCount = 1; eggCount <= 6; eggCount++)
         {
-            CookingPotRecipeBuilder.cookingPotRecipe(ModItems.BOILED_EGG, eggCount, NORMAL_COOKING, MEDIUM_EXP)
+            CookingPotRecipeBuilder.cookingPotRecipe(ModItems.BOILED_EGG, eggCount, NORMAL_COOKING, MEDIUM_EXP, null)
                     .addIngredient(Items.EGG, eggCount)
                     .unlockedByAnyIngredient(Items.EGG)
                     .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
@@ -87,7 +87,7 @@ public class ModRecipeProvider extends RecipeProvider {
     private void buildFarmersDelightOverrideRecipes(@NotNull RecipeOutput output) {
         // Farmer's Delight overrides, to include Boiled Eggs
         // Baked Cod Stew
-        CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+        CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
                 .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.FOODS_RAW_COD)
                 .addIngredient(CommonTags.FOODS_POTATO)
                 .addIngredient(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
