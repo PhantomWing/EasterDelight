@@ -45,7 +45,7 @@ public class ModItems {
 
     // Dyed eggs
     public static final DeferredItem<Item> DYED_EGG = registerWithTab("dyed_egg", () -> new DyedEggItem(
-            baseItem().food(FoodValues.BOILED_EGG)));
+            ModBlocks.DYED_EGG.get(), baseItem().food(FoodValues.BOILED_EGG)));
 
 
     // Helper functions

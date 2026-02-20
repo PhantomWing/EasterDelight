@@ -88,7 +88,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         // Farmer's Delight overrides, to include Boiled Eggs
         // Baked Cod Stew
-        CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+        CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
                 .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.FOODS_RAW_COD)
                 .addIngredient(CommonTags.FOODS_POTATO)
                 .addIngredient(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)

@@ -46,14 +46,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         // Loop through all patterns.
         for (EggPattern pattern : EggPattern.values()) {
-            String colorPrefix = pattern.getName() + "_";
-            String colorSuffix = "_" + pattern.getName();
-            ResourceLocation baseModel = getItemResourceLocationWithPrefix(item, colorPrefix);
-            ResourceLocation baseTexture = getItemResourceLocation(item, "", colorSuffix);
+            String patternPrefix = pattern.getName() + "_";
+            String patternSuffix = "_" + pattern.getName();
+            ResourceLocation baseModel = getItemResourceLocationWithPrefix(item, patternPrefix);
+            ResourceLocation baseTexture = getItemResourceLocation(item, "", patternSuffix);
 
             // Generate an item model with just the base color (no pattern).
             markAsGenerated(baseTexture);
-            getBuilder(colorPrefix + getItemName(item))
+            getBuilder(patternPrefix + getItemName(item))
                     .parent(new ModelFile.UncheckedModelFile("item/generated"))
                     .texture("layer0", baseTexture);
 

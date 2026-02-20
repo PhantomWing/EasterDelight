@@ -4,6 +4,7 @@ import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItemProperties;
 import com.phantomwing.eastersdelight.item.ModItems;
+import com.phantomwing.eastersdelight.recipe.ModRecipes;
 import com.phantomwing.eastersdelight.screen.EggPainterScreen;
 import com.phantomwing.eastersdelight.screen.ModMenuTypes;
 import com.phantomwing.eastersdelight.ui.ModCreativeModTab;
@@ -54,6 +55,7 @@ public class EastersDelight {
         ModDataComponents.register(eventBus);
         ModMenuTypes.register(eventBus);
         ModVillagers.register(eventBus);
+        ModRecipes.register(eventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

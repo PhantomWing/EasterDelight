@@ -2,9 +2,19 @@ package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.block.ModBlocks;
+import com.phantomwing.eastersdelight.block.custom.DyedEggBlock;
 import com.phantomwing.eastersdelight.block.custom.EggPainterBlock;
+import com.phantomwing.eastersdelight.component.EggPattern;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.PropertyDispatch;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.ModelTemplate;
+import net.minecraft.data.models.model.TextureMapping;
+import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -13,6 +23,8 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.block.PieBlock;
+
+import java.util.Optional;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     private static final int DEFAULT_ANGLE_OFFSET = 180;
@@ -24,37 +36,38 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         eggPainterBlock(ModBlocks.EGG_PAINTER.get());
+        dyedEgg(ModBlocks.DYED_EGG.get());
     }
 
-    private void farmersDelightCrate(Block block) {
-        String blockName = blockName(block);
-        this.simpleBlock(block,
-                models().cubeBottomTop(blockName, resourceBlock(blockName + "_side"), farmersDelightResourceBlock("crate_bottom"), resourceBlock(blockName + "_top")));
+    public void eggPainterBlock(Block block) {
+        getVariantBuilder(block)
+                .forAllStates(state -> ConfiguredModel.builder()
+                        .modelFile(existingModel(blockName(block)))
+                        .rotationY(((int) state.getValue(EggPainterBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
+                        .build()
+                );
     }
 
-    private void canvasBag(Block block) {
-        String blockName = blockName(block);
-        this.simpleBlock(block, models().withExistingParent(blockName, "cube")
-                .texture("particle", resourceBlock(blockName + "_top"))
-                .texture("down", resourceBlock(blockName + "_bottom"))
-                .texture("up", resourceBlock(blockName + "_top"))
-                .texture("north", resourceBlock(blockName + "_side_tied"))
-                .texture("south", resourceBlock(blockName + "_side_tied"))
-                .texture("east", resourceBlock(blockName + "_side"))
-                .texture("west", resourceBlock(blockName + "_side"))
-        );
-    }
+    private void dyedEgg(Block block) {
+        ResourceLocation parentModel = resourceBlock(blockName(block) + "_patterned");
 
-    private void pieBlock(Block block) {
+        // Generate models for each pattern variant.
+        for (EggPattern pattern : EggPattern.values()) {
+            String modelName = blockName(block) + "_" + pattern.getName();
+            ResourceLocation modelLocation = resourceBlock(modelName);
+            this.models().withExistingParent(modelName, parentModel).texture("pattern", modelLocation).renderType("cutout");
+        }
+
         getVariantBuilder(block)
                 .forAllStates(state -> {
-                            int bites = state.getValue(PieBlock.BITES);
-                            String suffix = bites == 0 ? "" : "_slice" + bites;
-                            return ConfiguredModel.builder()
-                                    .modelFile(existingModel(blockName(block) + suffix))
-                                    .rotationY(((int) state.getValue(PieBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
-                                    .build();
-                        }
+                    boolean patterned = state.getValue(DyedEggBlock.PATTERNED);
+                    EggPattern pattern = state.getValue(DyedEggBlock.EGG_PATTERN);
+
+                    return ConfiguredModel.builder()
+                        .modelFile(existingModel(blockName(block) + (patterned ? ("_" + pattern.getName()) : "")))
+                        .rotationY(((int) state.getValue(EggPainterBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
+                        .build();
+                    }
                 );
     }
 
@@ -68,23 +81,5 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     public ModelFile existingModel(String path) {
         return new ModelFile.ExistingModelFile(resourceBlock(path), models().existingFileHelper);
-    }
-
-    public ResourceLocation farmersDelightResourceBlock(String path) {
-        return ResourceLocation.fromNamespaceAndPath(FarmersDelight.MODID, "block/" + path);
-    }
-
-    public void eggPainterBlock(Block block) {
-        getVariantBuilder(block)
-                .forAllStates(state -> ConfiguredModel.builder()
-                        .modelFile(existingModel(blockName(block)))
-                        .rotationY(((int) state.getValue(EggPainterBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
-                        .build()
-                );
-    }
-
-    public void modelBlock(Block block, String modelPath) {
-        simpleBlock(block,
-                new ModelFile.UncheckedModelFile(ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, modelPath)));
     }
 }

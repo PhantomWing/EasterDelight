@@ -1,4 +1,4 @@
-package com.phantomwing.eastersdelight.datagen.loot;
+package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.block.ModBlocks;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -16,8 +16,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
-public class BlockLootTables extends BlockLootSubProvider {
-    public BlockLootTables(HolderLookup.Provider lookupProvider) {
+public class ModBlockLootTableProvider extends BlockLootSubProvider {
+    public ModBlockLootTableProvider(HolderLookup.Provider lookupProvider) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), lookupProvider);
     }
 
@@ -25,6 +25,8 @@ public class BlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.EGG_PAINTER.get());
+
+        this.add(ModBlocks.DYED_EGG.get(), (block) -> LootTable.lootTable());
     }
 
     // The contents of this Iterable are used for validation.

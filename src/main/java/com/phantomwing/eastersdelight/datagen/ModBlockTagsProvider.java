@@ -2,6 +2,7 @@ package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.block.ModBlocks;
+import com.phantomwing.eastersdelight.tags.CommonTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -34,6 +35,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     }
 
     private void addCommonTags() {
+        this.tag(CommonTags.MINEABLE_WITH_KNIFE)
+                .add(ModBlocks.DYED_EGG.get());
     }
 
     private void addCompatibilityTags() {
