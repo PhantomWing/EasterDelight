@@ -1,14 +1,17 @@
 package com.phantomwing.eastersdelight.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ambient.Bat;
@@ -24,7 +27,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -35,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class DyedEggBlock extends Block {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<DyeColor> BASE_COLOR = EnumProperty.create("base_color", DyeColor.class);
     public static final BooleanProperty PATTERNED = BooleanProperty.create("patterned");
     public static final EnumProperty<EggPattern> EGG_PATTERN = EnumProperty.create("egg_pattern", EggPattern.class);
@@ -79,15 +81,15 @@ public class DyedEggBlock extends Block {
     }
 
     private void destroyEgg(Level level, BlockState state, BlockPos pos, Entity entity, int chance) {
-        if (this.canDestroyEgg(level, entity)) {
-            if (!level.isClientSide && level.random.nextInt(chance) == 0 && state.is(Blocks.TURTLE_EGG)) {
+        if (state.is(ModBlocks.DYED_EGG) && level instanceof ServerLevel serverLevel) {
+            if (this.canDestroyEgg(serverLevel, entity) && level.random.nextInt(chance) == 0) {
                 level.playSound(null, pos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.BLOCKS, 0.7F, 0.9F + level.random.nextFloat() * 0.2F);
                 level.destroyBlock(pos, false);
             }
         }
     }
 
-    private boolean canDestroyEgg(Level level, Entity entity) {
+    private boolean canDestroyEgg(ServerLevel level, Entity entity) {
         if (!(entity instanceof Turtle) && !(entity instanceof Bat)) {
             if (!(entity instanceof LivingEntity)) {
                 return false;
@@ -160,8 +162,8 @@ public class DyedEggBlock extends Block {
     }
 
     @Override
-    public @NotNull BlockState updateShape(@NotNull BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor level, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
-        return facing == Direction.DOWN && !stateIn.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, level, currentPos, facingPos);
+    protected @NotNull BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        return direction == Direction.DOWN && !state.canSurvive(level, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
     }
 
     @Override

@@ -4,10 +4,14 @@ import net.minecraft.world.food.FoodProperties;
 
 public class FoodValues {
     // Basic foods
-    public static final FoodProperties BOILED_EGG = (new FoodProperties.Builder())
-            .nutrition(4).saturationModifier(0.3F).build();
-    public static final FoodProperties EGG_SLICE = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(0.3F).build();
-    public static final FoodProperties CHOCOLATE_EGG = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.4F).build();
+    public static final FoodProperties BOILED_EGG = food(4, 0.3f);
+    public static final FoodProperties EGG_SLICE = food(2, 0.3f);
+    public static final FoodProperties CHOCOLATE_EGG = food(5, 0.4f);
+
+    private static FoodProperties food(int nutrition, float saturation) {
+        return (new FoodProperties.Builder())
+                .nutrition(nutrition)
+                .saturationModifier(saturation)
+                .build();
+    }
 }

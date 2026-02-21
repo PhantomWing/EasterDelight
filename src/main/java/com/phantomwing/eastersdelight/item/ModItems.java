@@ -7,20 +7,22 @@ import com.phantomwing.eastersdelight.item.custom.DyedEggItem;
 import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
 import com.phantomwing.eastersdelight.food.FoodValues;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashSet;
 
 public class ModItems {
-    public static final int EGG_STACK_SIZE = 16;
-    public static final int BOWL_STACK_SIZE = 16;
-    public static final int BOTTLE_STACK_SIZE = 16;
-
     public static LinkedHashSet<Item> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
 
     // Blocks
@@ -50,16 +52,12 @@ public class ModItems {
         return new Item.Properties();
     }
 
-    public static Item.Properties bottleItem() {
-        return baseItem().craftRemainder(Items.GLASS_BOTTLE).stacksTo(BOTTLE_STACK_SIZE);
+    public static Item.Properties foodItem(FoodProperties food) {
+        return foodItem(food, null);
     }
 
-    public static Item.Properties bowlItem() {
-        return baseItem().craftRemainder(Items.BOWL).stacksTo(BOWL_STACK_SIZE);
-    }
-
-    public static Item.Properties feastItem() {
-        return baseItem().craftRemainder(Items.BOWL).stacksTo(1);
+    public static Item.Properties foodItem(FoodProperties food, @Nullable Consumable consumable) {
+        return foodItem(food).component(DataComponents.CONSUMABLE, consumable != null ? consumable : Consumables.DEFAULT_FOOD);
     }
 
     // Registry functions
@@ -75,25 +73,31 @@ public class ModItems {
         return registerBlockWithTab(block, baseItem());
     }
 
-    private static Item registerBlockWithTab(Block block, Item.Properties settings) {
+    private static Item registerBlockWithTab(Block block, Item.Properties props) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        Item item = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
-                new BlockItem(block, settings));
+        ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
 
+        props.useBlockDescriptionPrefix();
+        props.setId(ResourceKey.create(Registries.ITEM, loc));
+
+        BlockItem item = new BlockItem(block, props);
         CREATIVE_TAB_ITEMS.add(item);
 
-        return item;
+        return Registry.register(BuiltInRegistries.ITEM, loc, item);
     }
 
     private static Item registerDyedEggWithTab(Block block) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        Item item = Registry.register(BuiltInRegistries.ITEM,
-                ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
-                new DyedEggItem(block, baseItem().food(FoodValues.BOILED_EGG)));
+        ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
 
+        Item.Properties props = baseItem().food(FoodValues.BOILED_EGG);
+        props.useBlockDescriptionPrefix();
+        props.setId(ResourceKey.create(Registries.ITEM, loc));
+
+        BlockItem item = new DyedEggItem(block, props);
         CREATIVE_TAB_ITEMS.add(item);
 
-        return item;
+        return Registry.register(BuiltInRegistries.ITEM, loc, item);
     }
 
     public static void register() {

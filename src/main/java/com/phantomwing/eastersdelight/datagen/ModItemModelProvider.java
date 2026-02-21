@@ -11,6 +11,7 @@ import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
 import com.phantomwing.eastersdelight.util.ItemUtils;
 import net.minecraft.data.models.ItemModelGenerators;
+import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
@@ -151,11 +152,11 @@ public class ModItemModelProvider {
 
     // A simple item with a model generated from its sprite.
     private static void simpleItem(ItemModelGenerators generator, Item item) {
-        generator.generateFlatItem(item, ModelTemplates.FLAT_ITEM);
+        ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(item), generator.output);
     }
 
     // For blocks that appear as a block in-world but as an item in-hand
     private static void simpleBlock2D(ItemModelGenerators generator, Block block) {
-        generator.generateFlatItem(block.asItem(), ModelTemplates.FLAT_ITEM);
+        simpleItem(generator, block.asItem());
     }
 }

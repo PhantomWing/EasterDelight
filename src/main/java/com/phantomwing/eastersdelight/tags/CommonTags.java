@@ -7,6 +7,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 public class CommonTags {
+    public static final TagKey<Item> EGGS = commonItemTag("eggs");
+
     public static final TagKey<Item> FOODS_MILK = commonItemTag("foods/milk");
     public static final TagKey<Item> FOODS_DOUGH = commonItemTag("foods/dough");
     public static final TagKey<Item> FOODS_PASTA = commonItemTag("foods/pasta");

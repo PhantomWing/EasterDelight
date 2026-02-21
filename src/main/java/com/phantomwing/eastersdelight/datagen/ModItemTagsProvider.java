@@ -6,7 +6,6 @@ import com.phantomwing.eastersdelight.tags.CompatibilityTags;
 import com.phantomwing.eastersdelight.tags.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -35,7 +34,7 @@ public class ModItemTagsProvider extends FabricTagProvider.ItemTagProvider {
 
         // Override for Baked Cod Stew (by default only contains Tags.Items.EGGS)
         getOrCreateTagBuilder(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
-            .addOptionalTag(ConventionalItemTags.EGGS)
+            .addOptionalTag(CommonTags.EGGS)
             .addTag(CommonTags.FOODS_COOKED_EGG);
     }
 
