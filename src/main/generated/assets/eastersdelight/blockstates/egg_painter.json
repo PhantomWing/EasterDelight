@@ -5,8 +5,7 @@
       "y": 90
     },
     "facing=north": {
-      "model": "eastersdelight:block/egg_painter",
-      "y": 0
+      "model": "eastersdelight:block/egg_painter"
     },
     "facing=south": {
       "model": "eastersdelight:block/egg_painter",

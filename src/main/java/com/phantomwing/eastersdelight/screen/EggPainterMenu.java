@@ -25,14 +25,6 @@ public class EggPainterMenu extends ItemCombinerMenu {
     public static final int PATTERN_COLOR_SLOT = 3;
     public static final int RESULT_SLOT = 4;
 
-    public static final ItemCombinerMenuSlotDefinition slots = ItemCombinerMenuSlotDefinition.create()
-        .withSlot(EGG_SLOT, 49, 20, (item) -> item.is(ModTags.Items.PAINTABLE_EGGS)) // Must be a paintable egg
-        .withSlot(BASE_COLOR_SLOT, 31, 49, (item) -> item.getItem() instanceof DyeItem) // Base color
-        .withSlot(PATTERN_SLOT, 49, 49, (item) -> item.is(ModItems.EGG_PATTERN)) // Egg pattern
-        .withSlot(PATTERN_COLOR_SLOT, 67, 49, (item) -> item.getItem() instanceof DyeItem) // Pattern color
-        .withResultSlot(RESULT_SLOT, 125, 49)
-        .build();
-
     private final Level level;
 
     public EggPainterMenu(int containerId, Inventory playerInventory) {
@@ -40,9 +32,19 @@ public class EggPainterMenu extends ItemCombinerMenu {
     }
 
     public EggPainterMenu(int containerId, Inventory playerInventory, ContainerLevelAccess access) {
-        super(ModMenuTypes.EGG_PAINTER, containerId, playerInventory, access, slots);
+        super(ModMenuTypes.EGG_PAINTER, containerId, playerInventory, access, createInputSlotDefinitions());
 
         this.level = playerInventory.player.level();
+    }
+
+    protected static ItemCombinerMenuSlotDefinition createInputSlotDefinitions() {
+        return ItemCombinerMenuSlotDefinition.create()
+                .withSlot(EGG_SLOT, 49, 20, (item) -> item.is(ModTags.Items.PAINTABLE_EGGS))
+                .withSlot(BASE_COLOR_SLOT, 31, 49, (item) -> item.getItem() instanceof DyeItem)
+                .withSlot(PATTERN_SLOT, 49, 49, (item) -> item.is(ModItems.EGG_PATTERN))
+                .withSlot(PATTERN_COLOR_SLOT, 67, 49, (item) -> item.getItem() instanceof DyeItem)
+                .withResultSlot(RESULT_SLOT, 125, 49)
+                .build();
     }
 
     protected boolean isValidBlock(BlockState state) {
@@ -54,7 +56,7 @@ public class EggPainterMenu extends ItemCombinerMenu {
     }
 
     protected void onTake(@NotNull Player player, ItemStack stack) {
-        stack.onCraftedBy(player.level(), player, stack.getCount());
+        stack.onCraftedBy(player, stack.getCount());
         this.resultSlots.awardUsedRecipes(player, this.getRelevantItems());
 
         this.shrinkStackInSlot(EGG_SLOT);

@@ -9,12 +9,10 @@
       "y": 90
     },
     "egg_pattern=blocks,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=blocks,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_blocks",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_blocks"
     },
     "egg_pattern=blocks,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",
@@ -41,12 +39,10 @@
       "y": 90
     },
     "egg_pattern=creeper,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=creeper,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_creeper",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_creeper"
     },
     "egg_pattern=creeper,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",
@@ -73,12 +69,10 @@
       "y": 90
     },
     "egg_pattern=dipped,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=dipped,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_dipped",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_dipped"
     },
     "egg_pattern=dipped,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",
@@ -105,12 +99,10 @@
       "y": 90
     },
     "egg_pattern=dots,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=dots,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_dots",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_dots"
     },
     "egg_pattern=dots,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",
@@ -137,12 +129,10 @@
       "y": 90
     },
     "egg_pattern=heart,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=heart,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_heart",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_heart"
     },
     "egg_pattern=heart,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",
@@ -169,12 +159,10 @@
       "y": 90
     },
     "egg_pattern=petals,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=petals,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_petals",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_petals"
     },
     "egg_pattern=petals,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",
@@ -201,12 +189,10 @@
       "y": 90
     },
     "egg_pattern=split,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=split,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_split",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_split"
     },
     "egg_pattern=split,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",
@@ -233,12 +219,10 @@
       "y": 90
     },
     "egg_pattern=stripes,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=stripes,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_stripes",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_stripes"
     },
     "egg_pattern=stripes,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",
@@ -265,12 +249,10 @@
       "y": 90
     },
     "egg_pattern=stripes_2,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=stripes_2,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_stripes_2",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_stripes_2"
     },
     "egg_pattern=stripes_2,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",
@@ -297,12 +279,10 @@
       "y": 90
     },
     "egg_pattern=stripes_3,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=stripes_3,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_stripes_3",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_stripes_3"
     },
     "egg_pattern=stripes_3,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",
@@ -329,12 +309,10 @@
       "y": 90
     },
     "egg_pattern=waves,facing=north,patterned=false": {
-      "model": "eastersdelight:block/dyed_egg",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg"
     },
     "egg_pattern=waves,facing=north,patterned=true": {
-      "model": "eastersdelight:block/dyed_egg_waves",
-      "y": 0
+      "model": "eastersdelight:block/dyed_egg_waves"
     },
     "egg_pattern=waves,facing=south,patterned=false": {
       "model": "eastersdelight:block/dyed_egg",

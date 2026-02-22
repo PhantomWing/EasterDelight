@@ -158,7 +158,8 @@ public class DyedEggBlock extends Block {
 
     @Override
     public boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
-        return level.getBlockState(pos.below()).isSolid();
+        BlockPos floorPos = pos.below();
+        return canSupportRigidBlock(level, floorPos) || canSupportCenter(level, floorPos, Direction.UP);
     }
 
     @Override

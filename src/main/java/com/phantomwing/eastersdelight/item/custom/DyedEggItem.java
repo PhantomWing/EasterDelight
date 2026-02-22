@@ -8,9 +8,11 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.block.Block;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class DyedEggItem extends BlockItem {
     public DyedEggItem(Block block, Properties properties) {
@@ -18,7 +20,7 @@ public class DyedEggItem extends BlockItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipAdder, TooltipFlag flag) {
         if (stack.has(ModDataComponents.EGG_PATTERN)) {
             EggPattern pattern = stack.get(ModDataComponents.EGG_PATTERN);
 
@@ -28,9 +30,9 @@ public class DyedEggItem extends BlockItem {
 
             MutableComponent patternTooltip = Component.translatable(EastersDelight.MOD_ID + ".tooltip.egg_pattern." + pattern.getName());
 
-            tooltipComponents.add(patternTooltip);
+            tooltipAdder.accept(patternTooltip);
         }
 
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
     }
 }

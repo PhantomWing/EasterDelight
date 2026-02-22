@@ -36,7 +36,7 @@ public class ModVillagerTrades {
     }
 
     private static void addPatternTrades(int level, int xp, EggPattern... patterns) {
-        TradeOfferHelper.registerVillagerOffers(ModVillagers.EGG_BUNNY_PROFESSION, level,
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.EGG_BUNNY_PROFESSION_KEY, level,
             factories -> {
                 // Generate an offer for each of the provided patterns.
                 for (EggPattern pattern : patterns) {

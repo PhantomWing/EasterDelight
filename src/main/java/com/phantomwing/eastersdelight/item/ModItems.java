@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashSet;
+import java.util.function.Function;
 
 public class ModItems {
     public static LinkedHashSet<Item> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
@@ -29,20 +30,15 @@ public class ModItems {
     public static final Item EGG_PAINTER = registerBlockWithTab(ModBlocks.EGG_PAINTER);
 
     // Eggs
-    public static final Item BOILED_EGG = registerWithTab("boiled_egg", new Item(
-            baseItem().food(FoodValues.BOILED_EGG)));
-    public static final Item EGG_SLICE = registerWithTab("egg_slice", new Item(
-            baseItem().food(FoodValues.EGG_SLICE)));
+    public static final Item BOILED_EGG = registerWithTab("boiled_egg", baseItem().food(FoodValues.BOILED_EGG), Item::new);
+    public static final Item EGG_SLICE = registerWithTab("egg_slice", baseItem().food(FoodValues.EGG_SLICE), Item::new);
 
     // Food
-    public static final Item CHOCOLATE_EGG = registerWithTab("chocolate_egg", new Item(
-            baseItem().food(FoodValues.CHOCOLATE_EGG)));
-    public static final Item BUNNY_COOKIE = registerWithTab("bunny_cookie", new Item(
-            baseItem().food(vectorwing.farmersdelight.common.FoodValues.COOKIES)));
+    public static final Item CHOCOLATE_EGG = registerWithTab("chocolate_egg", baseItem().food(FoodValues.CHOCOLATE_EGG), Item::new);
+    public static final Item BUNNY_COOKIE = registerWithTab("bunny_cookie", baseItem().food(vectorwing.farmersdelight.common.FoodValues.COOKIES), Item::new);
 
     // Patterns
-    public static final Item EGG_PATTERN = registerWithTab("egg_pattern", new EggPatternItem(
-            baseItem()));
+    public static final Item EGG_PATTERN = registerWithTab("egg_pattern", baseItem(), EggPatternItem::new);
 
     // Dyed eggs
     public static final Item DYED_EGG = registerDyedEggWithTab(ModBlocks.DYED_EGG);
@@ -61,12 +57,14 @@ public class ModItems {
     }
 
     // Registry functions
-    private static Item registerWithTab(String name, Item item) {
-        Item registeredItem = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name), item);
+    private static Item registerWithTab(String name, Item.Properties props, Function<Item.Properties, Item> function) {
+        ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
+        props.setId(ResourceKey.create(Registries.ITEM, loc));
 
-        CREATIVE_TAB_ITEMS.add(registeredItem);
+        Item item = function.apply(props);
+        CREATIVE_TAB_ITEMS.add(item);
 
-        return registeredItem;
+        return Registry.register(BuiltInRegistries.ITEM, loc, item);
     }
 
     private static Item registerBlockWithTab(Block block) {

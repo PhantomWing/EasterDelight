@@ -8,8 +8,10 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class EggPatternItem extends Item {
     public EggPatternItem(Properties properties) {
@@ -17,15 +19,15 @@ public class EggPatternItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipAdder, TooltipFlag flag) {
         EggPattern pattern = stack.get(ModDataComponents.EGG_PATTERN);
 
         if (pattern != null) {
             MutableComponent patternTooltip = Component.translatable(EastersDelight.MOD_ID + ".tooltip.egg_pattern." + pattern.getName());
 
-            tooltipComponents.add(patternTooltip);
+            tooltipAdder.accept(patternTooltip);
         }
 
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
     }
 }

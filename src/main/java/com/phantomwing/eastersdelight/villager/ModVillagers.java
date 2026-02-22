@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -18,11 +19,13 @@ public class ModVillagers {
     public static final ResourceKey<PoiType> EGG_BUNNY_POI_KEY = registerPoiKey("egg_bunny_poi");
     public static final PoiType EGG_BUNNY_POI = registerPOI("egg_bunny_poi", ModBlocks.EGG_PAINTER);
 
+    public static final ResourceKey<VillagerProfession> EGG_BUNNY_PROFESSION_KEY =
+            ResourceKey.create(Registries.VILLAGER_PROFESSION, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "egg_bunny"));
     public static final VillagerProfession EGG_BUNNY_PROFESSION = registerProfession("egg_bunny", EGG_BUNNY_POI_KEY);
 
     private static VillagerProfession registerProfession(String name, ResourceKey<PoiType> type) {
         return Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
-                new VillagerProfession(name, entry -> entry.is(type), entry -> entry.is(type),
+                new VillagerProfession(Component.literal(name), entry -> entry.is(type), entry -> entry.is(type),
                         ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CARTOGRAPHER));
     }
 

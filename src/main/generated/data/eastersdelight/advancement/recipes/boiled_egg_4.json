@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eastersdelight:cooking/boiled_egg_6"
+        "recipe": "eastersdelight:boiled_egg_4"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eastersdelight:cooking/boiled_egg_6"
+      "eastersdelight:boiled_egg_4"
     ]
   }
 }

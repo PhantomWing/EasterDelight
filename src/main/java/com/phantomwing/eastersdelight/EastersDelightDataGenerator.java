@@ -2,7 +2,6 @@ package com.phantomwing.eastersdelight;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.core.RegistrySetBuilder;
 import com.phantomwing.eastersdelight.datagen.*;
 
 public class EastersDelightDataGenerator implements DataGeneratorEntrypoint {
@@ -16,9 +15,5 @@ public class EastersDelightDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModModelProvider::new);
         pack.addProvider(ModRecipeProvider::new);
         pack.addProvider(ModBlockLootTableProvider::new);
-    }
-
-    @Override
-    public void buildRegistry(RegistrySetBuilder registryBuilder) {
     }
 }
