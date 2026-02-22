@@ -127,7 +127,7 @@ public class DyedEggBlock extends Block {
     }
 
     @Override
-    public @NotNull ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+    protected @NotNull ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
         return getDyedEggStack(state);
     }
 
