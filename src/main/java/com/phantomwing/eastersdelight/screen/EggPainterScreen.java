@@ -5,6 +5,8 @@ import com.phantomwing.eastersdelight.block.ModBlocks;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.CyclingSlotBackground;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -89,7 +91,14 @@ public class EggPainterScreen extends ItemCombinerScreen<EggPainterMenu> {
             }
         }
 
-        optional.ifPresent(component -> guiGraphics.renderTooltip(this.font, this.font.split(component, 115), mouseX, mouseY));
+        optional.ifPresent(component -> guiGraphics.renderTooltip(
+                this.font,
+                List.of(ClientTooltipComponent.create(component.getVisualOrderText())),
+                mouseX,
+                mouseY,
+                DefaultTooltipPositioner.INSTANCE,
+                null
+        ));
     }
 
     private static ResourceLocation getGUITexture(String textureName) {

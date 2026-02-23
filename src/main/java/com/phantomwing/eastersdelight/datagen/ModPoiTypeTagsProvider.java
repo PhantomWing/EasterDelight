@@ -20,6 +20,6 @@ public class ModPoiTypeTagsProvider extends PoiTypeTagsProvider {
 
     private void addModTags() {
         this.tag(PoiTypeTags.ACQUIRABLE_JOB_SITE)
-            .addOptional(ModVillagers.EGG_BUNNY_POI_KEY.location());
+            .addOptional(ModVillagers.EGG_BUNNY_POI_KEY);
     }
 }

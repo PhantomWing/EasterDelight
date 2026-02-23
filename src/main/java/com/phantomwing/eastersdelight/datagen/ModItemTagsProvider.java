@@ -27,53 +27,53 @@ public class ModItemTagsProvider extends FabricTagProvider.ItemTagProvider {
     }
 
     private void addModTags() {
-        getOrCreateTagBuilder(ModTags.Items.PAINTABLE_EGGS).add(
+        this.valueLookupBuilder(ModTags.Items.PAINTABLE_EGGS).add(
             ModItems.BOILED_EGG,
             ModItems.DYED_EGG
         );
 
         // Override for Baked Cod Stew (by default only contains Tags.Items.EGGS)
-        getOrCreateTagBuilder(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
+        this.valueLookupBuilder(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
             .addOptionalTag(CommonTags.EGGS)
             .addTag(CommonTags.FOODS_COOKED_EGG);
     }
 
     private void addMinecraftTags() {
-        getOrCreateTagBuilder(ItemTags.PARROT_POISONOUS_FOOD).add(
+        this.valueLookupBuilder(ItemTags.PARROT_POISONOUS_FOOD).add(
             ModItems.BUNNY_COOKIE
         );
     }
 
     private void addCommonTags() {
         // Define boiled eggs
-        getOrCreateTagBuilder(CommonTags.FOODS_BOILED_EGG).add(
+        this.valueLookupBuilder(CommonTags.FOODS_BOILED_EGG).add(
                 ModItems.BOILED_EGG,
                 ModItems.DYED_EGG,
                 ModItems.EGG_SLICE
         );
 
         // Boiled eggs are always Cooked, but not all cooked eggs are boiled (Like Fried Egg)
-        getOrCreateTagBuilder(CommonTags.FOODS_COOKED_EGG)
+        this.valueLookupBuilder(CommonTags.FOODS_COOKED_EGG)
                 .addTag(CommonTags.FOODS_BOILED_EGG);
 
         // For compatibility, replace Items.POTATO with a tag (in some override recipes)
-        getOrCreateTagBuilder(CommonTags.FOODS_POTATO).add(
+        this.valueLookupBuilder(CommonTags.FOODS_POTATO).add(
                 Items.POTATO
         );
 
         // Cookies
-        getOrCreateTagBuilder(CommonTags.FOODS_COOKIE).add(
+        this.valueLookupBuilder(CommonTags.FOODS_COOKIE).add(
                 ModItems.BUNNY_COOKIE
         );
     }
 
     private void addCompatibilityTags() {
         // Farmer's Delight
-        getOrCreateTagBuilder(vectorwing.farmersdelight.common.tag.ModTags.CABBAGE_ROLL_INGREDIENTS)
+        this.valueLookupBuilder(vectorwing.farmersdelight.common.tag.ModTags.CABBAGE_ROLL_INGREDIENTS)
                 .addTag(CommonTags.FOODS_COOKED_EGG);
 
         // Supplementaries
-        getOrCreateTagBuilder(CompatibilityTags.SUPPLEMENTARIES_COOKIES)
+        this.valueLookupBuilder(CompatibilityTags.SUPPLEMENTARIES_COOKIES)
                 .addTag(CommonTags.FOODS_COOKIE);
     }
 }

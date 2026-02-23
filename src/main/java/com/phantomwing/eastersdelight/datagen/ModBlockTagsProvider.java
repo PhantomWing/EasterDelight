@@ -27,12 +27,12 @@ public class ModBlockTagsProvider extends FabricTagProvider.BlockTagProvider {
     }
 
     private void addMinecraftTags() {
-        this.getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE)
+        this.valueLookupBuilder(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.EGG_PAINTER);
     }
 
     private void addCommonTags() {
-        this.getOrCreateTagBuilder(CommonTags.MINEABLE_WITH_KNIFE)
+        this.valueLookupBuilder(CommonTags.MINEABLE_WITH_KNIFE)
                 .add(ModBlocks.DYED_EGG);
     }
 
