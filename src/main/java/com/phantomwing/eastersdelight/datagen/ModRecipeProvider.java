@@ -86,6 +86,10 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_EGG), tagIngredient(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
                         .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal
                         .build(output, ItemUtils.getResourceLocation(ModItems.EGG_SLICE));
+
+                CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.DYED_EGG), tagIngredient(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
+                        .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal
+                        .build(output, ItemUtils.getNameWithNamespace(ModItems.EGG_SLICE) + "_from_" + ItemUtils.getName(ModItems.DYED_EGG));
             }
 
             private void buildCookingRecipes(@NotNull RecipeOutput output) {
@@ -95,7 +99,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                             .addIngredient(Items.EGG, eggCount)
                             .unlockedByAnyIngredient(Items.EGG)
                             .setRecipeBookCategory(CookingPotBookCategory.MISC)
-                            .save(output, ItemUtils.getNameWithNamespace(ModItems.BOILED_EGG) + "_" + eggCount);
+                            .build(output, ItemUtils.getNameWithNamespace(ModItems.BOILED_EGG) + "_" + eggCount);
                 }
             }
 
