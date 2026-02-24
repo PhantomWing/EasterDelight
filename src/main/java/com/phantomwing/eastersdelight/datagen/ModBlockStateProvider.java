@@ -15,7 +15,7 @@ import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.renderer.block.model.VariantMutator;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Optional;
@@ -32,7 +32,7 @@ public class ModBlockStateProvider {
         MultiVariantGenerator generator = MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(EggPainterBlock.FACING)
                         .generate((direction) -> {
-                            ResourceLocation modelLoc = resourceBlock(blockName(block));
+                            Identifier modelLoc = resourceBlock(blockName(block));
                             MultiVariant variant = plainVariant(modelLoc);
                             VariantMutator rotation = dirToRot(direction);
 
@@ -48,10 +48,10 @@ public class ModBlockStateProvider {
     }
 
     private static void dyedEgg(BlockModelGenerators g, Block block) {
-        ResourceLocation parentModel = resourceBlock(blockName(block) + "_patterned");
+        Identifier parentModel = resourceBlock(blockName(block) + "_patterned");
 
         for (EggPattern pattern : EggPattern.values()) {
-            ResourceLocation modelLocation = resourceBlock(blockName(block) + "_" + pattern.getName());
+            Identifier modelLocation = resourceBlock(blockName(block) + "_" + pattern.getName());
 
             TextureMapping mapping = new TextureMapping().put(TextureSlot.PATTERN, modelLocation);
             ModelTemplate template = new ModelTemplate(Optional.of(parentModel), Optional.empty(), TextureSlot.PATTERN);
@@ -62,7 +62,7 @@ public class ModBlockStateProvider {
         MultiVariantGenerator generator = MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(DyedEggBlock.FACING, DyedEggBlock.PATTERNED, DyedEggBlock.EGG_PATTERN)
                         .generate((direction, patterned, pattern) -> {
-                            ResourceLocation modelLoc = resourceBlock(blockName(block) + (patterned ? ("_" + pattern.getName()) : ""));
+                            Identifier modelLoc = resourceBlock(blockName(block) + (patterned ? ("_" + pattern.getName()) : ""));
                             MultiVariant variant = plainVariant(modelLoc);
                             VariantMutator rotation = dirToRot(direction);
 
@@ -81,8 +81,8 @@ public class ModBlockStateProvider {
         return BuiltInRegistries.BLOCK.getKey(block).getPath();
     }
 
-    private static ResourceLocation resourceBlock(String path) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "block/" + path);
+    private static Identifier resourceBlock(String path) {
+        return Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, "block/" + path);
     }
 
     private static VariantMutator dirToRot(Direction direction) {

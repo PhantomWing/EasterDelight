@@ -16,7 +16,7 @@ import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.item.SelectItemModel;
 import net.minecraft.client.renderer.item.properties.select.ComponentContents;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -49,9 +49,9 @@ public class ModItemModelProvider {
         // For each egg pattern, generate a separate item model that will be used as the override model.
         for (EggPattern pattern : EggPattern.values()) {
             // Generate the item model for this specific pattern.
-            ResourceLocation patternItemLoc = ItemUtils.getItemResourceLocationWithPrefix(item, pattern.getName());
+            Identifier patternItemLoc = ItemUtils.getItemIdentifierWithPrefix(item, pattern.getName());
             ModelTemplates.FLAT_ITEM.create(patternItemLoc,
-                    TextureMapping.layer0(ItemUtils.getItemResourceLocationWithSuffix(item, pattern.getName())), g.modelOutput);
+                    TextureMapping.layer0(ItemUtils.getItemIdentifierWithSuffix(item, pattern.getName())), g.modelOutput);
 
             // Add override for this pattern, which will be added to the base item.
             ItemModel.Unbaked unbaked = ItemModelUtils.plainModel(patternItemLoc);
@@ -74,9 +74,9 @@ public class ModItemModelProvider {
         // For each override defined above, generate a separate item model that will be used as the override model.
         for (DyeColor baseColor : DyeColor.values()) {
             // First, generate an override for the base color variant without any pattern.
-            ResourceLocation baseItemLoc = ItemUtils.getItemResourceLocationWithPrefix(item, baseColor.getName());
+            Identifier baseItemLoc = ItemUtils.getItemIdentifierWithPrefix(item, baseColor.getName());
             ModelTemplates.FLAT_ITEM.create(baseItemLoc,
-                    TextureMapping.layer0(ItemUtils.getItemResourceLocationWithSuffix(item, baseColor.getName())), g.modelOutput);
+                    TextureMapping.layer0(ItemUtils.getItemIdentifierWithSuffix(item, baseColor.getName())), g.modelOutput);
 
             List<SelectItemModel.SwitchCase<DyeColor>> patternColorCases = new ArrayList<>();
             ItemModel.Unbaked fallbackModel = ItemModelUtils.plainModel(baseItemLoc);
@@ -93,11 +93,11 @@ public class ModItemModelProvider {
                 // Loop through all other dye colors, which can be applied as a pattern.
                 for (EggPattern pattern : EggPattern.values()) {
                     // First, generate an override for the base color variant without any pattern.
-                    ResourceLocation patternItemLoc = ItemUtils.getItemResourceLocation(baseColor.getName() + "_" + ItemUtils.getName(item) + "_" + pattern.getName() + "_" + patternColor.getName());
+                    Identifier patternItemLoc = ItemUtils.getItemIdentifier(baseColor.getName() + "_" + ItemUtils.getName(item) + "_" + pattern.getName() + "_" + patternColor.getName());
                     ModelTemplates.TWO_LAYERED_ITEM.create(patternItemLoc,
                             TextureMapping.layered(
-                                ItemUtils.getItemResourceLocationWithSuffix(item, baseColor.getName()),
-                                ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "dyed_egg/patterns/" + pattern.getName() + "_" + patternColor.getName())
+                                ItemUtils.getItemIdentifierWithSuffix(item, baseColor.getName()),
+                                Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, "dyed_egg/patterns/" + pattern.getName() + "_" + patternColor.getName())
                             ), g.modelOutput);
 
                     // Add override for this pattern, which will be added to the base item.

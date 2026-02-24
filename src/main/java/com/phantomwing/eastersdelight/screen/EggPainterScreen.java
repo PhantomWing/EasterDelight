@@ -9,7 +9,7 @@ import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent
 import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -18,10 +18,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class EggPainterScreen extends ItemCombinerScreen<EggPainterMenu> {
-    private static final ResourceLocation TEXTURE = getGUITexture(BuiltInRegistries.BLOCK.getKey(ModBlocks.EGG_PAINTER).getPath());
-    private static final ResourceLocation EMPTY_SLOT_EGG = getIconTexture("empty_slot_egg");
-    private static final ResourceLocation EMPTY_SLOT_COLOR = getIconTexture("empty_slot_color");
-    private static final ResourceLocation EMPTY_SLOT_PATTERN = getIconTexture("empty_slot_pattern");
+    private static final Identifier TEXTURE = getGUITexture(BuiltInRegistries.BLOCK.getKey(ModBlocks.EGG_PAINTER).getPath());
+    private static final Identifier EMPTY_SLOT_EGG = getIconTexture("empty_slot_egg");
+    private static final Identifier EMPTY_SLOT_COLOR = getIconTexture("empty_slot_color");
+    private static final Identifier EMPTY_SLOT_PATTERN = getIconTexture("empty_slot_pattern");
 
     private final CyclingSlotBackground eggIcon = new CyclingSlotBackground(EggPainterMenu.EGG_SLOT);
     private final CyclingSlotBackground baseColorIcon = new CyclingSlotBackground(EggPainterMenu.BASE_COLOR_SLOT);
@@ -101,14 +101,14 @@ public class EggPainterScreen extends ItemCombinerScreen<EggPainterMenu> {
         ));
     }
 
-    private static ResourceLocation getGUITexture(String textureName) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID,
+    private static Identifier getGUITexture(String textureName) {
+        return Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID,
                 "textures/gui/container/" + textureName + ".png"
         );
     }
 
-    private static ResourceLocation getIconTexture(String textureName) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID,
+    private static Identifier getIconTexture(String textureName) {
+        return Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID,
                 "container/egg_painter/" + textureName
         );
     }

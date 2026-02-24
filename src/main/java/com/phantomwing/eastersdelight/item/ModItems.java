@@ -11,7 +11,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -58,7 +58,7 @@ public class ModItems {
 
     // Registry functions
     private static Item registerWithTab(String name, Item.Properties props, Function<Item.Properties, Item> function) {
-        ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
+        Identifier loc = Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
         props.setId(ResourceKey.create(Registries.ITEM, loc));
 
         Item item = function.apply(props);
@@ -73,7 +73,7 @@ public class ModItems {
 
     private static Item registerBlockWithTab(Block block, Item.Properties props) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
+        Identifier loc = Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
 
         props.useBlockDescriptionPrefix();
         props.setId(ResourceKey.create(Registries.ITEM, loc));
@@ -86,7 +86,7 @@ public class ModItems {
 
     private static Item registerDyedEggWithTab(Block block) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
+        Identifier loc = Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
 
         Item.Properties props = baseItem().food(FoodValues.BOILED_EGG);
         props.useBlockDescriptionPrefix();

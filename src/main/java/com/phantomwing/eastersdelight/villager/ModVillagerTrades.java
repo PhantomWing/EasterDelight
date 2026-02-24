@@ -40,11 +40,11 @@ public class ModVillagerTrades {
             factories -> {
                 // Generate an offer for each of the provided patterns.
                 for (EggPattern pattern : patterns) {
-                    factories.add((trader, random) -> getPatternOffer(pattern, xp));
+                    factories.add((trader, entity, random) -> getPatternOffer(pattern, xp));
                 }
 
                 // Add a random Easter Egg as a potential trade, with one of the provided patterns.
-                factories.add((trader, random) -> getEasterEggOffer(random, xp, patterns));
+                factories.add((trader, entity, random) -> getEasterEggOffer(random, xp, patterns));
             }
         );
     }

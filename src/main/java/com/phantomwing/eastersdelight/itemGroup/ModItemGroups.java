@@ -12,7 +12,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -20,7 +20,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class ModItemGroups {
     public static final CreativeModeTab MOD_TAB =
-            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "item_group"),
+            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, "item_group"),
                     FabricItemGroup.builder().icon(ModItemGroups::getIconItem)
                     .title(Component.translatable(("itemGroup." + EastersDelight.MOD_ID)))
                     .displayItems((displayContext, entries) -> {

@@ -4,7 +4,7 @@ import com.phantomwing.eastersdelight.EastersDelight;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.DyeColor;
 
 import java.util.function.UnaryOperator;
@@ -17,7 +17,7 @@ public class ModDataComponents {
             register("egg_pattern", builder -> builder.persistent(EggPattern.CODEC).networkSynchronized(EggPattern.STREAM_CODEC).cacheEncoding());
 
     private static <T> DataComponentType<T> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
-        return Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
+        return Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
                 builderOperator.apply(DataComponentType.builder()).build());
     }
 

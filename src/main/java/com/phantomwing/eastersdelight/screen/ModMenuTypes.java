@@ -3,7 +3,7 @@ package com.phantomwing.eastersdelight.screen;
 import com.phantomwing.eastersdelight.EastersDelight;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -12,7 +12,7 @@ public class ModMenuTypes {
     public static final MenuType<EggPainterMenu> EGG_PAINTER = registerMenuType("egg_painter", EggPainterMenu::new);
 
     private static <T extends AbstractContainerMenu> MenuType<T> registerMenuType(String name, MenuType.MenuSupplier<T> factory) {
-        return Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name), create(factory));
+        return Registry.register(BuiltInRegistries.MENU, Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, name), create(factory));
     }
 
     static <T extends AbstractContainerMenu> MenuType<T> create(MenuType.MenuSupplier<T> factory) {

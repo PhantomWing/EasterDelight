@@ -2,7 +2,7 @@ package com.phantomwing.eastersdelight.tags;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
@@ -13,7 +13,7 @@ public class ModTags {
         public static final TagKey<Item> BAKED_COD_STEW_INGREDIENTS = tag("baked_cod_stew_ingredients");
 
         private static TagKey<Item> tag(String name) {
-            return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, name));
+            return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, name));
         }
     }
 }

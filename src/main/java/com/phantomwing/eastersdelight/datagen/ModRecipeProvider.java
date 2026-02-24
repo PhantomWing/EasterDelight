@@ -62,7 +62,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .define('/', Items.IRON_INGOT)
                         .define('#', ItemTags.PLANKS)
                         .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModItems.BOILED_EGG))
-                        .save(output, ResourceKey.create(Registries.RECIPE, ItemUtils.getResourceLocation(ModItems.EGG_PAINTER)));
+                        .save(output, ResourceKey.create(Registries.RECIPE, ItemUtils.getIdentifier(ModItems.EGG_PAINTER)));
 
                 // Chocolate Egg
                 shapeless(RecipeCategory.FOOD, ModItems.CHOCOLATE_EGG, 8)
@@ -85,7 +85,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             private void buildCuttingRecipes(@NotNull RecipeOutput output) {
                 CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_EGG), tagIngredient(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
                         .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal
-                        .build(output, ItemUtils.getResourceLocation(ModItems.EGG_SLICE));
+                        .build(output, ItemUtils.getItemIdentifier(ModItems.EGG_SLICE));
 
                 CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.DYED_EGG), tagIngredient(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
                         .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal

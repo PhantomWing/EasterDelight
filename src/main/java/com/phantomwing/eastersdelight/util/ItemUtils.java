@@ -2,18 +2,18 @@ package com.phantomwing.eastersdelight.util;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.Objects;
 
 public class ItemUtils {
-    public static ResourceLocation getResourceLocation(ItemLike item) {
+    public static Identifier getIdentifier(ItemLike item) {
         return Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item.asItem()));
     }
 
     public static String getName(ItemLike item) {
-        return getResourceLocation(item).getPath();
+        return getIdentifier(item).getPath();
     }
 
     public static String getNameWithPrefix(ItemLike item, String prefix) {
@@ -25,42 +25,42 @@ public class ItemUtils {
     }
 
     public static String getNamespace(ItemLike item) {
-        return getResourceLocation(item).getNamespace();
+        return getIdentifier(item).getNamespace();
     }
 
     public static String getNameWithNamespace(ItemLike item) {
-        ResourceLocation rl = getResourceLocation(item);
+        Identifier rl = getIdentifier(item);
         return rl.getNamespace() + ":" + rl.getPath();
     }
 
-    public static ResourceLocation getScopedResourceLocation(ItemLike item, String scope) {
+    public static Identifier getScopedIdentifier(ItemLike item, String scope) {
         String namespace = getNamespace(item);
-        return ResourceLocation.fromNamespaceAndPath(namespace, scope + "/" + getName(item));
+        return Identifier.fromNamespaceAndPath(namespace, scope + "/" + getName(item));
     }
 
-    public static ResourceLocation getScopedResourceLocationWithPrefix(ItemLike item, String scope, String prefix) {
+    public static Identifier getScopedIdentifierWithPrefix(ItemLike item, String scope, String prefix) {
         String namespace = getNamespace(item);
-        return ResourceLocation.fromNamespaceAndPath(namespace, scope + "/" + getNameWithPrefix(item, prefix));
+        return Identifier.fromNamespaceAndPath(namespace, scope + "/" + getNameWithPrefix(item, prefix));
     }
 
-    public static ResourceLocation getScopedResourceLocationWithSuffix(ItemLike item, String scope, String suffix) {
+    public static Identifier getScopedIdentifierWithSuffix(ItemLike item, String scope, String suffix) {
         String namespace = getNamespace(item);
-        return ResourceLocation.fromNamespaceAndPath(namespace, scope + "/" + getNameWithSuffix(item, suffix));
+        return Identifier.fromNamespaceAndPath(namespace, scope + "/" + getNameWithSuffix(item, suffix));
     }
 
-    public static ResourceLocation getItemResourceLocation(ItemLike item) {
-        return getScopedResourceLocationWithSuffix(item, "item", "");
+    public static Identifier getItemIdentifier(ItemLike item) {
+        return getScopedIdentifierWithSuffix(item, "item", "");
     }
 
-    public static ResourceLocation getItemResourceLocation(String name) {
-        return ResourceLocation.fromNamespaceAndPath(EastersDelight.MOD_ID, "item/" + name);
+    public static Identifier getItemIdentifier(String name) {
+        return Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, "item/" + name);
     }
 
-    public static ResourceLocation getItemResourceLocationWithPrefix(ItemLike item, String prefix) {
-        return getScopedResourceLocationWithPrefix(item, "item", prefix);
+    public static Identifier getItemIdentifierWithPrefix(ItemLike item, String prefix) {
+        return getScopedIdentifierWithPrefix(item, "item", prefix);
     }
 
-    public static ResourceLocation getItemResourceLocationWithSuffix(ItemLike item, String suffix) {
-        return getScopedResourceLocationWithSuffix(item, "item", suffix);
+    public static Identifier getItemIdentifierWithSuffix(ItemLike item, String suffix) {
+        return getScopedIdentifierWithSuffix(item, "item", suffix);
     }
 }
