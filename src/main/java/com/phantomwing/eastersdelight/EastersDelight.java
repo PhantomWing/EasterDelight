@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.item.ModItemProperties;
 import com.phantomwing.eastersdelight.item.ModItems;
+import com.phantomwing.eastersdelight.recipe.ModRecipes;
 import com.phantomwing.eastersdelight.screen.EggPainterScreen;
 import com.phantomwing.eastersdelight.screen.ModMenuTypes;
 import com.phantomwing.eastersdelight.ui.ModCreativeModTab;
@@ -21,10 +22,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraft.world.entity.animal.Parrot;
 import org.slf4j.Logger;
-
-import java.util.Collections;
 
 @Mod(EastersDelight.MOD_ID)
 public class EastersDelight {
@@ -50,6 +48,7 @@ public class EastersDelight {
         ModCreativeModTab.register(eventBus);
         ModMenuTypes.register(eventBus);
         ModVillagers.register(eventBus);
+        ModRecipes.register(eventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

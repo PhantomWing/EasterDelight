@@ -3,8 +3,6 @@ package com.phantomwing.eastersdelight.villager;
 import com.google.common.collect.ImmutableSet;
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.block.ModBlocks;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;

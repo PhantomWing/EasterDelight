@@ -1,3 +1,15 @@
+# 1.1.0
+### Additions
+- Dyed eggs are now placeable!
+- Add crafting recipe for 'simple' dyed eggs (without patterns)
+  - Just combine a boiled egg with any dye
+- Added Ukrainian translations (thank you Sun_Phoen1x!)
+- Cut Dyed Egg into Egg Slice using the Cutting Board (just like Boiled Egg)
+
+### Fixes
+- Fixed Baked Cod Stew recipe override not having a Bowl container
+
+
 # 1.0.0
 v1.0.0, Set release type to 'Release'
 

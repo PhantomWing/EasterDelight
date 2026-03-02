@@ -8,6 +8,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 public class ForgeTags {
+    public static final TagKey<Block> MINEABLE_WITH_KNIFE = blockTag("mineable/knife");
+
     public static final TagKey<Item> MILK = itemTag("milk");
     public static final TagKey<Item> VEGETABLES_POTATO = itemTag("vegetables/potato");
     public static final TagKey<Item> COOKIES = itemTag("cookies");

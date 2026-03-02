@@ -17,10 +17,6 @@ import java.util.LinkedHashSet;
 import java.util.function.Supplier;
 
 public class ModItems {
-    public static final int EGG_STACK_SIZE = 16;
-    public static final int BOWL_STACK_SIZE = 16;
-    public static final int BOTTLE_STACK_SIZE = 16;
-
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, EastersDelight.MOD_ID);
     public static LinkedHashSet<Supplier<Item>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
@@ -46,24 +42,13 @@ public class ModItems {
 
     // Dyed eggs
     public static final RegistryObject<Item> DYED_EGG = registerWithTab("dyed_egg", () -> new DyedEggItem(
+            ModBlocks.DYED_EGG.get(),
             baseItem().food(FoodValues.BOILED_EGG)));
 
 
     // Helper functions
     public static Item.Properties baseItem() {
         return new Item.Properties();
-    }
-
-    public static Item.Properties bottleItem() {
-        return baseItem().craftRemainder(Items.GLASS_BOTTLE).stacksTo(BOTTLE_STACK_SIZE);
-    }
-
-    public static Item.Properties bowlItem() {
-        return baseItem().craftRemainder(Items.BOWL).stacksTo(BOWL_STACK_SIZE);
-    }
-
-    public static Item.Properties feastItem() {
-        return baseItem().craftRemainder(Items.BOWL).stacksTo(1);
     }
 
     // Registry functions

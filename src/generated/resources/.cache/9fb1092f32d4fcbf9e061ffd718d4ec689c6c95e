@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-06T21:43:10.5636509	Recipes
+// 1.20.1	2026-02-25T20:59:52.4545616	Recipes
 708f309ff39dbb261cf7c64de1858aeb5bfe86ec data/eastersdelight/advancements/recipes/boiled_egg_1.json
 b07cee46800361304fac7d8c0155d665bfac1617 data/eastersdelight/advancements/recipes/boiled_egg_2.json
 ef05a1c4af0e08ed19b15776709158153a516f99 data/eastersdelight/advancements/recipes/boiled_egg_3.json
@@ -18,5 +18,6 @@ e7ac0a5943505035d5838990b40de313ef690992 data/eastersdelight/recipes/bunny_cooki
 b7fac7a27556560565eadbc880a9b9bfdb512844 data/eastersdelight/recipes/chocolate_egg.json
 dd0794716e64e6e0e174b181242d057af123986b data/eastersdelight/recipes/egg_painter.json
 8a6d44cb86885e2dd35d2f3a267e2962c8ad9b86 data/eastersdelight/recipes/egg_slice.json
+31378a64636b6bf5349e1ada239824083ceb2814 data/eastersdelight/recipes/egg_slice_from_dyed_egg.json
 00d1c77e3668791a8c48e32f31446e3e79306c34 data/farmersdelight/advancements/recipes/cooking/baked_cod_stew.json
-15a462a6d86e2c179b7e098ca546a91403ab4915 data/farmersdelight/recipes/cooking/baked_cod_stew.json
+68d6d3f355567ba94ef417dafab44a6acc3aa69b data/farmersdelight/recipes/cooking/baked_cod_stew.json

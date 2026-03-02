@@ -25,57 +25,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.EGG_PAINTER.get());
+
+        this.add(ModBlocks.DYED_EGG.get(), (block) -> LootTable.lootTable());
     }
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
         return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
-    }
-
-    private void dropFoodBlock(Block block, IntegerProperty servings) {
-        this.add(block, blockParam -> createFoodBlockDrops(blockParam, servings));
-    }
-
-    private void dropFoodBlock(Block block, IntegerProperty servings, ItemLike containerItem) {
-        this.add(block, blockParam -> createFoodBlockDrops(blockParam, servings, containerItem));
-    }
-
-    private LootTable.Builder createFoodBlockDrops(Block block, IntegerProperty servings) {
-        // Condition that checks if any servings have been taken.
-        LootItemCondition.Builder noServingsTaken = LootItemBlockStatePropertyCondition
-                .hasBlockStateProperties(block)
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(servings, 0));
-
-        return this.applyExplosionDecay(
-                block,
-                LootTable.lootTable()
-                        // If no servings have been taken yet, drop the block.
-                        .withPool(LootPool.lootPool()
-                                .when(noServingsTaken)
-                                .add(LootItem.lootTableItem(block))
-                        )
-        );
-    }
-
-    private LootTable.Builder createFoodBlockDrops(Block block, IntegerProperty servings, ItemLike containerItem) {
-        // Condition that checks if any servings have been taken.
-        LootItemCondition.Builder noServingsTaken = LootItemBlockStatePropertyCondition
-                .hasBlockStateProperties(block)
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(servings, 0));
-
-        return this.applyExplosionDecay(
-                block,
-                LootTable.lootTable()
-                        // If no servings have been taken yet, drop the block.
-                        .withPool(LootPool.lootPool()
-                                .when(noServingsTaken)
-                                .add(LootItem.lootTableItem(block))
-                        )
-                        // Else, drop the container item.
-                        .withPool(LootPool.lootPool()
-                                .when(InvertedLootItemCondition.invert(noServingsTaken))
-                                .add(LootItem.lootTableItem(containerItem))
-                        )
-        );
     }
 }
