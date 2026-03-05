@@ -3,11 +3,12 @@ package com.phantomwing.eastersdelight.block;
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.block.custom.DyedEggBlock;
 import net.minecraft.world.item.DyeColor;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(bus= Mod.EventBusSubscriber.Bus.MOD, modid = EastersDelight.MOD_ID)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = EastersDelight.MOD_ID, value = Dist.CLIENT)
 public class BlockColorHandler
 {
     @SubscribeEvent // on the mod event bus only on the physical client

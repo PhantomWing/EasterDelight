@@ -1,3 +1,8 @@
+# 1.1.1
+### Fixes
+- Fixed server crashing on startup
+
+
 # 1.1.0
 ### Additions
 - Dyed eggs are now placeable!
