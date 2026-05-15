@@ -15,5 +15,10 @@ public class EastersDelightDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModModelProvider::new);
         pack.addProvider(ModRecipeProvider::new);
         pack.addProvider(ModBlockLootTableProvider::new);
+
+        // Data-driven Egg Bunny villager trades (26.1 replacement for TradeOfferHelper)
+        pack.addProvider(ModVillagerTrades::new);
+        pack.addProvider(ModVillagerTradeTagsProvider::new);
+        pack.addProvider(ModVillagerTradeSetsProvider::new);
     }
 }

@@ -96,9 +96,13 @@ public class EggPainterMenu extends ItemCombinerMenu {
             // Create the easter egg item.
             ItemStack itemstack = new ItemStack(ModItems.DYED_EGG);
 
-            // Apply a base color.
-            DyeItem baseDye = (DyeItem)this.inputSlots.getItem(BASE_COLOR_SLOT).getItem();
-            itemstack.set(DataComponents.BASE_COLOR, baseDye.getDyeColor());
+            // Apply a base color. 26.1: DyeItem no longer exposes getDyeColor(); read the color
+            // from the DYE data component on the dye item's stack.
+            ItemStack baseDyeStack = this.inputSlots.getItem(BASE_COLOR_SLOT);
+            net.minecraft.world.item.DyeColor baseColor = baseDyeStack.get(DataComponents.DYE);
+            if (baseColor != null) {
+                itemstack.set(DataComponents.BASE_COLOR, baseColor);
+            }
 
             // Check if the pattern input is valid.
             if (hasPatternInputs())
@@ -108,8 +112,11 @@ public class EggPainterMenu extends ItemCombinerMenu {
                 itemstack.set(ModDataComponents.EGG_PATTERN, eggPattern);
 
                 // Apply the pattern color
-                DyeItem patternDye = (DyeItem)this.inputSlots.getItem(PATTERN_COLOR_SLOT).getItem();
-                itemstack.set(ModDataComponents.PATTERN_COLOR, patternDye.getDyeColor());
+                ItemStack patternDyeStack = this.inputSlots.getItem(PATTERN_COLOR_SLOT);
+                net.minecraft.world.item.DyeColor patternColor = patternDyeStack.get(DataComponents.DYE);
+                if (patternColor != null) {
+                    itemstack.set(ModDataComponents.PATTERN_COLOR, patternColor);
+                }
             }
 
             // Show the painted item in the result slot.

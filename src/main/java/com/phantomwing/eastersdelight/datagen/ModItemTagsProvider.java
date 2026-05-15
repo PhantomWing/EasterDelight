@@ -4,8 +4,8 @@ import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.tags.CommonTags;
 import com.phantomwing.eastersdelight.tags.CompatibilityTags;
 import com.phantomwing.eastersdelight.tags.ModTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -13,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModItemTagsProvider extends FabricTagProvider.ItemTagProvider {
-    public ModItemTagsProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
+    public ModItemTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider);
     }
 
@@ -69,8 +69,8 @@ public class ModItemTagsProvider extends FabricTagProvider.ItemTagProvider {
 
     private void addCompatibilityTags() {
         // Farmer's Delight
-        this.valueLookupBuilder(vectorwing.farmersdelight.common.tag.ModTags.CABBAGE_ROLL_INGREDIENTS)
-                .addTag(CommonTags.FOODS_COOKED_EGG);
+        // Note: ModTags.CABBAGE_ROLL_INGREDIENTS was removed in FDR 3.x — cabbage roll recipes
+        // now use a different mechanism. Boiled eggs are still exposed via c:foods/cooked_egg.
 
         // Supplementaries
         this.valueLookupBuilder(CompatibilityTags.SUPPLEMENTARIES_COOKIES)

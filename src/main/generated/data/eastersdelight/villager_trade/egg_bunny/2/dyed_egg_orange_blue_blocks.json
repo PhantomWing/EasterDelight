@@ -1,0 +1,18 @@
+{
+  "gives": {
+    "components": {
+      "eastersdelight:egg_pattern": "blocks",
+      "eastersdelight:pattern_color": "blue",
+      "minecraft:base_color": "orange"
+    },
+    "count": 4,
+    "id": "eastersdelight:dyed_egg"
+  },
+  "max_uses": 16.0,
+  "reputation_discount": 0.2,
+  "wants": {
+    "count": 2.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 5.0
+}

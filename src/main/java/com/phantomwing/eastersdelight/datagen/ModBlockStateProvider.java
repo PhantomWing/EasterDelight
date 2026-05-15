@@ -12,7 +12,8 @@ import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
-import net.minecraft.client.renderer.block.model.VariantMutator;
+import net.minecraft.client.renderer.block.dispatch.VariantMutator;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -53,7 +54,7 @@ public class ModBlockStateProvider {
         for (EggPattern pattern : EggPattern.values()) {
             Identifier modelLocation = resourceBlock(blockName(block) + "_" + pattern.getName());
 
-            TextureMapping mapping = new TextureMapping().put(TextureSlot.PATTERN, modelLocation);
+            TextureMapping mapping = new TextureMapping().put(TextureSlot.PATTERN, new Material(modelLocation));
             ModelTemplate template = new ModelTemplate(Optional.of(parentModel), Optional.empty(), TextureSlot.PATTERN);
 
             template.create(modelLocation, mapping, g.modelOutput);

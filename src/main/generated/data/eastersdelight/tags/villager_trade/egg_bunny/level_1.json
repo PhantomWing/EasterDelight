@@ -1,0 +1,28 @@
+{
+  "values": [
+    {
+      "id": "eastersdelight:egg_bunny/1/pattern_stripes",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/1/pattern_stripes_2",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/1/pattern_stripes_3",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/1/dyed_egg_red_white_stripes",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/1/dyed_egg_yellow_pink_stripes_2",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/1/dyed_egg_light_blue_white_stripes_3",
+      "required": false
+    }
+  ]
+}

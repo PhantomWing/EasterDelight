@@ -4,7 +4,7 @@ import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.tags.CommonTags;
 import com.phantomwing.eastersdelight.tags.ModTags;
 import com.phantomwing.eastersdelight.util.ItemUtils;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
@@ -31,7 +31,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     public static final float MEDIUM_EXP = 1.0F;
     public static final float LARGE_EXP = 2.0F;
 
-    public ModRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    public ModRecipeProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider);
     }
 
@@ -107,13 +107,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 // Farmer's Delight overrides, to include Boiled Eggs
                 // Baked Cod Stew
                 CookingPotRecipeBuilder.cookingPotRecipe(holderGetter, vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
-                        .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.FOODS_RAW_COD)
+                        .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.FOODS_RAW_COD)
                         .addIngredient(CommonTags.FOODS_POTATO)
                         .addIngredient(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
-                        .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.CROPS_TOMATO)
+                        .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.CROPS_TOMATO)
                         .unlockedByAnyIngredient(Items.COD, Items.POTATO, vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(), Items.EGG)
                         .setRecipeBookCategory(CookingPotBookCategory.MEALS)
-                        .build(output);
+                        .save(output);
             }
 
             private Ingredient tagIngredient(TagKey<Item> tag) {

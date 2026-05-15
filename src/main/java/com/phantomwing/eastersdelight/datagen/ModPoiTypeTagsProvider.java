@@ -1,7 +1,7 @@
 package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.villager.ModVillagers;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.tags.PoiTypeTagsProvider;
 import net.minecraft.tags.PoiTypeTags;
@@ -9,7 +9,7 @@ import net.minecraft.tags.PoiTypeTags;
 import java.util.concurrent.CompletableFuture;
 
 public class ModPoiTypeTagsProvider extends PoiTypeTagsProvider {
-    public ModPoiTypeTagsProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    public ModPoiTypeTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider);
     }
 

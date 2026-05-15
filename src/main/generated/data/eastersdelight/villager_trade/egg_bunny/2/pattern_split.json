@@ -1,0 +1,15 @@
+{
+  "gives": {
+    "components": {
+      "eastersdelight:egg_pattern": "split"
+    },
+    "count": 8,
+    "id": "eastersdelight:egg_pattern"
+  },
+  "max_uses": 16.0,
+  "reputation_discount": 0.2,
+  "wants": {
+    "id": "minecraft:emerald"
+  },
+  "xp": 5.0
+}

@@ -84,8 +84,10 @@ public class DyedEggBlock extends Block {
 
     private void destroyEgg(Level level, BlockState state, BlockPos pos, Entity entity, int chance) {
         if (state.is(ModBlocks.DYED_EGG) && level instanceof ServerLevel serverLevel) {
-            if (this.canDestroyEgg(serverLevel, entity) && level.random.nextInt(chance) == 0) {
-                level.playSound(null, pos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.BLOCKS, 0.7F, 0.9F + level.random.nextFloat() * 0.2F);
+            // 26.1: Level.random is now protected; outside callers must use getRandom().
+            RandomSource random = level.getRandom();
+            if (this.canDestroyEgg(serverLevel, entity) && random.nextInt(chance) == 0) {
+                level.playSound(null, pos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.BLOCKS, 0.7F, 0.9F + random.nextFloat() * 0.2F);
                 level.destroyBlock(pos, false);
             }
         }

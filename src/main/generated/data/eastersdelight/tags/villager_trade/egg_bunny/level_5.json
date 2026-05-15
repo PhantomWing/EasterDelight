@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "eastersdelight:egg_bunny/5/pattern_creeper",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/5/dyed_egg_lime_green_creeper",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/5/dyed_egg_green_lime_creeper",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/5/dyed_egg_white_lime_creeper",
+      "required": false
+    }
+  ]
+}

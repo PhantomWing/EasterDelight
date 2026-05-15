@@ -15,6 +15,7 @@ import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.item.SelectItemModel;
 import net.minecraft.client.renderer.item.properties.select.ComponentContents;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.DyeColor;
@@ -51,7 +52,7 @@ public class ModItemModelProvider {
             // Generate the item model for this specific pattern.
             Identifier patternItemLoc = ItemUtils.getItemIdentifierWithPrefix(item, pattern.getName());
             ModelTemplates.FLAT_ITEM.create(patternItemLoc,
-                    TextureMapping.layer0(ItemUtils.getItemIdentifierWithSuffix(item, pattern.getName())), g.modelOutput);
+                    TextureMapping.layer0(new Material(ItemUtils.getItemIdentifierWithSuffix(item, pattern.getName()))), g.modelOutput);
 
             // Add override for this pattern, which will be added to the base item.
             ItemModel.Unbaked unbaked = ItemModelUtils.plainModel(patternItemLoc);
@@ -76,7 +77,7 @@ public class ModItemModelProvider {
             // First, generate an override for the base color variant without any pattern.
             Identifier baseItemLoc = ItemUtils.getItemIdentifierWithPrefix(item, baseColor.getName());
             ModelTemplates.FLAT_ITEM.create(baseItemLoc,
-                    TextureMapping.layer0(ItemUtils.getItemIdentifierWithSuffix(item, baseColor.getName())), g.modelOutput);
+                    TextureMapping.layer0(new Material(ItemUtils.getItemIdentifierWithSuffix(item, baseColor.getName()))), g.modelOutput);
 
             List<SelectItemModel.SwitchCase<DyeColor>> patternColorCases = new ArrayList<>();
             ItemModel.Unbaked fallbackModel = ItemModelUtils.plainModel(baseItemLoc);
@@ -96,8 +97,8 @@ public class ModItemModelProvider {
                     Identifier patternItemLoc = ItemUtils.getItemIdentifier(baseColor.getName() + "_" + ItemUtils.getName(item) + "_" + pattern.getName() + "_" + patternColor.getName());
                     ModelTemplates.TWO_LAYERED_ITEM.create(patternItemLoc,
                             TextureMapping.layered(
-                                ItemUtils.getItemIdentifierWithSuffix(item, baseColor.getName()),
-                                Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, "dyed_egg/patterns/" + pattern.getName() + "_" + patternColor.getName())
+                                new Material(ItemUtils.getItemIdentifierWithSuffix(item, baseColor.getName())),
+                                new Material(Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, "dyed_egg/patterns/" + pattern.getName() + "_" + patternColor.getName()))
                             ), g.modelOutput);
 
                     // Add override for this pattern, which will be added to the base item.

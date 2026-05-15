@@ -2,11 +2,9 @@ package com.phantomwing.eastersdelight.screen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.block.ModBlocks;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.CyclingSlotBackground;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
-import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -15,7 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Optional;
 
 public class EggPainterScreen extends ItemCombinerScreen<EggPainterMenu> {
     private static final Identifier TEXTURE = getGUITexture(BuiltInRegistries.BLOCK.getKey(ModBlocks.EGG_PAINTER).getPath());
@@ -38,7 +35,7 @@ public class EggPainterScreen extends ItemCombinerScreen<EggPainterMenu> {
     }
 
     @Override
-    protected void renderErrorIcon(@NotNull GuiGraphics guiGraphics, int x, int y) {
+    protected void extractErrorIcon(@NotNull GuiGraphicsExtractor guiGraphicsExtractor, int x, int y) {
         // We do not have an error state.
     }
 
@@ -53,52 +50,40 @@ public class EggPainterScreen extends ItemCombinerScreen<EggPainterMenu> {
         this.patternColorIcon.tick(List.of(EMPTY_SLOT_COLOR));
     }
 
+    // 26.1: render/renderBg overrides were removed from Screen/AbstractContainerScreen. Background
+    // is now drawn via extractBackground (the parent ItemCombinerScreen already renders our menu
+    // texture); we extend it to draw the empty-slot icons. Tooltips are queued via
+    // setTooltipForNextFrame from within the same extract pass.
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
-        this.renderTooltips(guiGraphics, mouseX, mouseY);
-    }
-
-    @Override
-    protected void renderBg(@NotNull GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-        super.renderBg(guiGraphics, partialTick, mouseX, mouseY);
+    public void extractBackground(@NotNull GuiGraphicsExtractor guiGraphicsExtractor, int mouseX, int mouseY, float partialTick) {
+        super.extractBackground(guiGraphicsExtractor, mouseX, mouseY, partialTick);
 
         // Render default icons when slots are empty.
-        this.eggIcon.render(this.menu, guiGraphics, partialTick, this.leftPos, this.topPos);
-        this.baseColorIcon.render(this.menu, guiGraphics, partialTick, this.leftPos, this.topPos);
-        this.patternIcon.render(this.menu, guiGraphics, partialTick, this.leftPos, this.topPos);
-        this.patternColorIcon.render(this.menu, guiGraphics, partialTick, this.leftPos, this.topPos);
-    }
+        this.eggIcon.extractRenderState(this.menu, guiGraphicsExtractor, partialTick, this.leftPos, this.topPos);
+        this.baseColorIcon.extractRenderState(this.menu, guiGraphicsExtractor, partialTick, this.leftPos, this.topPos);
+        this.patternIcon.extractRenderState(this.menu, guiGraphicsExtractor, partialTick, this.leftPos, this.topPos);
+        this.patternColorIcon.extractRenderState(this.menu, guiGraphicsExtractor, partialTick, this.leftPos, this.topPos);
 
-    private void renderTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        Optional<Component> optional = Optional.empty();
-
+        // Queue tooltips for empty input slots.
         if (this.hoveredSlot != null) {
             ItemStack hoveredItem = this.hoveredSlot.getItem();
             if (hoveredItem.isEmpty()) {
+                Component tooltip = null;
                 if (this.hoveredSlot.index == EggPainterMenu.EGG_SLOT) {
-                    optional = Optional.of(MISSING_EGG_TOOLTIP);
+                    tooltip = MISSING_EGG_TOOLTIP;
+                } else if (this.hoveredSlot.index == EggPainterMenu.BASE_COLOR_SLOT) {
+                    tooltip = MISSING_BASE_COLOR_TOOLTIP;
+                } else if (this.hoveredSlot.index == EggPainterMenu.PATTERN_SLOT) {
+                    tooltip = MISSING_PATTERN_TOOLTIP;
+                } else if (this.hoveredSlot.index == EggPainterMenu.PATTERN_COLOR_SLOT) {
+                    tooltip = MISSING_PATTERN_COLOR_TOOLTIP;
                 }
-                else if (this.hoveredSlot.index == EggPainterMenu.BASE_COLOR_SLOT) {
-                    optional = Optional.of(MISSING_BASE_COLOR_TOOLTIP);
-                }
-                else if (this.hoveredSlot.index == EggPainterMenu.PATTERN_SLOT) {
-                    optional = Optional.of(MISSING_PATTERN_TOOLTIP);
-                }
-                else if (this.hoveredSlot.index == EggPainterMenu.PATTERN_COLOR_SLOT) {
-                    optional = Optional.of(MISSING_PATTERN_COLOR_TOOLTIP);
+
+                if (tooltip != null) {
+                    guiGraphicsExtractor.setTooltipForNextFrame(this.font, tooltip, mouseX, mouseY);
                 }
             }
         }
-
-        optional.ifPresent(component -> guiGraphics.renderTooltip(
-                this.font,
-                List.of(ClientTooltipComponent.create(component.getVisualOrderText())),
-                mouseX,
-                mouseY,
-                DefaultTooltipPositioner.INSTANCE,
-                null
-        ));
     }
 
     private static Identifier getGUITexture(String textureName) {

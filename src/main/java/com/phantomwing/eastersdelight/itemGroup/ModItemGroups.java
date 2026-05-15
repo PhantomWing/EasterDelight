@@ -7,7 +7,7 @@ import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
 import com.phantomwing.eastersdelight.item.custom.DyedEggItem;
 import com.phantomwing.eastersdelight.item.custom.EggPatternItem;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -21,7 +21,7 @@ import net.minecraft.world.item.ItemStack;
 public class ModItemGroups {
     public static final CreativeModeTab MOD_TAB =
             Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, "item_group"),
-                    FabricItemGroup.builder().icon(ModItemGroups::getIconItem)
+                    FabricCreativeModeTab.builder().icon(ModItemGroups::getIconItem)
                     .title(Component.translatable(("itemGroup." + EastersDelight.MOD_ID)))
                     .displayItems((displayContext, entries) -> {
                         // Add items to this tab.

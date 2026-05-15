@@ -1,5 +1,6 @@
 plugins {
-    id 'fabric-loom' version '1.14-SNAPSHOT'
+    // 26.1: Loom plugin id is now namespaced; ClassTweaker support is in 1.16-SNAPSHOT.
+    id 'net.fabricmc.fabric-loom' version '1.16-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -11,7 +12,8 @@ tasks.withType(Copy).configureEach {
 }
 
 base {
-    archivesName = "${mod_id}-fabric-${minecraft_version}"
+    // Use min compat version in the jar name to communicate broad compat range.
+    archivesName = "${mod_id}-fabric-${minecraft_min_version}"
 }
 
 repositories {
@@ -20,7 +22,7 @@ repositories {
     maven {
         // Farmer's Delight Refabricated
         name = "Greenhouse Maven"
-        url = 'https://repo.greenhouse.house/releases/'
+        url = 'https://maven.greenhouse.lgbt/releases/'
     }
 
     maven { // Fabric ASM
@@ -36,7 +38,6 @@ repositories {
     maven { url = "https://maven.shedaniel.me/" } // REI and deps
 
     maven { url 'https://www.cursemaven.com' }
-    maven { url = "https://maven.parchmentmc.org" }
 }
 
 fabricApi {
@@ -52,32 +53,27 @@ dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${minecraft_version}"
 
-    // Fabric
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+${minecraft_version}"
+    // Fabric — 26.1 is Mojmap-only (no obfuscation), so no remapping needed: use plain
+    // implementation/api/runtimeOnly instead of the mod* variants.
+    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 
-    // Parchment
-    mappings loom.layered() {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
-    }
-
-    // Farmer's Delight Refabricated
-    modImplementation("vectorwing:FarmersDelight:${minecraft_version}-${farmersdelight_version}+refabricated") {
+    // Farmer's Delight Refabricated — published against base MC (no per-patch artifacts).
+    implementation("vectorwing:FarmersDelight:${minecraft_min_version}-${farmersdelight_version}+refabricated") {
         exclude(group: "net.fabricmc")
     }
 
     // Cloth Config API
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
+    api("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
-    // REI
-    //modLocalRuntime("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
-    //modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}")
+    // JEI / REI — REI has no 26.1 build yet (last: 21.11.814 for 1.21.11).
+    runtimeOnly("mezz.jei:jei-${jei_minecraft_version}-fabric:${jei_version}")
+    //runtimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}")
 
-    // Appleskin
-    modLocalRuntime("squeek.appleskin:appleskin-fabric:mc${minecraft_version}-${appleskin_version}")
+    // Appleskin — published against base MC.
+    runtimeOnly("squeek.appleskin:appleskin-fabric:mc${minecraft_min_version}-${appleskin_version}")
 }
 
 processResources {
@@ -100,14 +96,14 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.release = 21
+    it.options.release = 25
 }
 
 java {
     withSourcesJar()
 
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 }
 
 jar {

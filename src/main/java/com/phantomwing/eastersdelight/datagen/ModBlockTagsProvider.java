@@ -2,16 +2,16 @@ package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.block.ModBlocks;
 import com.phantomwing.eastersdelight.tags.CommonTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModBlockTagsProvider extends FabricTagProvider.BlockTagProvider {
-    public ModBlockTagsProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
+    public ModBlockTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider);
     }
 

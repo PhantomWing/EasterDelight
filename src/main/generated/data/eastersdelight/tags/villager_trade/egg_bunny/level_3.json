@@ -1,0 +1,24 @@
+{
+  "values": [
+    {
+      "id": "eastersdelight:egg_bunny/3/pattern_petals",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/3/pattern_waves",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/3/dyed_egg_light_blue_pink_petals",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/3/dyed_egg_cyan_white_waves",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/3/dyed_egg_purple_yellow_waves",
+      "required": false
+    }
+  ]
+}

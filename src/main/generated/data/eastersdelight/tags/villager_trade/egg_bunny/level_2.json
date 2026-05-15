@@ -1,0 +1,28 @@
+{
+  "values": [
+    {
+      "id": "eastersdelight:egg_bunny/2/pattern_dipped",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/2/pattern_split",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/2/pattern_blocks",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/2/dyed_egg_magenta_cyan_dipped",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/2/dyed_egg_lime_yellow_split",
+      "required": false
+    },
+    {
+      "id": "eastersdelight:egg_bunny/2/dyed_egg_orange_blue_blocks",
+      "required": false
+    }
+  ]
+}
