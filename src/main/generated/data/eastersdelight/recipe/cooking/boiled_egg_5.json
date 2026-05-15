@@ -18,7 +18,6 @@
       "item": "minecraft:egg"
     }
   ],
-  "recipe_book_tab": "misc",
   "result": {
     "count": 5,
     "id": "eastersdelight:boiled_egg"

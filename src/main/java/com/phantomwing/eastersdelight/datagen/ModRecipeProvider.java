@@ -34,7 +34,9 @@ public class ModRecipeProvider extends RecipeProvider {
         buildCraftingRecipes(output);
         buildCuttingRecipes(output);
         buildCookingRecipes(output);
-        buildFarmersDelightOverrideRecipes(output);
+        // FDR recipe overrides moved to ModFarmersDelightOverrideRecipeProvider, which is
+        // attached to a built-in resource pack so its files take precedence over FDR's
+        // (Fabric Loader's regular mod-pack alphabetical ordering would otherwise let FDR win).
     }
 
     private void buildCraftingRecipes(@NotNull RecipeOutput output) {
@@ -84,16 +86,4 @@ public class ModRecipeProvider extends RecipeProvider {
         }
     }
 
-    private void buildFarmersDelightOverrideRecipes(@NotNull RecipeOutput output) {
-        // Farmer's Delight overrides, to include Boiled Eggs
-        // Baked Cod Stew
-        CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
-                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.FOODS_RAW_COD)
-                .addIngredient(CommonTags.FOODS_POTATO)
-                .addIngredient(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
-                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.CROPS_TOMATO)
-                .unlockedByAnyIngredient(Items.COD, Items.POTATO, vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(), Items.EGG)
-                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
-                .build(output);
-    }
 }

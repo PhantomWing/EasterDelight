@@ -67,5 +67,8 @@
         "eastersdelight:egg_pattern": 10.0
       }
     }
-  ]
+  ],
+  "textures": {
+    "layer0": "eastersdelight:item/egg_pattern"
+  }
 }

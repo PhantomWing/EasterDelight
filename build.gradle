@@ -1,5 +1,8 @@
 plugins {
-    id 'fabric-loom' version '1.8-SNAPSHOT'
+    // Loom 1.9+ adds ClassTweaker support (the .classtweaker format FDR 3.3+ ships
+    // instead of legacy .accesswidener). Matched to RusticDelight-Fabric fabric/1.21
+    // (requires Gradle 9.x — see gradle-wrapper.properties).
+    id 'fabric-loom' version '1.17.0-alpha.7'
     id 'maven-publish'
 }
 
@@ -17,10 +20,17 @@ base {
 repositories {
     mavenLocal()
 
+    // Local patched FDR jar (libs/farmers-delight-refabricated-<mc>-<ver>-patched.jar). The
+    // upstream FDR ships a .classtweaker with enum extensions that crash Loom 1.16+ remap with
+    // NPE in EnumExtensionClassVisitor.visitEnd; the patched copy strips those extensions.
+    flatDir {
+        dirs 'libs'
+    }
+
     maven {
-        // Farmer's Delight Refabricated
-        name = "Greenhouse Maven"
-        url = 'https://repo.greenhouse.house/releases/'
+        // Farmer's Delight Refabricated (Modrinth Maven) — kept as a fallback even though we
+        // use the local patched jar for compilation, in case a future Loom can consume upstream.
+        url = "https://api.modrinth.com/maven"
     }
 
     maven { // Fabric ASM
@@ -40,7 +50,11 @@ repositories {
 }
 
 fabricApi {
-    configureDataGeneration()
+    // Scope datagen to our mod only — otherwise Fabric/Loom also runs FDR's own data generators,
+    // which write into src/main/generated/ and treat our previous files as stale.
+    configureDataGeneration {
+        modId = mod_id
+    }
 }
 
 dependencies {
@@ -57,8 +71,8 @@ dependencies {
         parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
     }
 
-    // Farmer's Delight Refabricated
-    modImplementation("vectorwing:FarmersDelight:${minecraft_version}-${farmersdelight_version}+refabricated") {
+    // Farmer's Delight Refabricated (local patched jar — see flatDir comment in repositories block).
+    modImplementation(name: "farmers-delight-refabricated-${minecraft_version}-${farmersdelight_version}-patched") {
         exclude(group: "net.fabricmc")
     }
 
