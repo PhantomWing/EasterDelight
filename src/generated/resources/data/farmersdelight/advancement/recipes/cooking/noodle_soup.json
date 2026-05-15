@@ -5,7 +5,11 @@
       "conditions": {
         "items": [
           {
-            "items": "minecraft:egg"
+            "items": [
+              "farmersdelight:raw_pasta",
+              "minecraft:dried_kelp",
+              "minecraft:porkchop"
+            ]
           }
         ]
       },
@@ -13,7 +17,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eastersdelight:cooking/boiled_egg_2"
+        "recipe": "farmersdelight:cooking/noodle_soup"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +30,7 @@
   ],
   "rewards": {
     "recipes": [
-      "eastersdelight:cooking/boiled_egg_2"
+      "farmersdelight:cooking/noodle_soup"
     ]
   }
 }

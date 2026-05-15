@@ -89,13 +89,25 @@ public class ModRecipeProvider extends RecipeProvider {
         // Farmer's Delight overrides, to include Boiled Eggs
         // Baked Cod Stew
         CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
-                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.FOODS_RAW_COD)
+                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.FOODS_RAW_COD)
                 .addIngredient(CommonTags.FOODS_POTATO)
                 .addIngredient(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
-                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.CROPS_TOMATO)
+                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.CROPS_TOMATO)
                 .unlockedByAnyIngredient(Items.COD, Items.POTATO, vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(), Items.EGG)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
-                .build(output);
+                .save(output);
+
+        // Noodle Soup — mirrors FD's recipe (pasta + egg + dried kelp + raw pork, 200 ticks,
+        // exp 1.0, no bowl container) but swaps the raw c:eggs ingredient for our
+        // NOODLE_SOUP_INGREDIENTS tag so boiled/dyed eggs count too.
+        CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.NOODLE_SOUP.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
+                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.FOODS_PASTA)
+                .addIngredient(ModTags.Items.NOODLE_SOUP_INGREDIENTS)
+                .addIngredient(Items.DRIED_KELP)
+                .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.FOODS_RAW_PORK)
+                .unlockedByAnyIngredient(vectorwing.farmersdelight.common.registry.ModItems.RAW_PASTA.get(), Items.DRIED_KELP, Items.PORKCHOP)
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .save(output);
     }
 
     protected static void oneToOne(RecipeOutput recipeOutput, RecipeCategory category, ItemLike item, ItemLike result, int count) {

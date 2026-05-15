@@ -1,3 +1,10 @@
+# 1.2.0
+### Changes
+- Updated for Farmer's Delight 1.3
+- Noodle Soup now also supports boiled & sliced egg ingredients
+- Improve tooltips for Dyed Egg
+
+
 # 1.1.0
 ### Additions
 - Dyed eggs are now placeable!
