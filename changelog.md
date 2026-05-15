@@ -1,3 +1,8 @@
+# 1.2.1
+### Fixes
+- Fixed Egg Pattern tooltips missing translation keys
+
+
 # 1.2.0
 ### Changes
 - Updated for Farmer's Delight 1.3
