@@ -50,7 +50,10 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 buildCraftingRecipes(output);
                 buildCuttingRecipes(output);
                 buildCookingRecipes(output);
-                buildFarmersDelightOverrideRecipes(output);
+                // FDR recipe overrides moved to ModFarmersDelightOverrideRecipeProvider, attached to
+                // a built-in resource pack so its files take precedence over FDR's bundled recipes
+                // (Fabric Loader's regular mod-pack alphabetical order would otherwise let FDR win
+                // since "eastersdelight" < "farmersdelight").
             }
 
             private void buildCraftingRecipes(@NotNull RecipeOutput output) {
@@ -101,19 +104,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                             .setRecipeBookCategory(CookingPotBookCategory.MISC)
                             .build(output, ItemUtils.getNameWithNamespace(ModItems.BOILED_EGG) + "_" + eggCount);
                 }
-            }
-
-            private void buildFarmersDelightOverrideRecipes(@NotNull RecipeOutput output) {
-                // Farmer's Delight overrides, to include Boiled Eggs
-                // Baked Cod Stew
-                CookingPotRecipeBuilder.cookingPotRecipe(holderGetter, vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
-                        .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.FOODS_RAW_COD)
-                        .addIngredient(CommonTags.FOODS_POTATO)
-                        .addIngredient(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
-                        .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.CROPS_TOMATO)
-                        .unlockedByAnyIngredient(Items.COD, Items.POTATO, vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(), Items.EGG)
-                        .setRecipeBookCategory(CookingPotBookCategory.MEALS)
-                        .save(output);
             }
 
             private Ingredient tagIngredient(TagKey<Item> tag) {

@@ -36,6 +36,12 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
         this.valueLookupBuilder(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
             .addOptionalTag(CommonTags.EGGS)
             .addTag(CommonTags.FOODS_COOKED_EGG);
+
+        // Override for Noodle Soup (FDR's recipe hardcodes c:eggs — mirror the cod stew set so
+        // boiled / dyed eggs also count as a valid noodle soup ingredient).
+        this.valueLookupBuilder(ModTags.Items.NOODLE_SOUP_INGREDIENTS)
+            .addOptionalTag(CommonTags.EGGS)
+            .addTag(CommonTags.FOODS_COOKED_EGG);
     }
 
     private void addMinecraftTags() {
