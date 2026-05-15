@@ -63,11 +63,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private void buildCuttingRecipes(Consumer<FinishedRecipe> output) {
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_EGG.get()), Ingredient.of(ForgeTags.TOOLS_KNIVES), ModItems.EGG_SLICE.get(), 2)
                 .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal
-                .build(output, ModItems.EGG_SLICE.getId());
+                .save(output, ModItems.EGG_SLICE.getId());
 
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.DYED_EGG.get()), Ingredient.of(ForgeTags.TOOLS_KNIVES), ModItems.EGG_SLICE.get(), 2)
                 .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal
-                .build(output, ModItems.EGG_SLICE.getId() + "_from_" + ModItems.DYED_EGG.getId().getPath());
+                .save(output, ModItems.EGG_SLICE.getId() + "_from_" + ModItems.DYED_EGG.getId().getPath());
     }
 
     private void buildCookingRecipes(Consumer<FinishedRecipe> output) {
@@ -78,7 +78,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .addIngredient(Items.EGG, eggCount)
                 .unlockedByAnyIngredient(Items.EGG)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
-                .build(output, ModItems.BOILED_EGG.getId() + "_" + eggCount);
+                .save(output, ModItems.BOILED_EGG.getId() + "_" + eggCount);
         }
 
         // Farmer's Delight overrides, to include Boiled Eggs
@@ -90,6 +90,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .addIngredient(vectorwing.farmersdelight.common.tag.ForgeTags.CROPS_TOMATO)
                 .unlockedByAnyIngredient(Items.COD, Items.POTATO, vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(), Items.EGG)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
-                .build(output);
+                .save(output);
+
+        // Noodle Soup — mirrors FD's recipe (pasta + egg + dried kelp + raw pork, 200 ticks,
+        // exp 1.0) but swaps the raw forge:eggs ingredient for our NOODLE_SOUP_INGREDIENTS tag so
+        // boiled/dyed eggs count too. Bowl container included to match the 1.21 branch's behavior.
+        CookingPotRecipeBuilder.cookingPotRecipe(vectorwing.farmersdelight.common.registry.ModItems.NOODLE_SOUP.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
+                .addIngredient(vectorwing.farmersdelight.common.tag.ForgeTags.PASTA)
+                .addIngredient(ModTags.Items.NOODLE_SOUP_INGREDIENTS)
+                .addIngredient(Items.DRIED_KELP)
+                .addIngredient(vectorwing.farmersdelight.common.tag.ForgeTags.RAW_PORK)
+                .unlockedByAnyIngredient(vectorwing.farmersdelight.common.registry.ModItems.RAW_PASTA.get(), Items.DRIED_KELP, Items.PORKCHOP)
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .save(output);
     }
 }

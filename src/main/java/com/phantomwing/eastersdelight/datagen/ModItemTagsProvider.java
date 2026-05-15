@@ -41,6 +41,12 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         this.tag(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
             .addTag(Tags.Items.EGGS)
             .addTag(ForgeTags.COOKED_EGGS);
+
+        // Override for Noodle Soup (FD's recipe hardcodes forge:eggs — mirror the cod stew set so
+        // boiled / dyed eggs also count as a valid noodle soup ingredient).
+        this.tag(ModTags.Items.NOODLE_SOUP_INGREDIENTS)
+            .addTag(Tags.Items.EGGS)
+            .addTag(ForgeTags.COOKED_EGGS);
     }
 
     private void addMinecraftTags() {
@@ -55,9 +61,9 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     }
 
     private void addCompatibilityTags() {
-        // Farmer's Delight
-        this.tag(vectorwing.farmersdelight.common.tag.ModTags.CABBAGE_ROLL_INGREDIENTS)
-                .addTag(ForgeTags.COOKED_EGGS);
+        // FD 1.3.x removed ModTags.CABBAGE_ROLL_INGREDIENTS — the cabbage roll recipe now inlines its
+        // compound ingredient. Boiled eggs aren't in any of the new compound tags, so the "eggs as
+        // cabbage roll stuffing" feature is dropped on 1.3+ rather than overriding FD's recipe.
 
         // Supplementaries
         this.tag(CompatibilityTags.SUPPLEMENTARIES_COOKIES).addTag(
