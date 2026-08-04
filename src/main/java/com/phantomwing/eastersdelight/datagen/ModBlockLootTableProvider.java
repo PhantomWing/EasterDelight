@@ -16,5 +16,11 @@ public class ModBlockLootTableProvider extends FabricBlockLootSubProvider {
     @Override
     public void generate() {
         dropSelf(ModBlocks.EGG_PAINTER);
+
+        // Dyed Egg is absent on purpose: DyedEggBlock#getDrops builds its own stack so the color
+        // and pattern components survive. Boiled eggs carry no state, so plain drops are enough.
+        dropSelf(ModBlocks.BOILED_EGG);
+        dropSelf(ModBlocks.BOILED_BROWN_EGG);
+        dropSelf(ModBlocks.BOILED_BLUE_EGG);
     }
 }

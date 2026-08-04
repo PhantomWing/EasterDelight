@@ -2,6 +2,7 @@ package com.phantomwing.eastersdelight.datagen;
 
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.block.ModBlocks;
+import com.phantomwing.eastersdelight.block.custom.BoiledEggBlock;
 import com.phantomwing.eastersdelight.block.custom.DyedEggBlock;
 import com.phantomwing.eastersdelight.block.custom.EggPainterBlock;
 import com.phantomwing.eastersdelight.component.EggPattern;
@@ -27,6 +28,24 @@ public class ModBlockStateProvider {
     public static void registerStatesAndModels(BlockModelGenerators g) {
         eggPainter(g, ModBlocks.EGG_PAINTER);
         dyedEgg(g, ModBlocks.DYED_EGG);
+        boiledEgg(g, ModBlocks.BOILED_EGG);
+        boiledEgg(g, ModBlocks.BOILED_BROWN_EGG);
+        boiledEgg(g, ModBlocks.BOILED_BLUE_EGG);
+    }
+
+    /** Facing-only dispatch onto the hand-authored model of the same name. */
+    private static void boiledEgg(BlockModelGenerators g, Block block) {
+        MultiVariantGenerator generator = MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BoiledEggBlock.FACING)
+                        .generate((direction) -> {
+                            MultiVariant variant = plainVariant(resourceBlock(blockName(block)));
+                            VariantMutator rotation = dirToRot(direction);
+
+                            return rotation != null ? variant.with(rotation) : variant;
+                        })
+                );
+
+        g.blockStateOutput.accept(generator);
     }
 
     private static void eggPainter(BlockModelGenerators g, Block block) {

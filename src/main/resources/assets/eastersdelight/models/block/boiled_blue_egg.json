@@ -1,0 +1,25 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 16],
+	"textures": {
+		"particle": "eastersdelight:block/boiled_blue_egg",
+		"egg": "eastersdelight:block/boiled_blue_egg"
+	},
+	"elements": [
+		{
+			"name": "egg",
+			"from": [6, 0, 6],
+			"to": [10, 6, 10],
+			"rotation": {"angle": 0, "axis": "z", "origin": [8, 2.5, 8]},
+			"faces": {
+				"north": {"uv": [0, 5, 2, 11], "texture": "#egg"},
+				"east": {"uv": [2.5, 5, 4.5, 11], "texture": "#egg"},
+				"south": {"uv": [5, 5, 7, 11], "texture": "#egg"},
+				"west": {"uv": [7.5, 5, 9.5, 11], "texture": "#egg"},
+				"up": {"uv": [0, 0, 2, 4], "texture": "#egg"},
+				"down": {"uv": [2.5, 0, 4.5, 4], "texture": "#egg"}
+			}
+		}
+	]
+}

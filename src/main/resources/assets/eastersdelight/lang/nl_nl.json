@@ -1,4 +1,7 @@
 {
+  "block.eastersdelight.boiled_blue_egg": "Gekookt blauw ei",
+  "block.eastersdelight.boiled_brown_egg": "Gekookt bruin ei",
+  "block.eastersdelight.boiled_egg": "Gekookt ei",
   "block.eastersdelight.egg_painter": "Eierverver",
   "eastersdelight.configuration.enable_villager_trades": "Handelen met dorpelingen inschakelen",
   "eastersdelight.configuration.enable_wandering_trader_trades": "Handelen met handelaar inschakelen",

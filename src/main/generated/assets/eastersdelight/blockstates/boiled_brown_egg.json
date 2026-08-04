@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "eastersdelight:block/boiled_brown_egg",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "eastersdelight:block/boiled_brown_egg"
+    },
+    "facing=south": {
+      "model": "eastersdelight:block/boiled_brown_egg",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "eastersdelight:block/boiled_brown_egg",
+      "y": 270
+    }
+  }
+}

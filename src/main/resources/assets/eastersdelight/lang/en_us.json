@@ -1,4 +1,7 @@
 {
+  "block.eastersdelight.boiled_blue_egg": "Boiled Blue Egg",
+  "block.eastersdelight.boiled_brown_egg": "Boiled Brown Egg",
+  "block.eastersdelight.boiled_egg": "Boiled Egg",
   "block.eastersdelight.egg_painter": "Egg Painter",
   "eastersdelight.configuration.enable_villager_trades": "Enable villager trades",
   "eastersdelight.configuration.enable_wandering_trader_trades": "Enable wandering trader trades",

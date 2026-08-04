@@ -1,4 +1,7 @@
 {
+  "block.eastersdelight.boiled_blue_egg": "Варене блакитне яйце",
+  "block.eastersdelight.boiled_brown_egg": "Варене коричневе яйце",
+  "block.eastersdelight.boiled_egg": "Варене яйце",
   "block.eastersdelight.egg_painter": "Стіл для розпису яєць",
   "eastersdelight.configuration.enable_villager_trades": "Увімкнути торги з селянами",
   "eastersdelight.configuration.enable_wandering_trader_trades": "Увімкнути торги з мандрівним торговцем",

@@ -1,7 +1,7 @@
 # 1.3.0
 ### Additions
 - Added Boiled Brown Egg and Boiled Blue Egg
-
+- Boiled Egg and its variants are now placeable
 
 # 1.2.0
 ### Additions
