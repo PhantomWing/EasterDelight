@@ -8,7 +8,10 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -27,48 +30,48 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
     }
 
     private void addModTags() {
-        this.valueLookupBuilder(ModTags.Items.PAINTABLE_EGGS).add(
+        itemTag(ModTags.Items.PAINTABLE_EGGS).add(
             ModItems.BOILED_EGG,
             ModItems.DYED_EGG
         );
 
         // Override for Baked Cod Stew (by default only contains Tags.Items.EGGS)
-        this.valueLookupBuilder(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
+        itemTag(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
             .addOptionalTag(CommonTags.EGGS)
             .addTag(CommonTags.FOODS_COOKED_EGG);
 
         // Override for Noodle Soup (FDR's recipe hardcodes c:eggs — mirror the cod stew set so
         // boiled / dyed eggs also count as a valid noodle soup ingredient).
-        this.valueLookupBuilder(ModTags.Items.NOODLE_SOUP_INGREDIENTS)
+        itemTag(ModTags.Items.NOODLE_SOUP_INGREDIENTS)
             .addOptionalTag(CommonTags.EGGS)
             .addTag(CommonTags.FOODS_COOKED_EGG);
     }
 
     private void addMinecraftTags() {
-        this.valueLookupBuilder(ItemTags.PARROT_POISONOUS_FOOD).add(
+        itemTag(ItemTags.PARROT_POISONOUS_FOOD).add(
             ModItems.BUNNY_COOKIE
         );
     }
 
     private void addCommonTags() {
         // Define boiled eggs
-        this.valueLookupBuilder(CommonTags.FOODS_BOILED_EGG).add(
+        itemTag(CommonTags.FOODS_BOILED_EGG).add(
                 ModItems.BOILED_EGG,
                 ModItems.DYED_EGG,
                 ModItems.EGG_SLICE
         );
 
         // Boiled eggs are always Cooked, but not all cooked eggs are boiled (Like Fried Egg)
-        this.valueLookupBuilder(CommonTags.FOODS_COOKED_EGG)
+        itemTag(CommonTags.FOODS_COOKED_EGG)
                 .addTag(CommonTags.FOODS_BOILED_EGG);
 
         // For compatibility, replace Items.POTATO with a tag (in some override recipes)
-        this.valueLookupBuilder(CommonTags.FOODS_POTATO).add(
+        itemTag(CommonTags.FOODS_POTATO).add(
                 Items.POTATO
         );
 
         // Cookies
-        this.valueLookupBuilder(CommonTags.FOODS_COOKIE).add(
+        itemTag(CommonTags.FOODS_COOKIE).add(
                 ModItems.BUNNY_COOKIE
         );
     }
@@ -79,7 +82,12 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
         // now use a different mechanism. Boiled eggs are still exposed via c:foods/cooked_egg.
 
         // Supplementaries
-        this.valueLookupBuilder(CompatibilityTags.SUPPLEMENTARIES_COOKIES)
+        itemTag(CompatibilityTags.SUPPLEMENTARIES_COOKIES)
                 .addTag(CommonTags.FOODS_COOKIE);
+    }
+
+    // 26.2: the tag appender only accepts ResourceKeys; this wrapper restores value-based add(ItemLike...).
+    private RegistryTagAppender<Item, ItemLike> itemTag(TagKey<Item> tag) {
+        return new RegistryTagAppender<>(builder(tag), item -> item.asItem().builtInRegistryHolder().key());
     }
 }

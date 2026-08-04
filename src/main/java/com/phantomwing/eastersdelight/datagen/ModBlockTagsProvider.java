@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -27,15 +29,20 @@ public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
     }
 
     private void addMinecraftTags() {
-        this.valueLookupBuilder(BlockTags.MINEABLE_WITH_AXE)
+        blockTag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.EGG_PAINTER);
     }
 
     private void addCommonTags() {
-        this.valueLookupBuilder(CommonTags.MINEABLE_WITH_KNIFE)
+        blockTag(CommonTags.MINEABLE_WITH_KNIFE)
                 .add(ModBlocks.DYED_EGG);
     }
 
     private void addCompatibilityTags() {
+    }
+
+    // 26.2: the tag appender only accepts ResourceKeys; this wrapper restores value-based add(Block...).
+    private RegistryTagAppender<Block, Block> blockTag(TagKey<Block> tag) {
+        return new RegistryTagAppender<>(builder(tag), block -> block.builtInRegistryHolder().key());
     }
 }

@@ -137,7 +137,7 @@ public class ModVillagerTrades extends FabricDynamicRegistryProvider {
                 Optional.empty(),
                 result,
                 MAX_USES, xp, PRICE_MULTIPLIER,
-                Optional.empty(), List.of(), Optional.empty()
+                Optional.empty(), List.of()
         );
     }
 
@@ -154,7 +154,7 @@ public class ModVillagerTrades extends FabricDynamicRegistryProvider {
                 Optional.empty(),
                 result,
                 MAX_USES, xp, PRICE_MULTIPLIER,
-                Optional.empty(), List.of(), Optional.empty()
+                Optional.empty(), List.of()
         );
     }
 
