@@ -30,10 +30,19 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
     }
 
     private void addModTags() {
-        itemTag(ModTags.Items.PAINTABLE_EGGS).add(
+        // Whole boiled eggs, regardless of shell color. Recipes that want "a boiled egg" use this
+        // so the brown and blue variants are never second-class.
+        itemTag(ModTags.Items.BOILED_EGGS).add(
             ModItems.BOILED_EGG,
-            ModItems.DYED_EGG
+            ModItems.BOILED_BROWN_EGG,
+            ModItems.BOILED_BLUE_EGG
         );
+
+        // Painting discards the shell color (the result is a Dyed Egg tinted by the dye), so every
+        // boiled egg is equally paintable.
+        itemTag(ModTags.Items.PAINTABLE_EGGS)
+            .addTag(ModTags.Items.BOILED_EGGS)
+            .add(ModItems.DYED_EGG);
 
         // Override for Baked Cod Stew (by default only contains Tags.Items.EGGS)
         itemTag(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
@@ -55,11 +64,12 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
 
     private void addCommonTags() {
         // Define boiled eggs
-        itemTag(CommonTags.FOODS_BOILED_EGG).add(
-                ModItems.BOILED_EGG,
-                ModItems.DYED_EGG,
-                ModItems.EGG_SLICE
-        );
+        itemTag(CommonTags.FOODS_BOILED_EGG)
+                .addTag(ModTags.Items.BOILED_EGGS)
+                .add(
+                        ModItems.DYED_EGG,
+                        ModItems.EGG_SLICE
+                );
 
         // Boiled eggs are always Cooked, but not all cooked eggs are boiled (Like Fried Egg)
         itemTag(CommonTags.FOODS_COOKED_EGG)

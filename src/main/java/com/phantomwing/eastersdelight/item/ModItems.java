@@ -29,8 +29,11 @@ public class ModItems {
     // Blocks
     public static final Item EGG_PAINTER = registerBlockWithTab(ModBlocks.EGG_PAINTER);
 
-    // Eggs
+    // Eggs. The brown and blue variants mirror the vanilla chicken-variant eggs; they share the
+    // plain boiled egg's food values and differ only in shell color.
     public static final Item BOILED_EGG = registerWithTab("boiled_egg", baseItem().food(FoodValues.BOILED_EGG), Item::new);
+    public static final Item BOILED_BROWN_EGG = registerWithTab("boiled_brown_egg", baseItem().food(FoodValues.BOILED_EGG), Item::new);
+    public static final Item BOILED_BLUE_EGG = registerWithTab("boiled_blue_egg", baseItem().food(FoodValues.BOILED_EGG), Item::new);
     public static final Item EGG_SLICE = registerWithTab("egg_slice", baseItem().food(FoodValues.EGG_SLICE), Item::new);
 
     // Food

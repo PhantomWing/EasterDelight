@@ -1,0 +1,15 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    "minecraft:brown_egg",
+    "minecraft:brown_egg",
+    "minecraft:brown_egg",
+    "minecraft:brown_egg",
+    "minecraft:brown_egg"
+  ],
+  "result": {
+    "count": 5,
+    "id": "eastersdelight:boiled_brown_egg"
+  }
+}

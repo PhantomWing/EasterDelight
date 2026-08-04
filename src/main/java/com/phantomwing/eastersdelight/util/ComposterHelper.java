@@ -15,6 +15,8 @@ public class ComposterHelper {
         // 85% chance
         registerCompostableItems(0.85f,
                 ModItems.BOILED_EGG,
+                ModItems.BOILED_BROWN_EGG,
+                ModItems.BOILED_BLUE_EGG,
                 ModItems.EGG_SLICE,
                 ModItems.BUNNY_COOKIE
         );

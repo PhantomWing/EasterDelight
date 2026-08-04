@@ -1,3 +1,8 @@
+# 1.3.0
+### Additions
+- Added Boiled Brown Egg and Boiled Blue Egg
+
+
 # 1.2.0
 ### Additions
 - Added Russian translations (thank you CreaterIDK634!)

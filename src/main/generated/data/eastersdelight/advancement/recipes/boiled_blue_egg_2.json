@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_boiled_egg": {
+    "has_any_ingredient": {
       "conditions": {
         "items": [
           {
-            "items": "#eastersdelight:boiled_eggs"
+            "items": "minecraft:blue_egg"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eastersdelight:chocolate_egg"
+        "recipe": "eastersdelight:boiled_blue_egg_2"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_boiled_egg"
+      "has_any_ingredient"
     ]
   ],
   "rewards": {
     "recipes": [
-      "eastersdelight:chocolate_egg"
+      "eastersdelight:boiled_blue_egg_2"
     ]
   }
 }
