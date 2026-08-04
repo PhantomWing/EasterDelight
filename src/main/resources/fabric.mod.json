@@ -29,8 +29,8 @@
     "fabricloader": ">=${fabric_loader_version}",
     "minecraft": ">=${minecraft_min_version} <=${minecraft_max_version}",
     "java": ">=25",
-    "fabric-api": "*",
-    "farmersdelight": "*",
-    "cloth-config": "*"
+    "fabric-api": ">=${fabric_api_dep}",
+    "farmersdelight": ">=${farmersdelight_dep}",
+    "cloth-config": ">=${cloth_config_version}"
   }
 }

@@ -2,6 +2,9 @@
 ### Additions
 - Added Boiled Brown Egg and Boiled Blue Egg
 - Boiled Egg and its variants are now placeable
+- Placed eggs now break when you walk on them, dropping 1-2 egg slices.
+- When right-clicking a placed egg with a knife, it will cut the egg into slices.
+
 
 # 1.2.0
 ### Additions
