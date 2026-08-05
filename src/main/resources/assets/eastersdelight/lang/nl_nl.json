@@ -1,4 +1,7 @@
 {
+  "block.eastersdelight.boiled_blue_egg": "Gekookt blauw ei",
+  "block.eastersdelight.boiled_brown_egg": "Gekookt bruin ei",
+  "block.eastersdelight.boiled_egg": "Gekookt ei",
   "block.eastersdelight.egg_painter": "Eierverver",
   "eastersdelight.configuration.enable_villager_trades": "Handelen met dorpelingen inschakelen",
   "eastersdelight.configuration.enable_wandering_trader_trades": "Handelen met handelaar inschakelen",
@@ -20,7 +23,8 @@
   "tooltip.eastersdelight.egg_pattern.stripes_3": "Strepen III",
   "tooltip.eastersdelight.egg_pattern.waves": "Golven",
   "entity.minecraft.villager.eastersdelight.egg_bunny": "Ei konijn",
-  "entity.minecraft.villager.egg_bunny": "Ei konijn",
+  "item.eastersdelight.boiled_blue_egg": "Gekookt blauw ei",
+  "item.eastersdelight.boiled_brown_egg": "Gekookt bruin ei",
   "item.eastersdelight.boiled_egg": "Gekookt ei",
   "item.eastersdelight.bunny_cookie": "Konijnkoekje",
   "item.eastersdelight.chocolate_egg": "Chocolade ei",

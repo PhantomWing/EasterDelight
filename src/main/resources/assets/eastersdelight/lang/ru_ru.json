@@ -1,4 +1,7 @@
 {
+  "block.eastersdelight.boiled_blue_egg": "Варёное голубое яйцо",
+  "block.eastersdelight.boiled_brown_egg": "Варёное коричневое яйцо",
+  "block.eastersdelight.boiled_egg": "Варёное яйцо",
   "block.eastersdelight.egg_painter": "Красильщик яиц",
   "eastersdelight.configuration.enable_villager_trades": "Включить торговлю с жителями",
   "eastersdelight.configuration.enable_wandering_trader_trades": "Включить торговлю со странствующим торговцем",
@@ -20,7 +23,8 @@
   "tooltip.eastersdelight.egg_pattern.stripes_3": "Полосы III",
   "tooltip.eastersdelight.egg_pattern.waves": "Волны",
   "entity.minecraft.villager.eastersdelight.egg_bunny": "Яичный кролик",
-  "entity.minecraft.villager.egg_bunny": "Яичный кролик",
+  "item.eastersdelight.boiled_blue_egg": "Варёное голубое яйцо",
+  "item.eastersdelight.boiled_brown_egg": "Варёное коричневое яйцо",
   "item.eastersdelight.boiled_egg": "Варёное яйцо",
   "item.eastersdelight.bunny_cookie": "Кроличье печенье",
   "item.eastersdelight.chocolate_egg": "Шоколадное яйцо",

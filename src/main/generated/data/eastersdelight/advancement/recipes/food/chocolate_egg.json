@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "eastersdelight:boiled_egg"
+            "items": "#eastersdelight:boiled_eggs"
           }
         ]
       },

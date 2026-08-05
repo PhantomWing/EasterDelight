@@ -55,8 +55,13 @@ public class ModVillagers {
         tradeSetsByLevel.put(3, EGG_BUNNY_LEVEL_3_TRADE_SET);
         tradeSetsByLevel.put(4, EGG_BUNNY_LEVEL_4_TRADE_SET);
         tradeSetsByLevel.put(5, EGG_BUNNY_LEVEL_5_TRADE_SET);
+        // 26.1 hands the profession its display name directly instead of deriving one from the
+        // registry id, so this has to be a translatable component: a literal would render the raw
+        // "egg_bunny" and no lang key would ever be consulted.
+        Component displayName = Component.translatable("entity.minecraft.villager." + EastersDelight.MOD_ID + "." + name);
+
         return Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, name),
-                new VillagerProfession(Component.literal(name), entry -> entry.is(type), entry -> entry.is(type),
+                new VillagerProfession(displayName, entry -> entry.is(type), entry -> entry.is(type),
                         ImmutableSet.<Item>of(), ImmutableSet.<Block>of(), SoundEvents.VILLAGER_WORK_CARTOGRAPHER, tradeSetsByLevel));
     }
 

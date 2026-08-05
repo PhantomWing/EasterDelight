@@ -29,6 +29,8 @@ public class ModItemModelProvider {
     public static void registerModels(ItemModelGenerators g) {
         // Items
         simpleItem(g, ModItems.BOILED_EGG);
+        simpleItem(g, ModItems.BOILED_BROWN_EGG);
+        simpleItem(g, ModItems.BOILED_BLUE_EGG);
         simpleItem(g, ModItems.EGG_SLICE);
         simpleItem(g, ModItems.CHOCOLATE_EGG);
         simpleItem(g, ModItems.BUNNY_COOKIE);

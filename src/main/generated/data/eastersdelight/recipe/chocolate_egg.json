@@ -4,7 +4,7 @@
   "ingredients": [
     "minecraft:cocoa_beans",
     "minecraft:cocoa_beans",
-    "eastersdelight:boiled_egg"
+    "#eastersdelight:boiled_eggs"
   ],
   "result": {
     "count": 8,

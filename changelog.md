@@ -1,3 +1,14 @@
+# 1.3.0
+### Additions
+- Added Boiled Brown Egg and Boiled Blue Egg
+- Boiled Egg and its variants are now placeable
+- Placed eggs now break when you walk on them, dropping 1-2 egg slices.
+- When right-clicking a placed egg with a knife, it will cut the egg into slices.
+
+### Fixes
+- Fixed the Egg Bunny villager name showing as raw text instead of its translation
+
+
 # 1.2.0
 ### Additions
 - Added Russian translations (thank you CreaterIDK634!)

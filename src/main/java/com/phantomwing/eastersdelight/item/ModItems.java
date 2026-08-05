@@ -29,8 +29,13 @@ public class ModItems {
     // Blocks
     public static final Item EGG_PAINTER = registerBlockWithTab(ModBlocks.EGG_PAINTER);
 
-    // Eggs
-    public static final Item BOILED_EGG = registerWithTab("boiled_egg", baseItem().food(FoodValues.BOILED_EGG), Item::new);
+    // Eggs. The brown and blue variants mirror the vanilla chicken-variant eggs; they share the
+    // plain boiled egg's food values and differ only in shell color. All three are placeable, so
+    // they are BlockItems, but they deliberately keep their `item.` translation keys instead of
+    // taking useBlockDescriptionPrefix()'s `block.` ones.
+    public static final Item BOILED_EGG = registerEggBlockWithTab(ModBlocks.BOILED_EGG);
+    public static final Item BOILED_BROWN_EGG = registerEggBlockWithTab(ModBlocks.BOILED_BROWN_EGG);
+    public static final Item BOILED_BLUE_EGG = registerEggBlockWithTab(ModBlocks.BOILED_BLUE_EGG);
     public static final Item EGG_SLICE = registerWithTab("egg_slice", baseItem().food(FoodValues.EGG_SLICE), Item::new);
 
     // Food
@@ -76,6 +81,23 @@ public class ModItems {
         Identifier loc = Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
 
         props.useBlockDescriptionPrefix();
+        props.setId(ResourceKey.create(Registries.ITEM, loc));
+
+        BlockItem item = new BlockItem(block, props);
+        CREATIVE_TAB_ITEMS.add(item);
+
+        return Registry.register(BuiltInRegistries.ITEM, loc, item);
+    }
+
+    /**
+     * A placeable boiled egg: an edible {@link BlockItem} that keeps the plain `item.` translation
+     * key, since these items shipped as ordinary food before they became placeable.
+     */
+    private static Item registerEggBlockWithTab(Block block) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        Identifier loc = Identifier.fromNamespaceAndPath(EastersDelight.MOD_ID, name);
+
+        Item.Properties props = baseItem().food(FoodValues.BOILED_EGG);
         props.setId(ResourceKey.create(Registries.ITEM, loc));
 
         BlockItem item = new BlockItem(block, props);

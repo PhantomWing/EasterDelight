@@ -4,7 +4,7 @@
   "key": {
     "#": "#minecraft:planks",
     "/": "minecraft:iron_ingot",
-    "E": "eastersdelight:boiled_egg"
+    "E": "#eastersdelight:boiled_eggs"
   },
   "pattern": [
     "/E/",

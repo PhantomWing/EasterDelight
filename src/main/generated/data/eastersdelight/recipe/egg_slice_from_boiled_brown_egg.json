@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    "eastersdelight:boiled_brown_egg"
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 2,
+        "id": "eastersdelight:egg_slice"
+      }
+    },
+    {
+      "item": {
+        "id": "minecraft:bone_meal"
+      }
+    }
+  ],
+  "tool": "#c:tools/knife"
+}

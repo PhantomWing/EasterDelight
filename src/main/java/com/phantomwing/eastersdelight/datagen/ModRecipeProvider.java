@@ -61,18 +61,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 shaped(RecipeCategory.MISC, ModItems.EGG_PAINTER, 1)
                         .pattern("/E/")
                         .pattern("###")
-                        .define('E', ModItems.BOILED_EGG)
+                        .define('E', ModTags.Items.BOILED_EGGS)
                         .define('/', Items.IRON_INGOT)
                         .define('#', ItemTags.PLANKS)
-                        .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModItems.BOILED_EGG))
+                        .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModTags.Items.BOILED_EGGS))
                         .save(output, ResourceKey.create(Registries.RECIPE, ItemUtils.getIdentifier(ModItems.EGG_PAINTER)));
 
                 // Chocolate Egg
                 shapeless(RecipeCategory.FOOD, ModItems.CHOCOLATE_EGG, 8)
                         .requires(Items.COCOA_BEANS)
                         .requires(Items.COCOA_BEANS)
-                        .requires(ModItems.BOILED_EGG)
-                        .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModItems.BOILED_EGG))
+                        .requires(ModTags.Items.BOILED_EGGS)
+                        .unlockedBy(getHasName(ModItems.BOILED_EGG), has(ModTags.Items.BOILED_EGGS))
                         .save(output);
 
                 // Bunny Cookie
@@ -86,9 +86,19 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             }
 
             private void buildCuttingRecipes(@NotNull RecipeOutput output) {
+                // One recipe per shell color rather than a tag ingredient, so each shows up
+                // separately in the recipe viewer.
                 CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_EGG), tagIngredient(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
                         .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal
                         .build(output, ItemUtils.getItemIdentifier(ModItems.EGG_SLICE));
+
+                CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_BROWN_EGG), tagIngredient(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
+                        .addResult(Items.BONE_MEAL)
+                        .build(output, ItemUtils.getNameWithNamespace(ModItems.EGG_SLICE) + "_from_" + ItemUtils.getName(ModItems.BOILED_BROWN_EGG));
+
+                CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BOILED_BLUE_EGG), tagIngredient(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
+                        .addResult(Items.BONE_MEAL)
+                        .build(output, ItemUtils.getNameWithNamespace(ModItems.EGG_SLICE) + "_from_" + ItemUtils.getName(ModItems.BOILED_BLUE_EGG));
 
                 CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.DYED_EGG), tagIngredient(CommonTags.TOOLS_KNIFE), ModItems.EGG_SLICE, 2)
                         .addResult(Items.BONE_MEAL) // Eggshells can be used in the form of Bone Meal
@@ -96,13 +106,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             }
 
             private void buildCookingRecipes(@NotNull RecipeOutput output) {
-                // Boiled Egg (Can place up to six eggs in a pot to cook them)
+                // Boiled Egg (Can place up to six eggs in a pot to cook them). One chain per shell
+                // color, so a brown egg boils into a brown boiled egg rather than a plain one.
+                boiledEggRecipes(output, Items.EGG, ModItems.BOILED_EGG);
+                boiledEggRecipes(output, Items.BROWN_EGG, ModItems.BOILED_BROWN_EGG);
+                boiledEggRecipes(output, Items.BLUE_EGG, ModItems.BOILED_BLUE_EGG);
+            }
+
+            private void boiledEggRecipes(@NotNull RecipeOutput output, Item rawEgg, Item boiledEgg) {
                 for (int eggCount = 1; eggCount <= 6; eggCount++) {
-                    CookingPotRecipeBuilder.cookingPotRecipe(holderGetter, ModItems.BOILED_EGG, eggCount, NORMAL_COOKING, MEDIUM_EXP, null)
-                            .addIngredient(Items.EGG, eggCount)
-                            .unlockedByAnyIngredient(Items.EGG)
+                    CookingPotRecipeBuilder.cookingPotRecipe(holderGetter, boiledEgg, eggCount, NORMAL_COOKING, MEDIUM_EXP, null)
+                            .addIngredient(rawEgg, eggCount)
+                            .unlockedByAnyIngredient(rawEgg)
                             .setRecipeBookCategory(CookingPotBookCategory.MISC)
-                            .build(output, ItemUtils.getNameWithNamespace(ModItems.BOILED_EGG) + "_" + eggCount);
+                            .build(output, ItemUtils.getNameWithNamespace(boiledEgg) + "_" + eggCount);
                 }
             }
 

@@ -33,7 +33,10 @@ public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
 
     private void addCommonTags() {
         this.valueLookupBuilder(CommonTags.MINEABLE_WITH_KNIFE)
-                .add(ModBlocks.DYED_EGG);
+                .add(ModBlocks.DYED_EGG,
+                        ModBlocks.BOILED_EGG,
+                        ModBlocks.BOILED_BROWN_EGG,
+                        ModBlocks.BOILED_BLUE_EGG);
     }
 
     private void addCompatibilityTags() {
