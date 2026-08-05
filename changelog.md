@@ -1,3 +1,8 @@
+# 1.3.1
+### Fixes
+- Fixed the Egg Bunny villager name showing as raw text instead of its translation
+
+
 # 1.3.0
 ### Additions
 - Added Boiled Brown Egg and Boiled Blue Egg
