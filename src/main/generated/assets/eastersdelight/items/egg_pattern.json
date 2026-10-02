@@ -83,7 +83,7 @@
     "component": "eastersdelight:egg_pattern",
     "fallback": {
       "type": "minecraft:model",
-      "model": "eastersdelight:item/egg_pattern"
+      "model": "eastersdelight:item/stripes_egg_pattern"
     },
     "property": "minecraft:component"
   }

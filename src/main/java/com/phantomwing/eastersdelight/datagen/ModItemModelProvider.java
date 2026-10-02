@@ -61,8 +61,10 @@ public class ModItemModelProvider {
             modelCases.add(ItemModelUtils.when(pattern, unbaked));
         }
 
-        // Add base item model with all cases.
-        ItemModel.Unbaked fallbackModel = ItemModelUtils.plainModel(g.createFlatItemModel(item, ModelTemplates.FLAT_ITEM));
+        // Add base item model with all cases. There is no plain egg_pattern texture, so an Egg Pattern
+        // without a pattern shows the stripes one rather than the missing texture.
+        ItemModel.Unbaked fallbackModel = ItemModelUtils.plainModel(
+                ItemUtils.getItemIdentifierWithPrefix(item, EggPattern.STRIPES.getName()));
         g.itemModelOutput.accept(item, ItemModelUtils.select(new ComponentContents<>(ModDataComponents.EGG_PATTERN), fallbackModel, modelCases));
     }
 
