@@ -20,10 +20,10 @@ import java.util.function.Function;
 
 public class ModBlocks {
     public static final Block EGG_PAINTER = registerBlock("egg_painter",
-            Block.Properties.ofFullCopy(Blocks.CRAFTING_TABLE).forceSolidOn().pushReaction(PushReaction.DESTROY).noOcclusion(),
+            Block.Properties.ofFullCopy(Blocks.CRAFTING_TABLE).forceSolidOn().pushReaction(PushReaction.POPPED).noOcclusion(),
             EggPainterBlock::new);
     public static final Block DYED_EGG = registerBlock("dyed_egg",
-            Block.Properties.of().noOcclusion().forceSolidOn().strength(0.5F).mapColor(MapColor.SAND).sound(SoundType.METAL).pushReaction(PushReaction.DESTROY),
+            Block.Properties.of().noOcclusion().forceSolidOn().strength(0.5F).mapColor(MapColor.SAND).sound(SoundType.METAL).pushReaction(PushReaction.POPPED),
             DyedEggBlock::new);
 
     public static final Block BOILED_EGG = registerBlock("boiled_egg", eggProperties(), BoiledEggBlock::new);
@@ -33,7 +33,7 @@ public class ModBlocks {
     /** Matches the Dyed Egg, so a placed boiled egg feels identical to break and walk on. */
     private static BlockBehaviour.Properties eggProperties() {
         return Block.Properties.of().noOcclusion().forceSolidOn().strength(0.5F)
-                .mapColor(MapColor.SAND).sound(SoundType.METAL).pushReaction(PushReaction.DESTROY);
+                .mapColor(MapColor.SAND).sound(SoundType.METAL).pushReaction(PushReaction.POPPED);
     }
 
     private static Block registerBlock(String name, BlockBehaviour.Properties baseProps, Function<Block.Properties, Block> function) {

@@ -4,15 +4,18 @@ import com.phantomwing.eastersdelight.tags.CommonTags;
 import com.phantomwing.eastersdelight.tags.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.crafting.CookingPotBookCategory;
+import vectorwing.farmersdelight.data.Recipes;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
 
 import java.util.concurrent.CompletableFuture;
@@ -43,8 +46,13 @@ public class ModFarmersDelightOverrideRecipeProvider extends FabricRecipeProvide
     }
 
     @Override
-    protected @NotNull RecipeProvider createRecipeProvider(HolderLookup.Provider registryLookup, RecipeOutput exporter) {
-        return new RecipeProvider(registryLookup, exporter) {
+    protected @NotNull RecipeProvider createRecipeProvider(HolderLookup.@NotNull Provider registryLookup,
+                                                           @NotNull BootstrapContext<Recipe<?>> recipeOutput,
+                                                           @NotNull BootstrapContext<Advancement> advancementOutput) {
+        // FDR's builders resolve holders through this static context; see ModRecipeProvider.
+        Recipes.recipeContext = recipeOutput;
+
+        return new RecipeProvider(recipeOutput, advancementOutput) {
             final HolderGetter<Item> holderGetter = registryLookup.lookupOrThrow(Registries.ITEM);
 
             @Override

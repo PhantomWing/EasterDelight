@@ -18,8 +18,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.TradeCost;
 import net.minecraft.world.item.trading.VillagerTrade;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -132,13 +130,13 @@ public class ModVillagerTrades extends FabricDynamicRegistryProvider {
                 .set(ModDataComponents.EGG_PATTERN, pattern)
                 .build();
         ItemStackTemplate result = new ItemStackTemplate(ModItems.EGG_PATTERN, patch).withCount(PATTERN_COUNT);
-        return new VillagerTrade(
+        // 26.3 hid VillagerTrade's constructor behind a builder (its numeric fields are
+        // ContextIntProvider/ContextFloatProvider holders now).
+        return VillagerTrade.builder(
                 new TradeCost(Items.EMERALD, EMERALD_COST_PATTERN),
-                Optional.empty(),
                 result,
-                MAX_USES, xp, PRICE_MULTIPLIER,
-                Optional.empty(), List.of()
-        );
+                MAX_USES, xp, PRICE_MULTIPLIER
+        ).build();
     }
 
     /** Buy {@link #DYED_EGG_COUNT} pre-decorated Dyed Eggs (base color, pattern, pattern color) for 2 emeralds. */
@@ -149,13 +147,11 @@ public class ModVillagerTrades extends FabricDynamicRegistryProvider {
                 .set(ModDataComponents.PATTERN_COLOR, patternColor)
                 .build();
         ItemStackTemplate result = new ItemStackTemplate(ModItems.DYED_EGG, patch).withCount(DYED_EGG_COUNT);
-        return new VillagerTrade(
+        return VillagerTrade.builder(
                 new TradeCost(Items.EMERALD, EMERALD_COST_DYED_EGG),
-                Optional.empty(),
                 result,
-                MAX_USES, xp, PRICE_MULTIPLIER,
-                Optional.empty(), List.of()
-        );
+                MAX_USES, xp, PRICE_MULTIPLIER
+        ).build();
     }
 
     private static ResourceKey<VillagerTrade> trade(String path) {

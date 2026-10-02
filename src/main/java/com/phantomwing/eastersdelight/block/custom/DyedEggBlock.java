@@ -1,6 +1,5 @@
 package com.phantomwing.eastersdelight.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import com.phantomwing.eastersdelight.component.EggPattern;
 import com.phantomwing.eastersdelight.component.ModDataComponents;
 import com.phantomwing.eastersdelight.item.ModItems;
@@ -27,12 +26,6 @@ public class DyedEggBlock extends AbstractEggBlock {
     public static final BooleanProperty PATTERNED = BooleanProperty.create("patterned");
     public static final EnumProperty<@NotNull EggPattern> EGG_PATTERN = EnumProperty.create("egg_pattern", EggPattern.class);
     public static final EnumProperty<@NotNull DyeColor> PATTERN_COLOR = EnumProperty.create("pattern_color", DyeColor.class);
-
-    public static final MapCodec<DyedEggBlock> CODEC = simpleCodec(DyedEggBlock::new);
-
-    public @NotNull MapCodec<DyedEggBlock> codec() {
-        return CODEC;
-    }
 
     public DyedEggBlock(Properties properties) {
         super(properties);

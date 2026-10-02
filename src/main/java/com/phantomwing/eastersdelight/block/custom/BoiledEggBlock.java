@@ -1,6 +1,5 @@
 package com.phantomwing.eastersdelight.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -13,12 +12,6 @@ import org.jetbrains.annotations.NotNull;
  * the block simply drops itself.
  */
 public class BoiledEggBlock extends AbstractEggBlock {
-    public static final MapCodec<BoiledEggBlock> CODEC = simpleCodec(BoiledEggBlock::new);
-
-    public @NotNull MapCodec<BoiledEggBlock> codec() {
-        return CODEC;
-    }
-
     public BoiledEggBlock(Properties properties) {
         super(properties);
 

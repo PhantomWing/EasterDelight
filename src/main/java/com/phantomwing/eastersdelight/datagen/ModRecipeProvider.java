@@ -6,10 +6,12 @@ import com.phantomwing.eastersdelight.tags.ModTags;
 import com.phantomwing.eastersdelight.util.ItemUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -19,6 +21,7 @@ import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.crafting.CookingPotBookCategory;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
+import vectorwing.farmersdelight.data.Recipes;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 import java.util.concurrent.CompletableFuture;
@@ -41,8 +44,15 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    protected @NotNull RecipeProvider createRecipeProvider(HolderLookup.Provider registryLookup, RecipeOutput exporter) {
-        return new RecipeProvider(registryLookup, exporter) {
+    protected @NotNull RecipeProvider createRecipeProvider(HolderLookup.@NotNull Provider registryLookup,
+                                                           @NotNull BootstrapContext<Recipe<?>> recipeOutput,
+                                                           @NotNull BootstrapContext<Advancement> advancementOutput) {
+        // FDR's recipe builders resolve holders through this static context, which normally only its
+        // own data provider fills in. 26.3 made recipes a datapack registry, so an add-on generating
+        // cooking pot / cutting board recipes has to point it at its own bootstrap context.
+        Recipes.recipeContext = recipeOutput;
+
+        return new RecipeProvider(recipeOutput, advancementOutput) {
             final HolderGetter<Item> holderGetter = registryLookup.lookupOrThrow(Registries.ITEM);
 
             @Override

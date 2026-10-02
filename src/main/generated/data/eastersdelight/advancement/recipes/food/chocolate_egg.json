@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eastersdelight:chocolate_egg"
+        "recipes": "eastersdelight:chocolate_egg"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

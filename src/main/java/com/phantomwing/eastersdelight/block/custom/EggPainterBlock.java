@@ -1,6 +1,5 @@
 package com.phantomwing.eastersdelight.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import com.phantomwing.eastersdelight.EastersDelight;
 import com.phantomwing.eastersdelight.screen.EggPainterMenu;
 import net.minecraft.core.BlockPos;
@@ -28,7 +27,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class EggPainterBlock extends Block {
     public static final EnumProperty<@NotNull Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final MapCodec<EggPainterBlock> CODEC = simpleCodec(EggPainterBlock::new);
     private static final Component CONTAINER_TITLE = Component.translatable(EastersDelight.MOD_ID + ".container.egg_painter");
 
     protected static final VoxelShape SHAPE = Shapes.joinUnoptimized(
@@ -40,10 +38,6 @@ public class EggPainterBlock extends Block {
             Block.box(2, 2, 12, 14, 3, 14),
             BooleanOp.OR
     );
-
-    public @NotNull MapCodec<EggPainterBlock> codec() {
-        return CODEC;
-    }
 
     public EggPainterBlock(Properties properties) {
         super(properties);

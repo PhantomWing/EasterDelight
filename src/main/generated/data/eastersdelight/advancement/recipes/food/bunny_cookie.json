@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eastersdelight:bunny_cookie"
+        "recipes": "eastersdelight:bunny_cookie"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
