@@ -1,6 +1,10 @@
 {
   "values": [
     {
+      "id": "#minecraft:eggs",
+      "required": false
+    },
+    {
       "id": "#c:eggs",
       "required": false
     },
