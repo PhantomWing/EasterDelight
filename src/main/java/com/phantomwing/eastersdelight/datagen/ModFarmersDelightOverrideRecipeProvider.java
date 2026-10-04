@@ -60,7 +60,7 @@ public class ModFarmersDelightOverrideRecipeProvider extends FabricRecipeProvide
                         .save(output);
 
                 // Noodle Soup — mirrors FDR's recipe (pasta + egg + dried kelp + raw pork, 200 ticks,
-                // exp 1.0) but swaps the raw c:eggs ingredient for our NOODLE_SOUP_INGREDIENTS tag so
+                // exp 1.0) but swaps its #minecraft:eggs ingredient for our NOODLE_SOUP_INGREDIENTS tag so
                 // boiled/dyed eggs count too. Bowl container included to match the other branches.
                 CookingPotRecipeBuilder.cookingPotRecipe(holderGetter, vectorwing.farmersdelight.common.registry.ModItems.NOODLE_SOUP.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
                         .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.FOODS_PASTA)
