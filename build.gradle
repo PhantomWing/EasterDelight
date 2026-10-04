@@ -46,6 +46,18 @@ repositories {
     maven { url 'https://www.cursemaven.com' }
 }
 
+// Loom doesn't pass the JVM arguments Mojang's 26.3 version manifest adds, so the dev runs get them here.
+// Without StackShadowPages=32 the client died natively on Windows in about 4 of 10 starts while compiling
+// shaders (renderpearl's shaderc include callback re-enters Java from deep native code).
+loom {
+    runs {
+        configureEach {
+            vmArg '-XX:StackShadowPages=32'
+            vmArgs '--add-exports', 'java.base/jdk.internal.misc=ALL-UNNAMED'
+        }
+    }
+}
+
 fabricApi {
     configureDataGeneration() {
         strictValidation = false
