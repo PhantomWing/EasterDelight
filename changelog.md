@@ -3,6 +3,7 @@
 - Fixed the Egg Bunny villager name showing as raw text instead of its translation
 - Fixed Baked Cod Stew and Noodle Soup not accepting boiled eggs, as their Farmer's Delight recipe overrides weren't loading
 - Placed eggs can no longer be trampled by players under spawn protection, as with turtle eggs
+- An Egg Pattern without a pattern now shows the stripes pattern instead of the missing texture
 
 ### Additions
 - Ported to Minecraft 26.3
