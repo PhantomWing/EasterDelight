@@ -130,7 +130,7 @@ public abstract class AbstractEggBlock extends Block {
     private void destroyEgg(Level level, BlockState state, BlockPos pos, Entity entity, int chance) {
         if (state.is(this) && level instanceof ServerLevel serverLevel) {
             RandomSource random = level.getRandom();
-            if (this.canDestroyEgg(serverLevel, entity) && random.nextInt(chance) == 0) {
+            if (this.canDestroyEgg(serverLevel, pos, entity) && random.nextInt(chance) == 0) {
                 level.playSound(null, pos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.BLOCKS, 0.7F, 0.9F + random.nextFloat() * 0.2F);
 
                 int slices = random.nextIntBetweenInclusive(MIN_CRUSHED_SLICES, MAX_CRUSHED_SLICES);
@@ -141,13 +141,14 @@ public abstract class AbstractEggBlock extends Block {
         }
     }
 
-    private boolean canDestroyEgg(ServerLevel level, Entity entity) {
-        if (!(entity instanceof Turtle) && !(entity instanceof Bat)) {
-            if (!(entity instanceof LivingEntity)) {
-                return false;
-            } else {
-                return entity instanceof Player || level.getGameRules().get(GameRules.MOB_GRIEFING);
-            }
+    // As vanilla's turtle eggs, which spawn protection guards from players.
+    private boolean canDestroyEgg(ServerLevel level, BlockPos pos, Entity entity) {
+        if (entity instanceof Turtle || entity instanceof Bat) {
+            return false;
+        } else if (entity instanceof Player player) {
+            return !level.getServer().isUnderSpawnProtection(level, pos, player);
+        } else if (entity instanceof LivingEntity) {
+            return level.getGameRules().get(GameRules.MOB_GRIEFING);
         } else {
             return false;
         }

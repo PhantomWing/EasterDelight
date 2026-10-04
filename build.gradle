@@ -31,12 +31,6 @@ repositories {
         }
     }
 
-    maven {
-        // Kept for older FDR releases; no 26.3 artifacts here (see above).
-        name = "Greenhouse Maven"
-        url = 'https://maven.greenhouse.lgbt/releases/'
-    }
-
     maven { // Fabric ASM
         url = "https://jitpack.io/"
     }
