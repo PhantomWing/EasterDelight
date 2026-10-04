@@ -41,14 +41,15 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
             .addTag(ModTags.Items.BOILED_EGGS)
             .add(ModItems.DYED_EGG);
 
-        // Override for Baked Cod Stew (by default only contains Tags.Items.EGGS)
+        // Farmer's Delight's Baked Cod Stew and Noodle Soup take #minecraft:eggs. Their overrides take
+        // those and c:eggs, and cooked eggs too, so boiled and dyed eggs count.
         this.valueLookupBuilder(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
+            .addOptionalTag(ItemTags.EGGS)
             .addOptionalTag(CommonTags.EGGS)
             .addTag(CommonTags.FOODS_COOKED_EGG);
 
-        // Override for Noodle Soup (FDR's recipe hardcodes c:eggs — mirror the cod stew set so
-        // boiled / dyed eggs also count as a valid noodle soup ingredient).
         this.valueLookupBuilder(ModTags.Items.NOODLE_SOUP_INGREDIENTS)
+            .addOptionalTag(ItemTags.EGGS)
             .addOptionalTag(CommonTags.EGGS)
             .addTag(CommonTags.FOODS_COOKED_EGG);
     }
@@ -72,7 +73,7 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
         this.valueLookupBuilder(CommonTags.FOODS_COOKED_EGG)
                 .addTag(CommonTags.FOODS_BOILED_EGG);
 
-        // For compatibility, replace Items.POTATO with a tag (in some override recipes)
+        // Potatoes as food, for other mods' recipes
         this.valueLookupBuilder(CommonTags.FOODS_POTATO).add(
                 Items.POTATO
         );
