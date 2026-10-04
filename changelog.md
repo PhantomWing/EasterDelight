@@ -1,3 +1,10 @@
+# 1.3.2
+
+### Fixes
+- Fixed Baked Cod Stew and Noodle Soup not accepting boiled eggs, as their Farmer's Delight recipe overrides weren't loading
+- An Egg Pattern without a pattern now shows the stripes pattern instead of the missing texture
+
+
 # 1.3.1
 ### Fixes
 - Fixed the Egg Bunny villager name showing as raw text instead of its translation
