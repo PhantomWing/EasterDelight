@@ -2,6 +2,9 @@
 ### Fixes
 - Fixed the Egg Bunny villager name showing as raw text instead of its translation
 
+### Additions
+- Ported to Minecraft 26.3
+
 
 # 1.3.0
 ### Additions
