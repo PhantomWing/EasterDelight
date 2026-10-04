@@ -6,6 +6,7 @@ import com.phantomwing.eastersdelight.tags.CompatibilityTags;
 import com.phantomwing.eastersdelight.tags.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -71,10 +72,10 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
         this.valueLookupBuilder(CommonTags.FOODS_COOKED_EGG)
                 .addTag(CommonTags.FOODS_BOILED_EGG);
 
-        // Potatoes as food, for other mods' recipes
-        this.valueLookupBuilder(CommonTags.FOODS_POTATO).add(
-                Items.POTATO
-        );
+        // Potatoes as food, the crop included, as in Rustic Delight. Recipes take this one.
+        this.valueLookupBuilder(CommonTags.FOODS_POTATO)
+                .add(Items.POTATO)
+                .addOptionalTag(ConventionalItemTags.POTATO_CROPS);
 
         // Cookies
         this.valueLookupBuilder(CommonTags.FOODS_COOKIE).add(
