@@ -6,7 +6,7 @@
   "experience": 1.0,
   "ingredients": [
     "#c:foods/raw_cod",
-    "#c:crops/potato",
+    "#c:foods/potato",
     "#eastersdelight:baked_cod_stew_ingredients",
     "#c:crops/tomato"
   ],
