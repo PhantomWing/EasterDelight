@@ -45,14 +45,12 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
             .add(ModItems.DYED_EGG);
 
         // Farmer's Delight's Baked Cod Stew and Noodle Soup take #minecraft:eggs. Their overrides take
-        // those and c:eggs, and cooked eggs too, so boiled and dyed eggs count.
+        // c:eggs, which every mod's eggs and vanilla's go in, and cooked eggs, so boiled and dyed eggs count.
         itemTag(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
-            .addOptionalTag(ItemTags.EGGS)
             .addOptionalTag(CommonTags.EGGS)
             .addTag(CommonTags.FOODS_COOKED_EGG);
 
         itemTag(ModTags.Items.NOODLE_SOUP_INGREDIENTS)
-            .addOptionalTag(ItemTags.EGGS)
             .addOptionalTag(CommonTags.EGGS)
             .addTag(CommonTags.FOODS_COOKED_EGG);
     }
