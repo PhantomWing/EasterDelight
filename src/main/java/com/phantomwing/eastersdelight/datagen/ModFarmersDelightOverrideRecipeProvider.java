@@ -1,9 +1,9 @@
 package com.phantomwing.eastersdelight.datagen;
 
-import com.phantomwing.eastersdelight.tags.CommonTags;
 import com.phantomwing.eastersdelight.tags.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -52,7 +52,7 @@ public class ModFarmersDelightOverrideRecipeProvider extends FabricRecipeProvide
                 // Baked Cod Stew — override FDR's recipe so boiled/dyed eggs work as the egg ingredient.
                 CookingPotRecipeBuilder.cookingPotRecipe(holderGetter, vectorwing.farmersdelight.common.registry.ModItems.BAKED_COD_STEW.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
                         .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.FOODS_RAW_COD)
-                        .addIngredient(CommonTags.FOODS_POTATO)
+                        .addIngredient(ConventionalItemTags.POTATO_CROPS)
                         .addIngredient(ModTags.Items.BAKED_COD_STEW_INGREDIENTS)
                         .addIngredient(vectorwing.farmersdelight.common.tag.CommonTags.Items.CROPS_TOMATO)
                         .unlockedByAnyIngredient(Items.COD, Items.POTATO, vectorwing.farmersdelight.common.registry.ModItems.TOMATO.get(), Items.EGG)
